@@ -39,6 +39,7 @@ void cipher::encode(ifstream* src,ofstream* tgt)
 	{
 		return;
 	}
+	//...
 }
 
 void cipher::decode(ifstream* src, ofstream* tgt)
@@ -47,4 +48,5 @@ void cipher::decode(ifstream* src, ofstream* tgt)
 	{
 		return;
 	}
+	//...
 }
