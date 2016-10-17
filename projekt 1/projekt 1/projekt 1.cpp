@@ -15,7 +15,7 @@ int main(int argc, char* argv [])
 usage:\n\
 crypt -encode -src=\"\" -code=\"\" -o=\"\" encodes \'src\' with \'code\' and writes it to \'o\'\n\
 crypt -decode -src=\"\" -code=\"\" -o=\"\" decodes \'src\' with \'code\' and writes it to \'o\'\n\
-crypt -help displays this help message");
+crypt -help displays this help message\n");
 		return 0;
 	}
 	ifstream* txt;
@@ -23,7 +23,7 @@ crypt -help displays this help message");
 	txt->open("original.txt");
 	if(txt->is_open())
 	{
-		printf("Successfully opened the source file\n");
+		//printf("Successfully opened the source file\n");
 		cipher* file;
 		file = new cipher("coding_table.txt");
 		//...

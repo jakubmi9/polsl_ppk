@@ -19,7 +19,7 @@ cipher::cipher(const char src[100])
 		}
 		codefile->close();
 		delete(codefile);
-		printf("Successfully imported a code table\n");
+		//printf("Successfully imported a code table\n");
 	}
 	else
 	{
