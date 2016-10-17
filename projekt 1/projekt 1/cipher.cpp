@@ -32,12 +32,12 @@ cipher::~cipher()
 	delete(ctable);
 }
 
-void cipher::encode(ifstream* src)
+void cipher::encode(ifstream* src,ofstream* tgt)
 {
 
 }
 
-void cipher::decode(ifstream* src)
+void cipher::decode(ifstream* src, ofstream* tgt)
 {
 
 }

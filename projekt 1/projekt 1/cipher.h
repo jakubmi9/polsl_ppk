@@ -7,8 +7,8 @@ class cipher
 {
 	private:
 	public:
-	void encode(ifstream*);
-	void decode(ifstream*);
+	void encode(ifstream*, ofstream*);
+	void decode(ifstream*, ofstream*);
 	cipher(const char[100]);
 	~cipher();
 };
