@@ -2,31 +2,20 @@
 //
 
 #include "stdafx.h"
-#include <fstream>
-
+#include "cipher.h"
 
 using namespace std;
+
 int main()
 {
 	ifstream txt;
 	txt.open("original.txt");
 	if(txt.is_open())
 	{
-		ifstream charcode;
-		charcode.open("coding_table.txt");
-		if(charcode.is_open())
-		{
-			char cipher[26] = {0};
-			for(int i = 0; i<26; i++)
-			{
-				charcode>>cipher[i];
-				cout<<cipher[i];
-			}
-		}
-		else
-		{
-			printf("Couldn't find the code table!\nExiting...");
-		}
+		cipher* c;
+		c = new cipher("coding_table.txt");
+
+		delete(c);
 	}
 	else
 	{
