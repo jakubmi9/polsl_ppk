@@ -14,10 +14,10 @@ int main()
 	if(txt->is_open())
 	{
 		printf("Successfully opened the source file\n");
-		cipher* c;
-		c = new cipher("coding_table.txt");
+		cipher* file;
+		file = new cipher("coding_table.txt");
 		//...
-		delete(c);
+		delete(file);
 		delete(txt);
 	}
 	else

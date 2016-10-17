@@ -31,3 +31,13 @@ cipher::~cipher()
 {
 	delete(ctable);
 }
+
+void cipher::encode(ifstream* src)
+{
+
+}
+
+void cipher::decode(ifstream* src)
+{
+
+}
