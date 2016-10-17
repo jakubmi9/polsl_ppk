@@ -12,6 +12,7 @@ cipher::cipher(const char src[100])
 	codefile->open(src);
 	if(codefile->is_open())
 	{
+		tableopened = 1;
 		ctable = new char[26];
 		for(int i = 0; i<26; i++)
 		{
@@ -34,10 +35,16 @@ cipher::~cipher()
 
 void cipher::encode(ifstream* src,ofstream* tgt)
 {
-
+	if(!tableopened)
+	{
+		return;
+	}
 }
 
 void cipher::decode(ifstream* src, ofstream* tgt)
 {
-
+	if(!tableopened)
+	{
+		return;
+	}
 }

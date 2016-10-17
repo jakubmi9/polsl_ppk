@@ -29,7 +29,16 @@ crypt -help displays this help message");
 			cipher* cfile;
 			cfile = new cipher("coding_table.txt");
 			ofstream* ofile;
-			cfile->encode(ifile,ofile);
+			ofile = new ofstream;
+			ofile->open("result.txt");
+			if(ofile->is_open())
+			{
+				cfile->encode(ifile, ofile);
+			}
+			else
+			{
+				printf("Couldn't open result file for writing!\nExiting...");
+			}
 			delete(cfile);
 			delete(ifile);
 			delete(ofile);
@@ -51,7 +60,16 @@ crypt -help displays this help message");
 			cipher* cfile;
 			cfile = new cipher("coding_table.txt");
 			ofstream* ofile;
-			cfile->decode(ifile, ofile);
+			ofile = new ofstream;
+			ofile->open("result.txt");
+			if(ofile->is_open())
+			{
+				cfile->decode(ifile, ofile);
+			}
+			else
+			{
+				printf("Couldn't open result file for writing!\nExiting...");
+			}
 			delete(cfile);
 			delete(ifile);
 			delete(ofile);

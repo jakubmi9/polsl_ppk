@@ -6,6 +6,7 @@ using namespace std;
 class cipher
 {
 	private:
+	bool tableopened = 0;
 	public:
 	void encode(ifstream*, ofstream*);
 	void decode(ifstream*, ofstream*);
