@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main(int argc, char* argv [])
+int main(int argc, char* argv[])
 {
 	//crypt.exe -encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
 	if(argv[1][1]=='h')
@@ -21,16 +21,49 @@ crypt -help displays this help message");
 	}
 	else if(argv[1][1]=='e')
 	{
+		char arg1[260] = {0};
+		char arg2[260] = {0};
+		char arg3[260] = {0};
+		{
+			int j = 0;
+			int i = 5;
+			while(argv[2][i]!='\0')
+			{
+				arg1[j] = argv[2][i];
+				i++;
+				j++;
+			}
+		}
+		{
+			int j = 0;
+			int i = 6;
+			while(argv[3][i]!='\0')
+			{
+				arg2[j] = argv[3][i];
+				i++;
+				j++;
+			}
+		}
+		{
+			int j = 0;
+			int i = 3;
+			while(argv[4][i]!='\0')
+			{
+				arg3[j] = argv[4][i];
+				i++;
+				j++;
+			}
+		}
 		ifstream* ifile;
 		ifile = new ifstream;
-		ifile->open("original.txt");
+		ifile->open(arg1);
 		if(ifile->is_open())
 		{
 			cipher* cfile;
-			cfile = new cipher("coding_table.txt");
+			cfile = new cipher(arg3);
 			ofstream* ofile;
 			ofile = new ofstream;
-			ofile->open("result.txt");
+			ofile->open(arg3);
 			if(ofile->is_open())
 			{
 				cfile->encode(ifile, ofile);
@@ -52,16 +85,49 @@ crypt -help displays this help message");
 	}
 	else if(argv[1][1]=='d')
 	{
+		char arg1[260] = {0};
+		char arg2[260] = {0};
+		char arg3[260] = {0};
+		{
+			int j = 0;
+			int i = 5;
+			while(argv[2][i]!='\0')
+			{
+				arg1[j] = argv[2][i];
+				i++;
+				j++;
+			}
+		}
+		{
+			int j = 0;
+			int i = 6;
+			while(argv[3][i]!='\0')
+			{
+				arg2[j] = argv[3][i];
+				i++;
+				j++;
+			}
+		}
+		{
+			int j = 0;
+			int i = 3;
+			while(argv[4][i]!='\0')
+			{
+				arg3[j] = argv[4][i];
+				i++;
+				j++;
+			}
+		}
 		ifstream* ifile;
 		ifile = new ifstream;
-		ifile->open("original.txt");
+		ifile->open(arg1);
 		if(ifile->is_open())
 		{
 			cipher* cfile;
-			cfile = new cipher("coding_table.txt");
+			cfile = new cipher(arg3);
 			ofstream* ofile;
 			ofile = new ofstream;
-			ofile->open("result.txt");
+			ofile->open(arg3);
 			if(ofile->is_open())
 			{
 				cfile->decode(ifile, ofile);
