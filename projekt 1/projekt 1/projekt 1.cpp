@@ -8,17 +8,21 @@ using namespace std;
 
 int main()
 {
-	ifstream txt;
-	txt.open("original.txt");
-	if(txt.is_open())
+	ifstream* txt;
+	txt = new ifstream;
+	txt->open("original.txt");
+	if(txt->is_open())
 	{
+		printf("Successfully opened the source file\n");
 		cipher* c;
 		c = new cipher("coding_table.txt");
-
+		//...
 		delete(c);
+		delete(txt);
 	}
 	else
 	{
+		delete(txt);
 		printf("Couldn't find the source file!\nExiting...");
 	}
 	system("pause");

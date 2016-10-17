@@ -1,20 +1,24 @@
-#include "stdafx.h"
-#include "cipher.h"
+#include "stdafx.h"																			  
+#include "cipher.h"																			  
 
 using namespace std;
 
+char* ctable;
 
 cipher::cipher(const char src[100])
 {
-	ifstream charcode;
-	charcode.open(src);
-	if(charcode.is_open())
+	ifstream* codefile;
+	codefile = new ifstream;
+	codefile->open(src);
+	if(codefile->is_open())
 	{
-		char cipher[26] = {0};
+		ctable = new char[26];
 		for(int i = 0; i<26; i++)
 		{
-			charcode>>cipher[i];
+			*codefile>>ctable[i];
 		}
+		codefile->close();
+		delete(codefile);
 		printf("Successfully imported a code table\n");
 	}
 	else
@@ -23,8 +27,7 @@ cipher::cipher(const char src[100])
 	}
 }
 
-
 cipher::~cipher()
 {
-	//delete(charcode);
+	delete(ctable);
 }

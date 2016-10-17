@@ -1,4 +1,6 @@
 #pragma once
+#include "stdafx.h"
+
 class cipher
 {
 	private:
@@ -6,4 +8,3 @@ class cipher
 	cipher(const char[100]);
 	~cipher();
 };
-
