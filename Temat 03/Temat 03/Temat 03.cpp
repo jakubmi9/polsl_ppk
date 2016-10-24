@@ -4,9 +4,9 @@
 #include "stdafx.h"
 
 const int tab_size = 50;
-const int max_num = 1000000;
+const int max_num = 32768;
 
-void sort(int* tab)
+void selection_sort(int* tab)
 {
 	int min = max_num+1;
 	int min_pos = 0;
@@ -27,6 +27,11 @@ void sort(int* tab)
 	}
 }
 
+void insert_sort(int* tab)
+{
+
+}
+
 int main()
 {
 	srand(time(0));
@@ -37,7 +42,7 @@ int main()
 		tab[i] = rand()%max_num;
 		cout<<tab[i]<<endl;
 	}
-	sort(tab);
+	selection_sort(tab);
 	cout<<"sorted\n";
 	for(int i = 0; i<tab_size; i++)
 	{
