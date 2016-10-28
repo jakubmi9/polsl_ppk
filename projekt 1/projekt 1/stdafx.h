@@ -12,5 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <ctime>
+#include <algorithm>
 
 // TODO: reference additional headers your program requires here

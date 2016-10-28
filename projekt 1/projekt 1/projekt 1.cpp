@@ -4,8 +4,88 @@
 #include "stdafx.h"
 #include "cipher.h"
 
+//char code[128];
+
 using namespace std;
 
+void generate()
+{
+	ofstream ciph;
+	ciph.open("code.txt");
+	srand(time(0));
+	vector<char> cipher;
+	for(int i = 32; i<127; i++)
+	{
+		cipher.push_back(i);
+	}
+	random_shuffle(cipher.begin(), cipher.end());
+	for(int i = 0; i<128; i++)
+	{
+		if(i<32||i==127)
+		{
+//			code[i] = 0;
+			ciph<<'\0'<<endl;
+		}
+		else
+		{
+//			code[i] = cipher[i-32];
+			ciph<<cipher[i-32]<<endl;
+		}
+	}
+	ciph.close();
+	printf("Success!\n");
+}
+
+void encode(char* i, char* o)
+{
+	ifstream ifile;
+	ifile.open(i);
+	if(ifile.is_open())
+	{
+		ofstream ofile;
+		ofile.open(o);
+		if(ofile.is_open())
+		{
+			printf("encoding...");
+		}
+		else
+		{
+			printf("Couldn't open result file for writing!\nExiting...");
+			return;
+		}
+	}
+	else
+	{
+		printf("Couldn't find the source file!\nExiting...");
+		return;
+	}
+	
+}
+
+void decode(char* i, char* o)
+{
+	ifstream ifile;
+	ifile.open(i);
+	if(ifile.is_open())
+	{
+		ofstream ofile;
+		ofile.open(o);
+		if(ofile.is_open())
+		{
+			printf("decoding...");
+		}
+		else
+		{
+			printf("Couldn't open result file for writing!\nExiting...");
+			return;
+		}
+	}
+	else
+	{
+		printf("Couldn't find the source file!\nExiting...");
+		return;
+	}
+}
 int main(int argc, char* argv[])
 {
 	//crypt.exe -encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
@@ -13,23 +93,28 @@ int main(int argc, char* argv[])
 	{
 		printf("crypt help utility\n\
 usage:\n\
-crypt -encode -src=\"\" -code=\"\" -o=\"\" encodes \'src\' with \'code\' and writes it to \'o\'\n\
-crypt -decode -src=\"\" -code=\"\" -o=\"\" decodes \'src\' with \'code\' and writes it to \'o\'\n\
+crypt -generate generates new random codetable\
+crypt -encode -src=\"\" -o=\"\" encodes \'src\' with code.txt and writes it to \'o\'\n\
+crypt -decode -src=\"\" -o=\"\" decodes \'src\' with code.txt and writes it to \'o\'\n\
 crypt -help displays this help message");
 		system("pause");
 		return 0;
 	}
+	else if(argv[1][1]=='g')
+	{
+		printf("Generating code.txt...\n");
+		generate();
+	}
 	else if(argv[1][1]=='e')
 	{
-		char arg1[260] = {0};
-		char arg2[260] = {0};
-		char arg3[260] = {0};
+		char iname[260] = {0};
+		char oname[260] = {0};
 		{
 			int j = 0;
 			int i = 5;
 			while(argv[2][i]!='\0')
 			{
-				arg1[j] = argv[2][i];
+				iname[j] = argv[2][i];
 				i++;
 				j++;
 			}
@@ -39,61 +124,35 @@ crypt -help displays this help message");
 			int i = 6;
 			while(argv[3][i]!='\0')
 			{
-				arg2[j] = argv[3][i];
+				oname[j] = argv[3][i];
 				i++;
 				j++;
 			}
 		}
+		ifstream cfile;
+		cfile.open("code.txt");
+		if(cfile.is_open())
 		{
-			int j = 0;
-			int i = 3;
-			while(argv[4][i]!='\0')
-			{
-				arg3[j] = argv[4][i];
-				i++;
-				j++;
-			}
-		}
-		ifstream* ifile;
-		ifile = new ifstream;
-		ifile->open(arg1);
-		if(ifile->is_open())
-		{
-			cipher* cfile;
-			cfile = new cipher(arg3);
-			ofstream* ofile;
-			ofile = new ofstream;
-			ofile->open(arg3);
-			if(ofile->is_open())
-			{
-				cfile->encode(ifile, ofile);
-			}
-			else
-			{
-				printf("Couldn't open result file for writing!\nExiting...");
-			}
-			delete(cfile);
-			delete(ifile);
-			delete(ofile);
+
+			encode(iname, oname);
 		}
 		else
 		{
-			delete(ifile);
-			printf("Couldn't find the source file!\nExiting...");
+			printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
 			return 0;
 		}
+		
 	}
 	else if(argv[1][1]=='d')
 	{
-		char arg1[260] = {0};
-		char arg2[260] = {0};
-		char arg3[260] = {0};
+		char iname[260] = {0};
+		char oname[260] = {0};
 		{
 			int j = 0;
 			int i = 5;
 			while(argv[2][i]!='\0')
 			{
-				arg1[j] = argv[2][i];
+				iname[j] = argv[2][i];
 				i++;
 				j++;
 			}
@@ -103,49 +162,23 @@ crypt -help displays this help message");
 			int i = 6;
 			while(argv[3][i]!='\0')
 			{
-				arg2[j] = argv[3][i];
+				oname[j] = argv[3][i];
 				i++;
 				j++;
 			}
 		}
+		ifstream cfile;
+		cfile.open("code.txt");
+		if(cfile.is_open())
 		{
-			int j = 0;
-			int i = 3;
-			while(argv[4][i]!='\0')
-			{
-				arg3[j] = argv[4][i];
-				i++;
-				j++;
-			}
-		}
-		ifstream* ifile;
-		ifile = new ifstream;
-		ifile->open(arg1);
-		if(ifile->is_open())
-		{
-			cipher* cfile;
-			cfile = new cipher(arg3);
-			ofstream* ofile;
-			ofile = new ofstream;
-			ofile->open(arg3);
-			if(ofile->is_open())
-			{
-				cfile->decode(ifile, ofile);
-			}
-			else
-			{
-				printf("Couldn't open result file for writing!\nExiting...");
-			}
-			delete(cfile);
-			delete(ifile);
-			delete(ofile);
+			decode(iname, oname);
 		}
 		else
 		{
-			delete(ifile);
-			printf("Couldn't find the source file!\nExiting...");
+			printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
 			return 0;
 		}
+		
 	}
 	else
 	{
@@ -155,4 +188,3 @@ crypt -help displays this help message");
 	system("pause");
 	return 0;
 }
-
