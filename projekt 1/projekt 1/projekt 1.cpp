@@ -1,40 +1,37 @@
 // projekt 1.cpp : Defines the entry point for the console application.
-//
-
+//==============================================================================
 #include "stdafx.h"
-
+//==============================================================================
 //char code[128];
-
-using namespace std;
-
+//==============================================================================
 void generate()
 {
 	ofstream ciph;
 	ciph.open("code.txt");
 	srand(time(0));
 	vector<char> cipher;
-	for(int i = 32; i<127; i++)
+	for(int i = 32; i < 127; i++)
 	{
 		cipher.push_back(i);
 	}
 	random_shuffle(cipher.begin(), cipher.end());
-	for(int i = 0; i<128; i++)
+	for(int i = 0; i < 128; i++)
 	{
-		if(i<32||i==127)
+		if(i < 32 || i == 127)
 		{
 			//			code[i] = 0;
-			ciph<<'\0'<<endl;
+			ciph << '\0' << endl;
 		}
 		else
 		{
 			//			code[i] = cipher[i-32];
-			ciph<<cipher[i-32]<<endl;
+			ciph << cipher[i - 32] << endl;
 		}
 	}
 	ciph.close();
 	printf("Success!\n");
 }
-
+//==============================================================================
 void encode(char* i, char* o)
 {
 	ifstream ifile;
@@ -60,7 +57,7 @@ void encode(char* i, char* o)
 	}
 
 }
-
+//==============================================================================
 void decode(char* i, char* o)
 {
 	ifstream ifile;
@@ -85,6 +82,7 @@ void decode(char* i, char* o)
 		return;
 	}
 }
+//==============================================================================
 int main(int argc, char* argv[])
 {
 	//crypt.exe -encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
@@ -110,7 +108,7 @@ int main(int argc, char* argv[])
 			{
 				int j = 0;
 				int i = 5;
-				while(argv[2][i]!='\0')
+				while(argv[2][i] != '\0')
 				{
 					iname[j] = argv[2][i];
 					i++;
@@ -120,7 +118,7 @@ int main(int argc, char* argv[])
 			{
 				int j = 0;
 				int i = 6;
-				while(argv[3][i]!='\0')
+				while(argv[3][i] != '\0')
 				{
 					oname[j] = argv[3][i];
 					i++;
@@ -144,7 +142,7 @@ int main(int argc, char* argv[])
 			{
 				int j = 0;
 				int i = 5;
-				while(argv[2][i]!='\0')
+				while(argv[2][i] != '\0')
 				{
 					iname[j] = argv[2][i];
 					i++;
@@ -154,7 +152,7 @@ int main(int argc, char* argv[])
 			{
 				int j = 0;
 				int i = 6;
-				while(argv[3][i]!='\0')
+				while(argv[3][i] != '\0')
 				{
 					oname[j] = argv[3][i];
 					i++;
@@ -179,3 +177,4 @@ int main(int argc, char* argv[])
 	}
 	system("pause");
 }
+//==============================================================================
