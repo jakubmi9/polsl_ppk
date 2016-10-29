@@ -143,7 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="code.txt" />
-    <Text Include="coding_table.txt" />
     <Text Include="original.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="result.txt" />

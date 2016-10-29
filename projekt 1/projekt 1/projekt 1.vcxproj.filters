@@ -19,9 +19,6 @@
     <Text Include="code.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="coding_table.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="original.txt">
       <Filter>Resource Files</Filter>
     </Text>

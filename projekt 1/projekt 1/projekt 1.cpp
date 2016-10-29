@@ -1,14 +1,13 @@
 // projekt 1.cpp : Defines the entry point for the console application.
+//crypt.exe -generate||-encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
 //==============================================================================
 #include "stdafx.h"
-//==============================================================================
-//char code[128];
 //==============================================================================
 void generate()
 {
 	ofstream ciph;
 	ciph.open("code.txt");
-	srand(time(0));
+	srand(static_cast<unsigned int>(time(0)));
 	vector<char> cipher;
 	for(int i = 32; i < 127; i++)
 	{
@@ -19,12 +18,10 @@ void generate()
 	{
 		if(i < 32 || i == 127)
 		{
-			//code[i] = 0;
 			ciph << '\0' << endl;
 		}
 		else
 		{
-			//code[i] = cipher[i-32];
 			ciph << cipher[i - 32] << endl;
 		}
 	}
@@ -43,6 +40,7 @@ void encode(char* i, char* o)
 		if(ofile.is_open())
 		{
 			printf("encoding...");
+			return;
 		}
 		else
 		{
@@ -55,7 +53,6 @@ void encode(char* i, char* o)
 		printf("Couldn't find the source file!\nExiting...");
 		return;
 	}
-
 }
 //==============================================================================
 void decode(char* i, char* o)
@@ -69,6 +66,7 @@ void decode(char* i, char* o)
 		if(ofile.is_open())
 		{
 			printf("decoding...");
+			return;
 		}
 		else
 		{
@@ -82,27 +80,31 @@ void decode(char* i, char* o)
 		return;
 	}
 }
+
 //==============================================================================
 int main(int argc, char* argv[])
 {
-	//crypt.exe -encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
 	ifstream cfile;
 	switch(argv[1][1])
 	{
 		case 'h':
+		{
 			printf("crypt help utility\n\
-					usage:\n\
-					crypt -generate generates new random codetable\
-					crypt -encode -src=\"\" -o=\"\" encodes \'src\' with code.txt and writes it to \'o\'\n\
-					crypt -decode -src=\"\" -o=\"\" decodes \'src\' with code.txt and writes it to \'o\'\n\
-					crypt -help displays this help message");
-			system("pause");
-			return 0;
+usage:\n\
+crypt -generate	\t\tgenerates new random codetable\n\
+crypt -encode -src=\"\" -o=\"\"	encodes \'src\' with a codetable and writes it to \'o\'\n\
+crypt -decode -src=\"\" -o=\"\"	decodes \'src\' with a codetable and writes it to \'o\'\n\
+crypt -help	\t\tdisplays this help message\n");
+			break;
+		}
 		case 'g':
+		{
 			printf("Generating code.txt...\n");
 			generate();
-			return 0;
+			break;
+		}
 		case 'e':
+		{
 			char iname[260] = {0};
 			char oname[260] = {0};
 			{
@@ -125,18 +127,21 @@ int main(int argc, char* argv[])
 					j++;
 				}
 			}
+			ifstream cfile;
 			cfile.open("code.txt");
 			if(cfile.is_open())
 			{
 				encode(iname, oname);
-				return 0;
+				break;
 			}
 			else
 			{
 				printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
-				return 0;
+				break;
 			}
+		}
 		case 'd':
+		{
 			char iname[260] = {0};
 			char oname[260] = {0};
 			{
@@ -159,22 +164,26 @@ int main(int argc, char* argv[])
 					j++;
 				}
 			}
-			//ifstream cfile;
+			ifstream cfile;
 			cfile.open("code.txt");
 			if(cfile.is_open())
 			{
 				decode(iname, oname);
-				return 0;
+				break;
 			}
 			else
 			{
 				printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
-				return 0;
+				break;
 			}
+		}
 		default:
+		{
 			printf("Invalid runtime argument!\nExiting...");
-			return 0;
+			break;
+		}
 	}
 	system("pause");
+	return 0;
 }
 //==============================================================================
