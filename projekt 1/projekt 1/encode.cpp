@@ -21,8 +21,9 @@ void encode(char* i, char* o, ifstream &cc)
 			char c;
 			while(ifile.get(c))
 			{
-
+				ofile << tab[c];
 			}
+			printf("done\n");
 			return;
 		}
 		else

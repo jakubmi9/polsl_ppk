@@ -39,7 +39,7 @@ crypt -help	\t\tdisplays this help message\n");
 			}
 			{
 				int j = 0;
-				int i = 6;
+				int i = 3;
 				while(argv[3][i] != '\0')
 				{
 					oname[j] = argv[3][i];
@@ -76,7 +76,7 @@ crypt -help	\t\tdisplays this help message\n");
 			}
 			{
 				int j = 0;
-				int i = 6;
+				int i = 3;
 				while(argv[3][i] != '\0')
 				{
 					oname[j] = argv[3][i];
