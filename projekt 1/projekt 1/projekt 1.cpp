@@ -3,67 +3,14 @@
 //==============================================================================
 #include "stdafx.h"
 //==============================================================================
-void encode(char* i, char* o)
-{
-	ifstream ifile;
-	ifile.open(i);
-	if(ifile.is_open())
-	{
-		ofstream ofile;
-		ofile.open(o);
-		if(ofile.is_open())
-		{
-			printf("encoding...");
-			return;
-		}
-		else
-		{
-			printf("Couldn't open result file for writing!\nExiting...");
-			return;
-		}
-	}
-	else
-	{
-		printf("Couldn't find the source file!\nExiting...");
-		return;
-	}
-}
-//==============================================================================
-void decode(char* i, char* o)
-{
-	ifstream ifile;
-	ifile.open(i);
-	if(ifile.is_open())
-	{
-		ofstream ofile;
-		ofile.open(o);
-		if(ofile.is_open())
-		{
-			printf("decoding...");
-			return;
-		}
-		else
-		{
-			printf("Couldn't open result file for writing!\nExiting...");
-			return;
-		}
-	}
-	else
-	{
-		printf("Couldn't find the source file!\nExiting...");
-		return;
-	}
-}
-
-//==============================================================================
 int main(int argc, char* argv[])
 {
+	printf("crypt encryption utility alpha\n");
 	switch(argv[1][1])
 	{
 		case 'h':
 		{
-			printf("crypt help utility\n\
-usage:\n\
+			printf("usage:\n\
 crypt -generate	\t\tgenerates new random codetable\n\
 crypt -encode -src=\"\" -o=\"\"	encodes \'src\' with a codetable and writes it to \'o\'\n\
 crypt -decode -src=\"\" -o=\"\"	decodes \'src\' with a codetable and writes it to \'o\'\n\
@@ -72,7 +19,7 @@ crypt -help	\t\tdisplays this help message\n");
 		}
 		case 'g':
 		{
-			printf("Generating code.txt...\n");
+			printf("Generating code.txt...");
 			generate();
 			break;
 		}

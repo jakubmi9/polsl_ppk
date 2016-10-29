@@ -36,6 +36,12 @@
     <ClInclude Include="generate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="encode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="generate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

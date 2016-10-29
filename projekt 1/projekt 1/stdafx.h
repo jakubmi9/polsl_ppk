@@ -13,6 +13,8 @@
 #include <ctime>
 #include <algorithm>
 #include "generate.h"
+#include "encode.h"
+#include "decode.h"
 //==============================================================================
 using namespace std;
 //==============================================================================
