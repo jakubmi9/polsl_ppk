@@ -51,7 +51,7 @@ crypt -help	\t\tdisplays this help message\n");
 			cfile.open("code.txt");
 			if(cfile.is_open())
 			{
-				encode(iname, oname);
+				encode(iname, oname, cfile);
 				break;
 			}
 			else
