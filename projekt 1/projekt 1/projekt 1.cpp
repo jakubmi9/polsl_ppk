@@ -19,12 +19,12 @@ void generate()
 	{
 		if(i < 32 || i == 127)
 		{
-			//			code[i] = 0;
+			//code[i] = 0;
 			ciph << '\0' << endl;
 		}
 		else
 		{
-			//			code[i] = cipher[i-32];
+			//code[i] = cipher[i-32];
 			ciph << cipher[i - 32] << endl;
 		}
 	}
@@ -159,7 +159,7 @@ int main(int argc, char* argv[])
 					j++;
 				}
 			}
-			//			ifstream cfile;
+			//ifstream cfile;
 			cfile.open("code.txt");
 			if(cfile.is_open())
 			{
