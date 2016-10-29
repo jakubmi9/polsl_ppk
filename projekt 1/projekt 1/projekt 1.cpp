@@ -6,6 +6,16 @@
 int main(int argc, char* argv[])
 {
 	printf("crypt encryption utility alpha\n");
+	if(argc == 1)
+	{
+		printf("Invalid runtime argument!\n\
+usage:\n\
+crypt -generate	\t\tgenerates new random codetable\n\
+crypt -encode -src=\"\" -o=\"\"	encodes \'src\' with a codetable and writes it to \'o\'\n\
+crypt -decode -src=\"\" -o=\"\"	decodes \'src\' with a codetable and writes it to \'o\'\n\
+crypt -help	\t\tdisplays this help message\n");
+		return 0;
+	}
 	switch(argv[1][1])
 	{
 		case 'h':
@@ -103,7 +113,6 @@ crypt -help	\t\tdisplays this help message\n");
 			break;
 		}
 	}
-	system("pause");
 	return 0;
 }
 //==============================================================================
