@@ -1,6 +1,5 @@
 #pragma once
 #include <fstream>
-using std::ifstream;
 //==============================================================================
-void encode(char*, char*, ifstream&);
+void encode(char*, char*, std::ifstream&);
 //==============================================================================

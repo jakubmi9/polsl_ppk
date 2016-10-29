@@ -88,7 +88,7 @@ crypt -help	\t\tdisplays this help message\n");
 			cfile.open("code.txt");
 			if(cfile.is_open())
 			{
-				decode(iname, oname);
+				decode(iname, oname, cfile);
 				break;
 			}
 			else

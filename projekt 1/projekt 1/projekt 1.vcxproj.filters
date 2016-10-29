@@ -25,6 +25,9 @@
     <Text Include="result.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="encoded.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
