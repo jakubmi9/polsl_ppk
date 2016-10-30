@@ -4,24 +4,27 @@ void encode(char* i, char* o, ifstream &cc)
 {
 	ifstream ifile;
 	ifile.open(i);
-	if(ifile.is_open())
+	if (ifile.is_open())
 	{
 		ofstream ofile;
 		ofile.open(o);
-		if(ofile.is_open())
+		if (ofile.is_open())
 		{
 			printf("reading codefile...");
 			char tab[128];
-			for(int i = 0; i < 128; i++)
+			for (int i = 0; i < 128; i++)
 			{
 				cc >> tab[i];
 			}
 			printf("done\n");
 			printf("encoding...");
 			char c;
-			while(ifile.get(c))
+			while (ifile.get(c))
 			{
-				ofile << tab[c];
+				if (tab[c] != '\0')
+					ofile << tab[c];
+				else
+					ofile << c;
 			}
 			printf("done\n");
 			return;

@@ -22,10 +22,10 @@
     <Text Include="original.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="result.txt">
+    <Text Include="encoded.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="encoded.txt">
+    <Text Include="decoded.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
