@@ -1,5 +1,10 @@
 // projekt 1.cpp : Defines the entry point for the console application.
-//crypt.exe -generate||-encode||-decode||-help -src="/*sciezka wejscia*/ -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
+//crypt.exe -generate||-encode||-decode||-help -src="/*sciezka wejscia*/" -code="/*sciezka do tablicy kodujacej*/" -o="/*sciezka wyjscia*/"
+//
+//debug routine:
+//-generate
+//-encode -src="original.txt" -o="encoded.txt"
+//-decode -src="encoded.txt" -o="decoded.txt"
 //==============================================================================
 #include "stdafx.h"
 //==============================================================================

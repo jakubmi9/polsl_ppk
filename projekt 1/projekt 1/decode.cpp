@@ -21,13 +21,19 @@ void decode(char* i, char* o, ifstream &cc)
 			char c;
 			while(ifile.get(c))
 			{
+				bool fuse = 1;
 				for(int i = 0; i < 128; i++)
 				{
 					if(c == tab[i])
 					{
 						ofile << static_cast<char>(i);
+						fuse = 0;
 						break;
 					}
+				}
+				if (fuse)
+				{
+					ofile << c;
 				}
 			}
 			printf("done\n");

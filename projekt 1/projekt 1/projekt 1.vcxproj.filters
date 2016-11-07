@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Code Maps">
+      <UniqueIdentifier>{0e93e37f-2179-4e76-b16d-0c4c3229961b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -22,10 +25,10 @@
     <Text Include="original.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="result.txt">
+    <Text Include="encoded.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="encoded.txt">
+    <Text Include="decoded.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
@@ -62,5 +65,13 @@
     <ClCompile Include="decode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeMap.dgml">
+      <Filter>Code Maps</Filter>
+    </None>
+    <None Include="IncludeFileDependencies.dgml">
+      <Filter>Code Maps</Filter>
+    </None>
   </ItemGroup>
 </Project>
