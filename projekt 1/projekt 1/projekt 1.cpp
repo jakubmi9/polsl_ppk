@@ -21,103 +21,99 @@ crypt -decode -src=\"\" -o=\"\"	decodes \'src\' with a codetable and writes it t
 crypt -help	\t\tdisplays this help message\n");
 		return 0;
 	}
-	switch(argv[1][1])
+	if(!strcmp(argv[1], "-help"))
 	{
-		case 'h':
-		{
-			printf("usage:\n\
+		printf("usage:\n\
 crypt -generate	\t\tgenerates new random codetable\n\
 crypt -encode -src=\"\" -o=\"\"	encodes \'src\' with a codetable and writes it to \'o\'\n\
 crypt -decode -src=\"\" -o=\"\"	decodes \'src\' with a codetable and writes it to \'o\'\n\
 crypt -help	\t\tdisplays this help message\n");
-			break;
-		}
-		case 'g':
+		return 0;
+	}
+	else if(!strcmp(argv[1], "-generate"))
+	{
+		printf("Generating code.txt...");
+		generate();
+		return 0;
+	}
+	else if(!strcmp(argv[1], "-encode"))
+	{
+		char iname[260] = {0};
+		char oname[260] = {0};
 		{
-			printf("Generating code.txt...");
-			generate();
-			break;
-		}
-		case 'e':
-		{
-			char iname[260] = {0};
-			char oname[260] = {0};
+			int j = 0;
+			int i = 5;
+			while(argv[2][i] != '\0')
 			{
-				int j = 0;
-				int i = 5;
-				while(argv[2][i] != '\0')
-				{
-					iname[j] = argv[2][i];
-					i++;
-					j++;
-				}
-			}
-			{
-				int j = 0;
-				int i = 3;
-				while(argv[3][i] != '\0')
-				{
-					oname[j] = argv[3][i];
-					i++;
-					j++;
-				}
-			}
-			ifstream cfile;
-			cfile.open("code.txt");
-			if(cfile.is_open())
-			{
-				encode(iname, oname, cfile);
-				break;
-			}
-			else
-			{
-				printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
-				break;
+				iname[j] = argv[2][i];
+				i++;
+				j++;
 			}
 		}
-		case 'd':
 		{
-			char iname[260] = {0};
-			char oname[260] = {0};
+			int j = 0;
+			int i = 3;
+			while(argv[3][i] != '\0')
 			{
-				int j = 0;
-				int i = 5;
-				while(argv[2][i] != '\0')
-				{
-					iname[j] = argv[2][i];
-					i++;
-					j++;
-				}
-			}
-			{
-				int j = 0;
-				int i = 3;
-				while(argv[3][i] != '\0')
-				{
-					oname[j] = argv[3][i];
-					i++;
-					j++;
-				}
-			}
-			ifstream cfile;
-			cfile.open("code.txt");
-			if(cfile.is_open())
-			{
-				decode(iname, oname, cfile);
-				break;
-			}
-			else
-			{
-				printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
-				break;
+				oname[j] = argv[3][i];
+				i++;
+				j++;
 			}
 		}
-		default:
+		ifstream cfile;
+		cfile.open("code.txt");
+		if(cfile.is_open())
 		{
-			printf("Invalid runtime argument!\nExiting...");
-			break;
+			encode(iname, oname, cfile);
+			return 0;
+		}
+		else
+		{
+			printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
+			return 0;
 		}
 	}
-	return 0;
+	else if(!strcmp(argv[1], "-decode"))
+	{
+		char iname[260] = {0};
+		char oname[260] = {0};
+		{
+			int j = 0;
+			int i = 5;
+			while(argv[2][i] != '\0')
+			{
+				iname[j] = argv[2][i];
+				i++;
+				j++;
+			}
+		}
+		{
+			int j = 0;
+			int i = 3;
+			while(argv[3][i] != '\0')
+			{
+				oname[j] = argv[3][i];
+				i++;
+				j++;
+			}
+		}
+		ifstream cfile;
+		cfile.open("code.txt");
+		if(cfile.is_open())
+		{
+			decode(iname, oname, cfile);
+			return 0;
+		}
+		else
+		{
+			printf("Couldn't find code.txt!\nPlease run crypt -generate first.\nExiting...");
+			return 0;
+		}
+	}
+	else
+	{
+		printf("Invalid runtime argument!\nExiting...");
+		return 0;
+	}
 }
 //==============================================================================
