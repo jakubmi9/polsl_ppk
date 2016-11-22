@@ -175,6 +175,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="CodeMap.dgml" />
     <None Include="IncludeFileDependencies.dgml" />
   </ItemGroup>

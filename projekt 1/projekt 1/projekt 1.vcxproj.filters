@@ -82,5 +82,6 @@
     <None Include="IncludeFileDependencies.dgml">
       <Filter>Code Maps</Filter>
     </None>
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>
