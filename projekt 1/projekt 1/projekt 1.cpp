@@ -3,8 +3,12 @@
 //
 //debug routine:
 //-generate
-//-encode -src="original.txt" -o="encoded.txt"
-//-decode -src="encoded.txt" -o="decoded.txt"
+//-encode -src="lorem-ipsum.txt" -o="lorem-encoded.txt"
+//-decode -src="lorem-encoded.txt" -o="lorem-decoded.txt"
+//alt debug routine:
+//-generate
+//-encode -src="moby-dick.txt" -o="moby-encoded.txt"
+//-decode -src="moby-encoded.txt" -o="moby-decoded.txt"
 //==============================================================================
 #include "stdafx.h"
 //==============================================================================
