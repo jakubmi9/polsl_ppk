@@ -149,7 +149,8 @@
     <Text Include="code.txt" />
     <Text Include="decoded.txt" />
     <Text Include="encoded.txt" />
-    <Text Include="original.txt" />
+    <Text Include="moby-dick.txt" />
+    <Text Include="lorem-ipsum.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -22,13 +22,16 @@
     <Text Include="code.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="original.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="encoded.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="decoded.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="moby-dick.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="lorem-ipsum.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
