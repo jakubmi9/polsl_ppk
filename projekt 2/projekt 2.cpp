@@ -1,23 +1,8 @@
 // projekt 2.cpp : Defines the entry point for the console application.
 //
 #include "stdafx.h"
+#include "exceptions.h"
 //==============================================================================
-class NoArgumentException: public exception
-{
-	public:
-	void writeout()
-	{
-		printf("0x00000001 No argument passed!\n");
-	}
-};
-class InvalidArgumentException: public exception
-{
-	public: 
-	void writeout()
-	{
-		printf("0x00000002 Invalid argument!\n");
-	}
-};
 int main(int argc, char* argv[])
 {
 	bool DEBUG = 1;
