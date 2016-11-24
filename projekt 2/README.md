@@ -14,10 +14,10 @@ Dobrać strukturę danych zapewniającą optymalne wykonywanie operacji wyszukiw
 library.exe status||list||add||edit||delete||borrow [...]  
 
 library status  
-library list books all -sort=byAuthor ***OR*** -sort=byTitle  
-library list books author="*nazwisko,imie*" -sort=byAuthor ***OR*** -sort=byTitle  
-library list books overdue  
-library list users overdue  
-library add ***OR*** edit ***OR*** delete user -name="*nazwisko,imie*"  
-library add ***OR*** edit ***OR*** delete book -name="*tytuł*"  
-library borrow book="*tytuł*" user="nazwisko,imie"
+library list books all -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
+library list books author=*nazwisko,imie* -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
+library list books overdue -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
+library list users overdue -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
+library add ***OR*** edit ***OR*** delete user -name=*nazwisko,imie*  
+library add ***OR*** edit ***OR*** delete book -name=*tytuł*  
+library borrow book=*tytuł* user=*nazwisko,imie*
