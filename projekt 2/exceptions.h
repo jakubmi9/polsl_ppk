@@ -1,6 +1,6 @@
 #pragma once
 //==============================================================================
-class NoArgumentException: public exception
+class NoArgumentException: public std::exception
 {
 	private:
 	protected:
@@ -8,7 +8,7 @@ class NoArgumentException: public exception
 	void writeout();
 };
 //==============================================================================
-class InvalidArgumentException: public exception
+class InvalidArgumentException: public std::exception
 {
 	private:
 	protected:
