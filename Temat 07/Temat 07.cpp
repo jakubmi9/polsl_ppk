@@ -13,6 +13,7 @@ struct punkt
 //==============================================================================
 void zad1()
 {
+	cout << "<zad1>\n";
 	srand(static_cast<unsigned int>(time(0)));
 	punkt tab[5][5];
 	for(int i = 0; i < 5; i++)
@@ -26,10 +27,12 @@ void zad1()
 	ofstream o;
 	o.open("zad1.bin", ios::binary);
 	//do something...
+	cout << "</zad1>\n";
 }
 //==============================================================================
 void zad2()
 {
+	cout << "<zad2>\n";
 	srand(static_cast<unsigned int>(time(0)));
 	punkt tab[5][5];
 	for(int i = 0; i < 5; i++)
@@ -50,22 +53,24 @@ void zad2()
 		}
 	}
 	o.close();
-	ifstream i;
-	i.open("zad2.txt");
+	ifstream ifile;
+	ifile.open("zad2.txt");
 	for(int i = 0; i < 5; i++)
 	{
-		/*for(int j = 0; j < 5; j++)
+		for(int j = 0; j < 5; j++)
 		{
 			int x;
 			int y;
-			i >> x >> y;
+			ifile >> x >> y;
 			cout << "punkt " << i << ',' << j << "=(" << x << ',' << y << ")\n";
-		}*/
+		}
 	}
+	cout << "</zad2>\n";
 }
 //==============================================================================
 void zad3(int argc, char* argv[])
 {
+	cout << "<zad3>\n";
 	ifstream i;
 	i.open(argv[1]);
 	unsigned int tab[128] = {0};
@@ -76,11 +81,13 @@ void zad3(int argc, char* argv[])
 	{
 		cout << static_cast<char>(i) << '=' << tab[i] << endl;
 	}
+	cout << "</zad3>\n";
 }
 //==============================================================================
 void zad4()
 {
-
+	cout << "<zad4>\n"; 
+	cout << "</zad4>\n";
 }
 //==============================================================================
 int main(int argc, char* argv[])

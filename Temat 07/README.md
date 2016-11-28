@@ -3,10 +3,10 @@
 1) ~~wypelnic tablice strukturami punkt~~
 2) zapisac elementy do pliku binarnego
 3) otworzyc i wyswietlic plik na ekranie
-## Zad.2
+## ~~Zad.2~~
 1) ~~wypelnic tablice strukturami punkt~~
 2) ~~zapisac elementy do pliku tekstowego~~
-3) otworzyc i wyswietlic plik na ekranie
+3) ~~otworzyc i wyswietlic plik na ekranie~~
 ## ~~Zad.3~~
 1) ~~na wejscie programu przyjac plik tekstowy~~
 2) ~~odczytac go i utworzyc statystyke liter w tym pliku~~
