@@ -103,9 +103,43 @@ void zad3(int argc, char* argv[])
 	cout << "</zad3>\n";
 }
 //==============================================================================
-void zad4()
+void zad4(int argc, char* argv[])
 {
 	cout << "<zad4>\n";
+	ifstream plik1, plik2;
+	plik1.open(argv[1]);
+	plik2.open(argv[2]);
+	queue<int> p1;
+	queue<int> p2;
+	int tmp;
+	while(plik1 >> tmp)
+	{
+		p1.push(tmp);
+	}
+	while(plik2 >> tmp)
+	{
+		p2.push(tmp);
+	}
+	ofstream plik3;
+	plik3.open("zad4_3.txt");
+	while(p1.empty() != 0 || p2.empty() != 0)
+	{
+		if(p1.front() > p2.front())
+		{
+			plik3 << p2.front();
+			p2.pop();
+		}
+		else if(p1.front() < p2.front())
+		{
+			plik3 << p1.front();
+			p2.pop();
+		}
+		else
+		{
+			plik3 << p1.front();
+			p2.pop();
+		}
+	}
 	cout << "</zad4>\n";
 }
 //==============================================================================
@@ -114,7 +148,7 @@ int main(int argc, char* argv[])
 	//zad1();
 	//zad2();
 	//zad3(argc, argv);															//program.exe zad3.txt
-	zad4();																	//program.exe zad4_1.txt zad4_2.txt
+	zad4(argc, argv);															//program.exe zad4_1.txt zad4_2.txt
 	system("pause");
 }
 //==============================================================================

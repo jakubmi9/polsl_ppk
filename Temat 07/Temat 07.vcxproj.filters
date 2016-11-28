@@ -16,6 +16,21 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="zad2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="zad3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="zad4_1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="zad4_2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="zad4_3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -35,5 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="zad1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
