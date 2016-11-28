@@ -1,8 +1,8 @@
 # Tutaj umieszczać pliki związane z tematem 7
-## Zad.1
+## ~~Zad.1~~
 1) ~~wypelnic tablice strukturami punkt~~
-2) zapisac elementy do pliku binarnego
-3) otworzyc i wyswietlic plik na ekranie
+2) ~~zapisac elementy do pliku binarnego~~
+3) ~~otworzyc i wyswietlic plik na ekranie~~
 ## ~~Zad.2~~
 1) ~~wypelnic tablice strukturami punkt~~
 2) ~~zapisac elementy do pliku tekstowego~~

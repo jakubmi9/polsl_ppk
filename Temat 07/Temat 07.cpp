@@ -26,7 +26,26 @@ void zad1()
 	}
 	ofstream o;
 	o.open("zad1.bin", ios::binary);
-	//do something...
+	for(int i = 0; i < 5; i++)
+	{
+		for(int j = 0; j < 5; j++)
+		{
+			o << tab[i][j].x << ' ' << tab[i][j].y << ' ';
+		}
+	}
+	o.close();
+	ifstream ifile;
+	ifile.open("zad1.bin", ios::binary);
+	for(int i = 0; i < 5; i++)
+	{
+		for(int j = 0; j < 5; j++)
+		{
+			int x;
+			int y;
+			ifile >> x >> y;
+			cout << "punkt " << i << ',' << j << "=(" << x << ',' << y << ")\n";
+		}
+	}
 	cout << "</zad1>\n";
 }
 //==============================================================================
@@ -86,14 +105,16 @@ void zad3(int argc, char* argv[])
 //==============================================================================
 void zad4()
 {
-	cout << "<zad4>\n"; 
+	cout << "<zad4>\n";
 	cout << "</zad4>\n";
 }
 //==============================================================================
 int main(int argc, char* argv[])
 {
-	zad2();
-	zad3(argc, argv);
+	//zad1();
+	//zad2();
+	//zad3(argc, argv);															//program.exe zad3.txt
+	zad4();																	//program.exe zad4_1.txt zad4_2.txt
 	system("pause");
 }
 //==============================================================================
