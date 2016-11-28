@@ -2,6 +2,7 @@
 //
 #include "stdafx.h"
 #include "exceptions.h"
+#include "cpp-shell.h"
 using namespace std;
 //==============================================================================
 ///<summary>Entry point for the application</summary>
