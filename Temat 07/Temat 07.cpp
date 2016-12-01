@@ -122,22 +122,32 @@ void zad4(int argc, char* argv[])
 	}
 	ofstream plik3;
 	plik3.open("zad4_3.txt");
-	while(p1.empty() != 0 || p2.empty() != 0)
+	while(p1.empty() != 1 || p2.empty() != 1)
 	{
-		if(p1.front() > p2.front())
+		if(p1.empty())
 		{
-			plik3 << p2.front();
+			plik3 << p2.front() << endl;
+			p2.pop();
+		}
+		else if(p2.empty())
+		{
+			plik3 << p1.front() << endl;
+			p1.pop();
+		}
+		else if(p1.front() > p2.front())
+		{
+			plik3 << p2.front() << endl;
 			p2.pop();
 		}
 		else if(p1.front() < p2.front())
 		{
-			plik3 << p1.front();
-			p2.pop();
+			plik3 << p1.front() << endl;
+			p1.pop();
 		}
 		else
 		{
-			plik3 << p1.front();
-			p2.pop();
+			plik3 << p1.front() << endl;
+			p1.pop();
 		}
 	}
 	cout << "</zad4>\n";
