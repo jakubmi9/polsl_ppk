@@ -11,13 +11,9 @@ Program powinien umożliwić modyfikowanie bazy danych o książkach i użytkown
 Dobrać strukturę danych zapewniającą optymalne wykonywanie operacji wyszukiwania.
 
 ## Specyfikacja  
-library.exe status||list||add||edit||delete||borrow [...]  
+###### library.exe
 
-library status  
-library list books all -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
-library list books author=*nazwisko,imie* -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
-library list books overdue -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
-library list users overdue -sortByAuthor ***OR*** -sortByTitle ***OR*** -sortByGenre  
-library add ***OR*** edit ***OR*** delete user -name=*nazwisko,imie*  
-library add ***OR*** edit ***OR*** delete book -name=*tytuł*  
-library borrow book=*tytuł* user=*nazwisko,imie*
+libXpress Library Management System alpha  
+Licensed under GNU GPLv3  
+
+libxpress$

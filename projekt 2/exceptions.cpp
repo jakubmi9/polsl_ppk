@@ -11,3 +11,8 @@ void InvalidArgumentException::writeout()
 	printf("0x00000002 Invalid argument!\n");
 }
 //==============================================================================
+void AlreadyLoadedException::writeout()
+{
+	printf("0x00000003 A database is already loaded!\n");
+}
+//==============================================================================
