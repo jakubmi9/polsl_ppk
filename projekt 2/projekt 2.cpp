@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 	const string g = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
 	const string p = "libxpress";
 	sh::shell *main = new sh::shell(g, p);
-	database *db = 0;
+	database *db = nullptr;
 	while(true)
 	{
 		try
