@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 					}
 					if(main->command.size() == 2)
 					{
-						database *db = new database(main->command.at(1));
+						db = new database(main->command.at(1));
 						LOADED = true;
 						main->submodule(main->command.at(1));
 						main->command.clear();
