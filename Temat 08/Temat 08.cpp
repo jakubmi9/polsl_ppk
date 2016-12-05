@@ -19,7 +19,7 @@ void InsertAtBeginning(element *&HEAD, int Data)
 //==============================================================================
 void InsertAtEnd(element *&HEAD, int Data)
 {
-	element *END=HEAD;
+	element *END = HEAD;
 	while(END->NextElement)
 	{
 		END = END->NextElement;
@@ -30,9 +30,18 @@ void InsertAtEnd(element *&HEAD, int Data)
 	END->NextElement = NewElement;
 }
 //==============================================================================
-void InsertBefore()
+void InsertBefore(element *&HEAD, int data, element *&obj)
 {
-
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore->NextElement == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement;
+	element *NewElement = new element;
+	NewElement->Data = data;
+	NewElement->NextElement = ElementAfter;
+	ElementBefore->NextElement = NewElement;
 }
 //==============================================================================
 void InsertAfter()
@@ -62,6 +71,8 @@ int main()
 	List->Data = 5;
 	InsertAtEnd(List, 25);
 	InsertAtEnd(List, 125);
+	InsertAtEnd(List, 625);
+	InsertBefore(List, 50, List->NextElement->NextElement);
 	cout << List->NextElement->NextElement->Data;
 	system("pause");
 }
