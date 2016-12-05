@@ -51,7 +51,14 @@ void InsertAfter(element *&HEAD, int data, element *&obj)
 //==============================================================================
 void RemoveElement(element *&HEAD, element *&obj)
 {
-
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore->NextElement == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement->NextElement;
+	delete obj;
+	ElementBefore->NextElement = ElementAfter;
 }
 //==============================================================================
 void DeleteList(element *&HEAD)
@@ -69,7 +76,8 @@ void DeleteList(element *&HEAD)
 void PrintList(element *&HEAD)
 {
 	element *END = HEAD;
-	for(int i = 0; END->NextElement; i++)
+	int i = 0;
+	for(int i = 0; END; i++)
 	{
 		cout << "Element " << i << ": " << END->Data << endl;
 		END = END->NextElement;
@@ -84,10 +92,10 @@ int main()
 	InsertAtBeginning(List, 0);
 	InsertAtEnd(List, 25);
 	InsertAtEnd(List, 125);
-	InsertBefore(List, 50, List->NextElement->NextElement);
+	InsertBefore(List, 50, List->NextElement->NextElement->NextElement);
 	InsertAtEnd(List, 625);
-	InsertAfter(List, 3125, List->NextElement->NextElement->NextElement->NextElement);
-	RemoveElement(List, List->NextElement->NextElement);
+	InsertAfter(List, 3125, List->NextElement->NextElement->NextElement->NextElement->NextElement->NextElement);
+	RemoveElement(List, List->NextElement->NextElement->NextElement);
 	PrintList(List);
 	DeleteList(List);
 	system("pause");
