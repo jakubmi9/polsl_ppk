@@ -80,7 +80,8 @@ int main()
 {
 	element *List;
 	List = new element;
-	InsertAtBeginning(List, 5);
+	List->Data = 5;
+	InsertAtBeginning(List, 0);
 	InsertAtEnd(List, 25);
 	InsertAtEnd(List, 125);
 	InsertBefore(List, 50, List->NextElement->NextElement);
