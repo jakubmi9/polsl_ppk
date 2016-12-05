@@ -44,17 +44,17 @@ void InsertBefore(element *&HEAD, int data, element *&obj)
 	ElementBefore->NextElement = NewElement;
 }
 //==============================================================================
-void InsertAfter()
+void InsertAfter(element *&HEAD, int data, element *&obj)
 {
 
 }
 //==============================================================================
-void RemoveElement()
+void RemoveElement(element *&HEAD, element *&obj)
 {
 
 }
 //==============================================================================
-void DeleteList()
+void DeleteList(element *&HEAD)
 {
 
 }
@@ -73,12 +73,15 @@ int main()
 {
 	element *List;
 	List = new element;
-	List->Data = 5;
+	InsertAtBeginning(List, 5);
 	InsertAtEnd(List, 25);
 	InsertAtEnd(List, 125);
-	InsertAtEnd(List, 625);
 	InsertBefore(List, 50, List->NextElement->NextElement);
+	InsertAtEnd(List, 625);
+	InsertAfter(List, 3125, List->NextElement->NextElement->NextElement->NextElement);
+	RemoveElement(List, List->NextElement->NextElement);
 	PrintList(List);
+	DeleteList(List);
 	system("pause");
 }
 //==============================================================================
