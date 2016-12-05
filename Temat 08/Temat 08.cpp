@@ -6,7 +6,7 @@ using namespace std;
 struct element
 {
 	int Data;
-	element *NextElement;
+	element *NextElement = nullptr;
 };
 //==============================================================================
 void InsertAtBeginning(element *&HEAD, int Data)
@@ -17,13 +17,51 @@ void InsertAtBeginning(element *&HEAD, int Data)
 	HEAD = NewElement;
 }
 //==============================================================================
+void InsertAtEnd(element *&HEAD, int Data)
+{
+	element *END=HEAD;
+	while(END->NextElement)
+	{
+		END = END->NextElement;
+	}
+	element *NewElement = new element;
+	NewElement->Data = Data;
+	NewElement->NextElement = nullptr;
+	END->NextElement = NewElement;
+}
+//==============================================================================
+void InsertBefore()
+{
+
+}
+//==============================================================================
+void InsertAfter()
+{
+
+}
+//==============================================================================
+void RemoveElement()
+{
+
+}
+//==============================================================================
+void DeleteList()
+{
+
+}
+//==============================================================================
+void PrintList()
+{
+
+}
+//==============================================================================
 int main()
 {
 	element *List;
 	List = new element;
 	List->Data = 5;
-	InsertAtBeginning(List, 25);
-	InsertAtBeginning(List, 125);
+	InsertAtEnd(List, 25);
+	InsertAtEnd(List, 125);
 	cout << List->NextElement->NextElement->Data;
 	system("pause");
 }
