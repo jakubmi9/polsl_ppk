@@ -46,7 +46,16 @@ void InsertBefore(element *&HEAD, int data, element *&obj)
 //==============================================================================
 void InsertAfter(element *&HEAD, int data, element *&obj)
 {
-
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement;
+	element *NewElement = new element;
+	NewElement->Data = data;
+	NewElement->NextElement = ElementAfter;
+	ElementBefore->NextElement = NewElement;
 }
 //==============================================================================
 void RemoveElement(element *&HEAD, element *&obj)
@@ -94,7 +103,7 @@ int main()
 	InsertAtEnd(List, 125);
 	InsertBefore(List, 50, List->NextElement->NextElement->NextElement);
 	InsertAtEnd(List, 625);
-	InsertAfter(List, 3125, List->NextElement->NextElement->NextElement->NextElement->NextElement->NextElement);
+	InsertAfter(List, 3125, List->NextElement->NextElement->NextElement->NextElement->NextElement);
 	RemoveElement(List, List->NextElement->NextElement->NextElement);
 	PrintList(List);
 	DeleteList(List);
