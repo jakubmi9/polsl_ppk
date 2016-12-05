@@ -56,7 +56,14 @@ void RemoveElement(element *&HEAD, element *&obj)
 //==============================================================================
 void DeleteList(element *&HEAD)
 {
-
+	element *CurrentElement = HEAD;
+	element *NextElement = HEAD->NextElement;
+	while(CurrentElement->NextElement)
+	{
+		delete CurrentElement;
+		CurrentElement = NextElement;
+		NextElement = CurrentElement->NextElement;
+	}
 }
 //==============================================================================
 void PrintList(element *&HEAD)
