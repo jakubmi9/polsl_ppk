@@ -59,9 +59,14 @@ void DeleteList()
 
 }
 //==============================================================================
-void PrintList()
+void PrintList(element *&HEAD)
 {
-
+	element *END = HEAD;
+	for(int i = 0; END->NextElement; i++)
+	{
+		cout << "Element " << i << ": " << END->Data << endl;
+		END = END->NextElement;
+	}
 }
 //==============================================================================
 int main()
@@ -73,7 +78,7 @@ int main()
 	InsertAtEnd(List, 125);
 	InsertAtEnd(List, 625);
 	InsertBefore(List, 50, List->NextElement->NextElement);
-	cout << List->NextElement->NextElement->Data;
+	PrintList(List);
 	system("pause");
 }
 //==============================================================================

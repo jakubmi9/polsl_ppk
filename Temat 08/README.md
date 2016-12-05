@@ -6,4 +6,4 @@ Naisać funkcje:
 - [ ] dodającą element za konkretny element
 - [ ] usuwającą element
 - [ ] usuwającą listę
-- [ ] wyświetlającą listę
+- [x] wyświetlającą listę
