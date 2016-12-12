@@ -98,10 +98,9 @@ void DeleteList(element *&HEAD)
 	}
 }
 //==============================================================================
-void PrintList(element *&HEAD)
+void PrintHeadToTail(element *&HEAD)
 {
 	element *END = HEAD;
-	int i = 0;
 	for(int i = 0; END; i++)
 	{
 		cout << "Element " << i << ": " << END->Data << endl;
@@ -109,20 +108,32 @@ void PrintList(element *&HEAD)
 	}
 }
 //==============================================================================
+void PrintTailToHead(element *&TAIL)
+{
+	element *BEGIN = TAIL;
+	for(int i = 0; BEGIN; i++)
+	{
+		cout << "Element " << i << ": " << BEGIN->Data << endl;
+		BEGIN = BEGIN->PreviousElement;
+	}
+}
+//==============================================================================
 int main()
 {
 	element *HEAD = new element, *TAIL = HEAD, *trash = HEAD;
-	cout << "initialised list with a random value"<< endl;
-	PrintList(HEAD);
+	cout << "initialised list with a random value" << endl;
+	PrintHeadToTail(HEAD);
 	InsertAtBeginning(HEAD, TAIL, 5);
 	cout << "InsertAtBeginning 5" << endl;
-	PrintList(HEAD);
+	PrintHeadToTail(HEAD);
 	InsertAtEnd(HEAD, TAIL, 25);
 	cout << "InsertAtEnd 25" << endl;
-	PrintList(HEAD);
+	PrintHeadToTail(HEAD);
 	RemoveElement(HEAD, trash);
 	cout << "RemoveElement trash" << endl;
-	PrintList(HEAD);
+	PrintHeadToTail(HEAD);
+	cout << "PrintTailToHead" << endl;
+	PrintTailToHead(TAIL);
 	DeleteList(HEAD);
 	system("pause");
 }
