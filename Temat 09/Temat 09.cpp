@@ -15,7 +15,6 @@ void InsertAtBeginning(element *&HEAD, element *&TAIL, int Data)
 	{
 		element *NewElement = new element;
 		NewElement->Data = Data;
-		NewElement->NextElement = nullptr;
 		HEAD = NewElement;
 	}
 	else
@@ -33,8 +32,7 @@ void InsertAtEnd(element *&HEAD, element *&TAIL, int Data)
 	{
 		element *NewElement = new element;
 		NewElement->Data = Data;
-		NewElement->NextElement = nullptr;
-		HEAD->NextElement = NewElement;
+		HEAD = NewElement;
 		TAIL = HEAD;
 	}
 	else
@@ -42,7 +40,9 @@ void InsertAtEnd(element *&HEAD, element *&TAIL, int Data)
 		element *NewElement = new element;
 		NewElement->Data = Data;
 		NewElement->NextElement = nullptr;
+		NewElement->PreviousElement = TAIL;
 		TAIL->NextElement = NewElement;
+		TAIL = NewElement;
 	}
 }
 //==============================================================================
