@@ -9,6 +9,90 @@ struct element
 	int Data;
 };
 //==============================================================================
+void InsertAtBeginning(element *&HEAD, element *&TAIL, int Data)
+{
+	element *NewElement = new element;
+	NewElement->Data = Data;
+	NewElement->NextElement = HEAD;
+	HEAD = NewElement;
+}
+//==============================================================================
+void InsertAtEnd(element *&HEAD, element *&TAIL, int Data)
+{
+	element *END = HEAD;
+	while(END->NextElement)
+	{
+		END = END->NextElement;
+	}
+	element *NewElement = new element;
+	NewElement->Data = Data;
+	NewElement->NextElement = nullptr;
+	END->NextElement = NewElement;
+}
+//==============================================================================
+void InsertBefore(element *&HEAD, element *&TAIL, int data, element *&obj)
+{
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore->NextElement == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement;
+	element *NewElement = new element;
+	NewElement->Data = data;
+	NewElement->NextElement = ElementAfter;
+	ElementBefore->NextElement = NewElement;
+}
+//==============================================================================
+void InsertAfter(element *&HEAD, element *&TAIL, int data, element *&obj)
+{
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement;
+	element *NewElement = new element;
+	NewElement->Data = data;
+	NewElement->NextElement = ElementAfter;
+	ElementBefore->NextElement = NewElement;
+}
+//==============================================================================
+void RemoveElement(element *&HEAD, element *&TAIL, element *&obj)
+{
+	element *ElementBefore = HEAD;
+	while(!(ElementBefore->NextElement == obj))
+	{
+		ElementBefore = ElementBefore->NextElement;
+	}
+	element *ElementAfter = ElementBefore->NextElement->NextElement;
+	delete obj;
+	ElementBefore->NextElement = ElementAfter;
+}
+//==============================================================================
+void DeleteList(element *&HEAD, element *&TAIL)
+{
+	element *CurrentElement = HEAD;
+	element *NextElement = HEAD->NextElement;
+	while(CurrentElement->NextElement)
+	{
+		delete CurrentElement;
+		CurrentElement = NextElement;
+		NextElement = CurrentElement->NextElement;
+	}
+}
+//==============================================================================
+void PrintList(element *&HEAD, element *&TAIL)
+{
+	element *END = HEAD;
+	int i = 0;
+	for(int i = 0; END; i++)
+	{
+		cout << "Element " << i << ": " << END->Data << endl;
+		END = END->NextElement;
+	}
+}
+//==============================================================================
 int main()
 {
 	element *HEAD = new element, *TAIL = HEAD;
