@@ -58,7 +58,12 @@ void InsertBefore(element *&HEAD, element *&TAIL, int data, element *&obj)
 	NewElement->Data = data;
 	NewElement->NextElement = ElementAfter;
 	NewElement->PreviousElement = ElementBefore;
-	ElementBefore->NextElement = NewElement;
+	if(ElementBefore == nullptr)
+	{
+		HEAD = NewElement;
+		ElementAfter->PreviousElement = NewElement;
+		return;
+	}
 	ElementAfter->PreviousElement = NewElement;
 }
 //==============================================================================
@@ -133,27 +138,36 @@ int main()
 	element *HEAD = new element, *TAIL = HEAD, *trash = HEAD;
 	cout << "initialised list with a random value" << endl;
 	PrintHeadToTail(HEAD);
+
 	InsertAtBeginning(HEAD, TAIL, 5);
 	cout << "InsertAtBeginning 5" << endl;
 	PrintHeadToTail(HEAD);
+
 	InsertAtEnd(HEAD, TAIL, 25);
 	cout << "InsertAtEnd 25" << endl;
 	PrintHeadToTail(HEAD);
+
 	InsertAfter(HEAD, TAIL, 625, TAIL);
 	cout << "InsertAfter 25 625" << endl;
 	PrintHeadToTail(HEAD);
+
 	InsertAtEnd(HEAD, TAIL, 3125);
 	cout << "InsertAtEnd 3125" << endl;
 	PrintHeadToTail(HEAD);
+
 	InsertBefore(HEAD, TAIL, 125, TAIL->PreviousElement);
 	cout << "InsertBefore 625 125" << endl;
 	PrintHeadToTail(HEAD);
+
 	RemoveElement(HEAD, trash);
 	cout << "RemoveElement trash" << endl;
 	PrintHeadToTail(HEAD);
+
 	cout << "PrintTailToHead" << endl;
 	PrintTailToHead(TAIL);
+
 	DeleteList(HEAD);
+
 	system("pause");
 }
 //==============================================================================
