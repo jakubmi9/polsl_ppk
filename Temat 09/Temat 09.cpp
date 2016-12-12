@@ -48,23 +48,32 @@ void InsertAtEnd(element *&HEAD, element *&TAIL, int Data)
 //==============================================================================
 void InsertBefore(element *&HEAD, element *&TAIL, int data, element *&obj)
 {
-	element *ElementBefore = HEAD;
-	while(!(ElementBefore->NextElement == obj))
+	element *ElementBefore;
+	ElementBefore = HEAD;
+	if(obj == HEAD)
 	{
-		ElementBefore = ElementBefore->NextElement;
-	}
-	element *ElementAfter = ElementBefore->NextElement;
-	element *NewElement = new element;
-	NewElement->Data = data;
-	NewElement->NextElement = ElementAfter;
-	NewElement->PreviousElement = ElementBefore;
-	if(ElementBefore == nullptr)
-	{
+		element *ElementAfter = ElementBefore;
+		element *NewElement = new element;
+		NewElement->Data = data;
+		NewElement->NextElement = ElementAfter;
+		NewElement->PreviousElement = nullptr;
 		HEAD = NewElement;
 		ElementAfter->PreviousElement = NewElement;
-		return;
 	}
-	ElementAfter->PreviousElement = NewElement;
+	else
+	{
+		while(!(ElementBefore->NextElement == obj))
+		{
+			ElementBefore = ElementBefore->NextElement;
+		}
+		element *ElementAfter = ElementBefore->NextElement;
+		element *NewElement = new element;
+		NewElement->Data = data;
+		NewElement->NextElement = ElementAfter;
+		NewElement->PreviousElement = ElementBefore;
+		ElementBefore->NextElement = NewElement;
+		ElementAfter->PreviousElement = NewElement;
+	}
 }
 //==============================================================================
 void InsertAfter(element *&HEAD, element *&TAIL, int data, element *&obj)
@@ -161,6 +170,10 @@ int main()
 
 	RemoveElement(HEAD, trash);
 	cout << "RemoveElement trash" << endl;
+	PrintHeadToTail(HEAD);
+
+	InsertBefore(HEAD, TAIL, 0, HEAD);
+	cout << "InsertBefore 5 0" << endl;
 	PrintHeadToTail(HEAD);
 
 	cout << "PrintTailToHead" << endl;
