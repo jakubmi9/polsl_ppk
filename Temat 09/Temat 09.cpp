@@ -11,23 +11,39 @@ struct element
 //==============================================================================
 void InsertAtBeginning(element *&HEAD, element *&TAIL, int Data)
 {
-	element *NewElement = new element;
-	NewElement->Data = Data;
-	NewElement->NextElement = HEAD;
-	HEAD = NewElement;
+	if(HEAD == 0)
+	{
+		element *NewElement = new element;
+		NewElement->Data = Data;
+		NewElement->NextElement = nullptr;
+		HEAD = NewElement;
+	}
+	else
+	{
+		element *NewElement = new element;
+		NewElement->Data = Data;
+		NewElement->NextElement = HEAD;
+		HEAD = NewElement;
+	}
 }
 //==============================================================================
 void InsertAtEnd(element *&HEAD, element *&TAIL, int Data)
 {
-	element *END = HEAD;
-	while(END->NextElement)
+	if(TAIL == 0)
 	{
-		END = END->NextElement;
+		element *NewElement = new element;
+		NewElement->Data = Data;
+		NewElement->NextElement = nullptr;
+		HEAD->NextElement = NewElement;
+		TAIL = HEAD;
 	}
-	element *NewElement = new element;
-	NewElement->Data = Data;
-	NewElement->NextElement = nullptr;
-	END->NextElement = NewElement;
+	else
+	{
+		element *NewElement = new element;
+		NewElement->Data = Data;
+		NewElement->NextElement = nullptr;
+		TAIL->NextElement = NewElement;
+	}
 }
 //==============================================================================
 void InsertBefore(element *&HEAD, element *&TAIL, int data, element *&obj)
