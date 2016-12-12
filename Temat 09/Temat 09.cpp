@@ -111,7 +111,7 @@ void PrintList(element *&HEAD, element *&TAIL)
 //==============================================================================
 int main()
 {
-	element *HEAD = new element, *TAIL = HEAD;
+	element *HEAD = nullptr, *TAIL = HEAD;
 	InsertAtBeginning(HEAD, TAIL, 5);
 	InsertAtEnd(HEAD, TAIL, 25);
 	PrintList(HEAD, TAIL);
