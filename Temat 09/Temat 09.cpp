@@ -111,11 +111,19 @@ void PrintList(element *&HEAD)
 //==============================================================================
 int main()
 {
-	element *HEAD = nullptr, *TAIL = HEAD;
+	element *HEAD = new element, *TAIL = HEAD, *trash = HEAD;
+	cout << "initialised list with a random value"<< endl;
+	PrintList(HEAD);
 	InsertAtBeginning(HEAD, TAIL, 5);
+	cout << "InsertAtBeginning 5" << endl;
+	PrintList(HEAD);
 	InsertAtEnd(HEAD, TAIL, 25);
-	PrintList(HEAD, TAIL);
-	DeleteList(HEAD, TAIL);
+	cout << "InsertAtEnd 25" << endl;
+	PrintList(HEAD);
+	RemoveElement(HEAD, trash);
+	cout << "RemoveElement trash" << endl;
+	PrintList(HEAD);
+	DeleteList(HEAD);
 	system("pause");
 }
 //==============================================================================
