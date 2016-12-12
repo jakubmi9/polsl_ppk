@@ -5,7 +5,13 @@ database::database(string file)
 {
 	this->_fname = file;
 	ifstream _i(file);
-	//read db from disk
+	string afname, alname, title, genre;
+	int cnt;
+	while(_i >> afname >> alname >> title >> genre >> cnt)
+	{
+		book *tmp = new book(afname, alname, title, genre, cnt);
+		this->bookdb.push(tmp);
+	}
 	_i.close();
 }
 

@@ -4,6 +4,10 @@
 #include "cpp-shell.h"
 #include "exceptions.h"
 #include "database.h"
+#include "book.h"
+#include "user.h"
+#include "list.h"
+#include "database.h"
 using namespace std;
 //==============================================================================
 ///<summary>Entry point for the application</summary>
@@ -66,26 +70,10 @@ int main(int argc, char* argv[])
 							}
 						}
 					}
-					//if(main->command.size() == 1)
-					//{
-					//	while(true)
-					//	{
-					//		main->subprompt();
-					//		if(main->command.size() > 2)
-					//		{
-					//			throw new InvalidArgumentException;
-					//			break;
-					//		}
-					//		else
-					//		{
-					//			//load database with name in command[1]
-					//		}
-					//	}
-					//}
 				}
 				else if(main->command[0] == "unload")
 				{
-					//unloads the database to a file
+					//flushes the database to a file
 					delete db;
 					LOADED = false;
 					main->submodule();
