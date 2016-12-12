@@ -84,6 +84,7 @@ void RemoveElement(element *&HEAD, element *&obj)
 	element *ElementAfter = ElementBefore->NextElement->NextElement;
 	delete obj;
 	ElementBefore->NextElement = ElementAfter;
+	ElementBefore->NextElement->PreviousElement = ElementBefore;
 }
 //==============================================================================
 void DeleteList(element *&HEAD)
