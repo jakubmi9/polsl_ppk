@@ -75,6 +75,8 @@ void InsertAfter(element *&HEAD, element *&TAIL, int data, element *&obj)
 	NewElement->NextElement = ElementAfter;
 	NewElement->PreviousElement = ElementBefore;
 	ElementBefore->NextElement = NewElement;
+	if(ElementAfter == nullptr)
+		return;
 	ElementAfter->PreviousElement = NewElement;
 }
 //==============================================================================
@@ -137,7 +139,7 @@ int main()
 	InsertAfter(HEAD, TAIL, 625, TAIL);
 	cout << "InsertAfter 25 625" << endl;
 	PrintHeadToTail(HEAD);
-	InsertBefore(HEAD, TAIL, 125, TAIL->PreviousElement);
+	InsertBefore(HEAD, TAIL, 125, TAIL);
 	cout << "InsertBefore 625 125" << endl;
 	PrintHeadToTail(HEAD);
 	RemoveElement(HEAD, trash);
