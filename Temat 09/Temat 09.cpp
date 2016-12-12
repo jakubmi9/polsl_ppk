@@ -74,7 +74,7 @@ void InsertAfter(element *&HEAD, element *&TAIL, int data, element *&obj)
 	ElementBefore->NextElement = NewElement;
 }
 //==============================================================================
-void RemoveElement(element *&HEAD, element *&TAIL, element *&obj)
+void RemoveElement(element *&HEAD, element *&obj)
 {
 	element *ElementBefore = HEAD;
 	while(!(ElementBefore->NextElement == obj))
@@ -86,7 +86,7 @@ void RemoveElement(element *&HEAD, element *&TAIL, element *&obj)
 	ElementBefore->NextElement = ElementAfter;
 }
 //==============================================================================
-void DeleteList(element *&HEAD, element *&TAIL)
+void DeleteList(element *&HEAD)
 {
 	element *CurrentElement = HEAD;
 	element *NextElement = HEAD->NextElement;
@@ -98,7 +98,7 @@ void DeleteList(element *&HEAD, element *&TAIL)
 	}
 }
 //==============================================================================
-void PrintList(element *&HEAD, element *&TAIL)
+void PrintList(element *&HEAD)
 {
 	element *END = HEAD;
 	int i = 0;
