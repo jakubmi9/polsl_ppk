@@ -2,13 +2,28 @@
 #include "list.h"
 #include "user.h"
 #include "book.h"
+#include "exceptions.h"
 
 template<class T>
 list<T>::list()
 {
+	throw new InvalidListTypeException;
+}
+
+template< >
+list<user>::list()
+{
 	this->head = nullptr;
 	this->tail = this->head;
 }
+
+template< >
+list<book>::list()
+{
+	this->head = nullptr;
+	this->tail = this->head;
+}
+
 template< >
 list<book>::~list()
 {
