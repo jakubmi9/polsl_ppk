@@ -7,3 +7,5 @@
 #include "targetver.h"
 #include <cstdio>
 #include <iostream>
+#include <fstream>
+#include <string>
