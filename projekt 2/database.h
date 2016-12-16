@@ -8,7 +8,7 @@ class database
 	std::string _fname;
 	public:
 	list<book> bookdb;
-	//list<user> userdb;
+	list<user> userdb;
 	database(std::string file);
 	~database();
 };

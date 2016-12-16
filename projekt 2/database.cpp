@@ -6,6 +6,7 @@ database::database(string file)
 	this->_fname = file;
 	ifstream _i(file);
 	string afname, alname, title, genre;
+	string tmp;
 	int cnt;
 	while(_i >> afname >> alname >> title >> genre >> cnt)
 	{
