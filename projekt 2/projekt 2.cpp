@@ -16,7 +16,11 @@ using namespace std;
 ///<param name="argv">Two dimensional array of chars containing cmd launch arguments. argv[0] is always name of the executable.</param>
 int main(int argc, char* argv[])
 {
-	bool DEBUG = true;
+	#ifdef _DEBUG 
+	bool DEBUG = true; 
+	#else
+	bool DEBUG = false;
+	#endif // _DEBUG
 	bool LOADED = false;
 	const string g = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
 	const string p = "libxpress";
@@ -175,6 +179,11 @@ int main(int argc, char* argv[])
 		{
 			exp->writeout();
 			main->command.clear();
+		}
+		catch(InvalidListTypeException *exp)
+		{
+			exp->writeout();
+			if(DEBUG) system("pause"); else return 0;
 		}
 	}
 }
