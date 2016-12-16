@@ -5,13 +5,21 @@ database::database(string file)
 {
 	this->_fname = file;
 	ifstream _i(file);
-	string afname, alname, title, genre;
+	string afname, alname, title, genre,fname,lname;
 	string tmp;
-	int cnt;
+	list<book> books;
+	int cnt, id;
 	while(_i >> afname >> alname >> title >> genre >> cnt)
 	{
 		book *tmp = new book(afname, alname, title, genre, cnt);
 		this->bookdb.push(tmp);
+		delete tmp;
+	}
+	while(_i >> id >> fname >> lname /*>> books*/)
+	{
+		user *tmp = new user(id, fname, lname, books);
+		this->userdb.push(tmp);
+		delete tmp;
 	}
 	_i.close();
 }
