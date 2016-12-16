@@ -162,12 +162,14 @@ int main(int argc, char* argv[])
 		catch(NoArgumentException *exp)
 		{
 			exp->writeout();
+			delete exp;
 			if(DEBUG) system("pause"); else return 0;
 		}
 		catch(InvalidArgumentException *exp)
 		{
 			exp->writeout();
 			main->command.clear();
+			delete exp;
 		}
 		catch(out_of_range)
 		{
@@ -179,10 +181,12 @@ int main(int argc, char* argv[])
 		{
 			exp->writeout();
 			main->command.clear();
+			delete exp;
 		}
 		catch(InvalidListTypeException *exp)
 		{
 			exp->writeout();
+			delete exp;
 			if(DEBUG) system("pause"); else return 0;
 		}
 	}
