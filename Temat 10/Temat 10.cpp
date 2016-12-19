@@ -11,12 +11,50 @@ struct Tree
 //==============================================================================
 void Insert(Tree *&ROOT, int Value)
 {
-
+	static char LR;
+	if(ROOT == nullptr)
+	{
+		Tree* tmp = new Tree;
+		tmp->Value = Value;
+		ROOT = tmp;
+		//LR == 'L' ? ROOT->LeftChild = tmp : ROOT->RightChild = tmp;
+		return;
+	}
+	if(ROOT->Value > Value)
+	{
+		LR = 'L';
+		Insert(ROOT->LeftChild, Value);
+	}
+	else
+	{
+		LR = 'R';
+		Insert(ROOT->RightChild, Value);
+	}
 }
 //==============================================================================
-void PrintTree()
+void PrintTree(Tree *&ROOT)
 {
-
+	if(!ROOT)
+		return;
+	std::cout << ROOT->Value << ':';
+	if(ROOT->LeftChild)
+	{
+		std::cout << ROOT->LeftChild->Value << ',';
+	}
+	else
+	{
+		std::cout << "nullptr,";
+	}
+	if(ROOT->RightChild)
+	{
+		std::cout << ROOT->RightChild->Value << std::endl;
+	}
+	else
+	{
+		std::cout << "nullptr\n";
+	}
+	PrintTree(ROOT->LeftChild);
+	PrintTree(ROOT->RightChild);
 }
 //==============================================================================
 void DeleteTree()
@@ -36,7 +74,7 @@ int main()
 	Insert(ROOT, 30);
 	Insert(ROOT, 25);
 	Insert(ROOT, 40);
-	PrintTree();
+	PrintTree(ROOT);
 	DeleteTree();
 	system("pause");
 }
