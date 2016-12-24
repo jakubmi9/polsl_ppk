@@ -87,6 +87,10 @@ int main(int argc, char* argv[])
 				else if(main->command[0] == "status")
 				{
 					//print current status of the library system
+					if(LOADED)
+						cout << "A database is currently loaded." << endl;
+					else
+						cout << "No database is open right now" << endl;
 					main->command.clear();
 				}
 				else if(main->command[0] == "list")
