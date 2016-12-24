@@ -3,27 +3,27 @@
 #include "user.h"
 #include "book.h"
 #include "exceptions.h"
-
+//==============================================================================
 template<class T>
 list<T>::list()
 {
 	throw new InvalidListTypeException;
 }
-
+//==============================================================================
 template< >
 list<user>::list()
 {
 	this->head = nullptr;
 	this->tail = this->head;
 }
-
+//==============================================================================
 template< >
 list<book>::list()
 {
 	this->head = nullptr;
 	this->tail = this->head;
 }
-
+//==============================================================================
 template< >
 list<book>::~list()
 {
@@ -36,7 +36,7 @@ list<book>::~list()
 		_next = _current->_nextbook;
 	}
 }
-
+//==============================================================================
 template< >
 list<user>::~list()
 {
@@ -49,7 +49,7 @@ list<user>::~list()
 		_next = _current->_nextuser;
 	}
 }
-
+//==============================================================================
 template< >
 void list<user>::push(user *obj)
 {
@@ -63,7 +63,7 @@ void list<user>::push(user *obj)
 		this->tail->_nextuser = obj;
 	}
 }
-
+//==============================================================================
 template< >
 void list<book>::push(book *obj)
 {
@@ -77,3 +77,4 @@ void list<book>::push(book *obj)
 		this->tail->_nextbook = obj;
 	}
 }
+//==============================================================================
