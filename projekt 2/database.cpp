@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "database.h"
 using namespace std;
+//==============================================================================
 database::database(string file)
 {
 	this->_fname = file;
@@ -30,7 +31,7 @@ database::database(string file)
 	}
 	_i.close();
 }
-
+//==============================================================================
 database::~database()
 {
 	ofstream _o(this->_fname);
@@ -38,7 +39,7 @@ database::~database()
 	{
 		_o << this->bookdb.head->afname << ' ' << this->bookdb.head->alname << ' ' << this->bookdb.head->title << ' ' << this->bookdb.head->genre << ' ' << this->bookdb.head->cnt << endl;
 		book *tmp = this->bookdb.head;
-		this->bookdb.head = this->bookdb.head->_nextbook;
+		//this->bookdb.head = this->bookdb.head->_nextbook;
 		delete tmp;
 	}
 	_o << endl;
@@ -54,9 +55,10 @@ database::~database()
 		}
 		_o << endl;
 		user *tmp = this->userdb.head;
-		this->userdb.head = this->userdb.head->_nextuser;
+		//this->userdb.head = this->userdb.head->_nextuser;
 		delete tmp;
 	}
 	//flush db to disk
 	_o.close();
 }
+//==============================================================================

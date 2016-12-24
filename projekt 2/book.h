@@ -1,6 +1,7 @@
 #pragma once
 #include "list.h"
 using std::string;
+//==============================================================================
 class book
 {
 	book *_nextbook;
@@ -16,4 +17,4 @@ class book
 	friend class list<book>;
 	friend class database;
 };
-
+//==============================================================================
