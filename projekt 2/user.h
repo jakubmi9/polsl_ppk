@@ -15,5 +15,6 @@ class user
 	user(int,std::string,std::string,std::vector<std::string>);
 	~user();
 	friend class list<user>;
+	friend class database;
 };
 //==============================================================================

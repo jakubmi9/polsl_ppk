@@ -4,7 +4,7 @@ template<class T>
 class list
 {
 	public:
-	T *head, *tail;
+	T *head = nullptr, *tail = nullptr;
 	list();
 	~list();
 	void push(T *obj);

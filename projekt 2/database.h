@@ -6,9 +6,10 @@ class database
 {
 	private:
 	std::string _fname;
-	public:
 	list<book> bookdb;
 	list<user> userdb;
+	public:
+	
 	database(std::string file);
 	~database();
 };

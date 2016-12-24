@@ -28,12 +28,12 @@ template< >
 list<book>::~list()
 {
 	book *_current = this->head;
-	book *_next = _current->_nextbook;
+	book *_next = _current->_nextbook ? _current->_nextbook : nullptr;
 	while(_current->_nextbook)
 	{
 		delete _current;
 		_current = _next;
-		_next = _current->_nextbook;
+		_next = _current->_nextbook ? _current->_nextbook : nullptr;
 	}
 }
 //==============================================================================
@@ -41,12 +41,13 @@ template< >
 list<user>::~list()
 {
 	user *_current = this->head;
-	user *_next = _current->_nextuser;
-	while(_current->_nextuser)
+	//user *_next = _current->_nextuser ? _current->_nextuser : nullptr;
+	while(_current)
 	{
+		user *tmp = _current->_nextuser ? _current->_nextuser : nullptr;
 		delete _current;
-		_current = _next;
-		_next = _current->_nextuser;
+		_current = tmp;
+		/*_next = _current->_nextuser ? _current->_nextuser : nullptr;*/
 	}
 }
 //==============================================================================
@@ -67,7 +68,7 @@ void list<user>::push(user *obj)
 template< >
 void list<book>::push(book *obj)
 {
-	if(this->head = nullptr)
+	if(this->head == nullptr)
 	{
 		this->head = obj;
 		this->tail = this->head;

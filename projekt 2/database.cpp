@@ -22,7 +22,8 @@ database::database(string file)
 		{
 			if(temp == "null")
 				continue;
-			books.push_back(temp);
+			else
+				books.push_back(temp);
 		}
 		this->userdb.push(tmp);
 		delete tmp;
@@ -33,6 +34,29 @@ database::database(string file)
 database::~database()
 {
 	ofstream _o(this->_fname);
+	while(this->bookdb.head)
+	{
+		_o << this->bookdb.head->afname << ' ' << this->bookdb.head->alname << ' ' << this->bookdb.head->title << ' ' << this->bookdb.head->genre << ' ' << this->bookdb.head->cnt << endl;
+		book *tmp = this->bookdb.head;
+		this->bookdb.head = this->bookdb.head->_nextbook;
+		delete tmp;
+	}
+	_o << endl;
+	while(this->userdb.head)
+	{
+		_o << this->userdb.head->id << ' ' << this->userdb.head->fname << ' ' << this->userdb.head->lname << ' ' << this->userdb.head->books.at(0);
+		if(this->userdb.head->books.size() > 1)
+		{
+			for(int i = 1; i < this->userdb.head->books.size(); i++)
+			{
+				_o << this->userdb.head->books.at(i) << ' ';
+			}
+		}
+		_o << endl;
+		user *tmp = this->userdb.head;
+		this->userdb.head = this->userdb.head->_nextuser;
+		delete tmp;
+	}
 	//flush db to disk
 	_o.close();
 }

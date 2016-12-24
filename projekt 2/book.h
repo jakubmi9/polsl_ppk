@@ -14,5 +14,6 @@ class book
 	book(string, string, string, string, int);
 	~book();
 	friend class list<book>;
+	friend class database;
 };
 
