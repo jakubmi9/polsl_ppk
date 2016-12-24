@@ -1,7 +1,6 @@
 #pragma once
-#include "book.h"
-#include "list.h"
-using std::string;
+#include <vector>
+//==============================================================================
 class user
 {
 	private:
@@ -9,10 +8,11 @@ class user
 	user *_prevuser;
 	public:
 	int id;
-	string fname;
-	string lname;
-	user(int,string,string,list<book>);
+	std::string fname;
+	std::string lname;
+	std::vector<std::string> books;
+	user(int,std::string,std::string,std::vector<std::string>);
 	~user();
 	friend class list<user>;
 };
-
+//==============================================================================
