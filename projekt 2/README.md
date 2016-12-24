@@ -11,9 +11,8 @@ Program powinien umożliwić modyfikowanie bazy danych o książkach i użytkown
 Dobrać strukturę danych zapewniającą optymalne wykonywanie operacji wyszukiwania.
 
 ## Specyfikacja  
-###### library.exe
-
+###### projekt 02.exe
 libXpress Library Management System alpha  
 Licensed under GNU GPLv3  
 
-libxpress$
+libxpress$ help_
