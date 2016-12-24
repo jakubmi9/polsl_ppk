@@ -57,9 +57,28 @@ void PrintTree(Tree *&ROOT)
 	PrintTree(ROOT->RightChild);
 }
 //==============================================================================
-void DeleteTree()
+void DeleteTree(Tree *&ROOT)
 {
-
+	if(!ROOT)
+	{
+		return;
+	}
+	if(!ROOT->LeftChild && !ROOT->RightChild)
+	{
+		std::cout << "deleting " << ROOT->Value << std::endl;
+		delete ROOT;
+		return;
+	}
+	if(ROOT->LeftChild)
+	{
+		DeleteTree(ROOT->LeftChild);
+		ROOT->LeftChild = nullptr;
+	}
+	if(ROOT->RightChild)
+	{
+		DeleteTree(ROOT->RightChild);
+		ROOT->RightChild = nullptr;
+	}
 }
 //==============================================================================
 int main()
@@ -75,7 +94,7 @@ int main()
 	Insert(ROOT, 25);
 	Insert(ROOT, 40);
 	PrintTree(ROOT);
-	DeleteTree();
+	DeleteTree(ROOT);
 	system("pause");
 }
 //==============================================================================
