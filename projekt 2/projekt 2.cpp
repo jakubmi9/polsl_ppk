@@ -36,6 +36,17 @@ int main(int argc, char* argv[])
 				main->prompt();
 				if(main->command[0] == "exit")
 				{
+					if(LOADED)
+					{
+						char confirm = 'N';
+						cout << "A database is loaded currently. Are you sure? (Y/N)";
+						cin >> confirm;
+						if(confirm == 'Y' || confirm == 'y')
+						{
+							delete main;
+							if(DEBUG) system("pause"); return 0;
+						}
+					}
 					delete main;
 					if(DEBUG) system("pause"); return 0;
 				}
