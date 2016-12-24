@@ -16,11 +16,13 @@ database::database(string file)
 	}
 	while(_i >> id >> fname >> lname /*>> books*/)
 	{
-		list<book> books;
+		vector<string> books;
 		user *tmp = new user(id, fname, lname, books);
 		while(_i >> temp)
 		{
-			books.push(temp)
+			if(temp == "null")
+				continue;
+			books.push_back(temp);
 		}
 		this->userdb.push(tmp);
 		delete tmp;
