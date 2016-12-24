@@ -32,3 +32,11 @@ public:
 	void writeout();
 };
 //==============================================================================
+class CorruptedDatabaseException: public std::exception
+{
+	private:
+	protected:
+	public:
+	void writeout();
+};
+//==============================================================================

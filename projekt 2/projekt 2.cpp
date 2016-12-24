@@ -99,7 +99,11 @@ int main(int argc, char* argv[])
 				{
 					//print current status of the library system
 					if(LOADED)
+					{
 						cout << "A database is currently loaded." << endl;
+						cout << "There are " << db->usercnt << " registered users.\n";
+						cout << db->userswbooks <<" of them have unreturned books.\n";
+					}
 					else
 						cout << "No database is open right now" << endl;
 					main->command.clear();
@@ -204,6 +208,12 @@ int main(int argc, char* argv[])
 			exp->writeout();
 			delete exp;
 			if(DEBUG) system("pause"); else return 0;
+		}
+		catch(CorruptedDatabaseException *exp)
+		{
+			exp->writeout();
+			main->command.clear();
+			delete exp;
 		}
 	}
 }

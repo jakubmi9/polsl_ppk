@@ -1,5 +1,10 @@
+_begin_db
+_begin_books
 Adam Mickiewicz Dziady Dramat 10
-
+_end_books
+_begin_users
 1 Jakub Misiura Dziady
 2 Jan Kowalski null
 3 Tomasz Kruk Dziady
+_end_users
+_end_db

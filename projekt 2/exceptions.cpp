@@ -21,3 +21,8 @@ void InvalidListTypeException::writeout()
 	printf("0x00000004 Creating lists of this type is not supported!\n");
 }
 //==============================================================================
+void CorruptedDatabaseException::writeout()
+{
+	printf("0x00000005 Database file is corrupted!\n");
+}
+//==============================================================================

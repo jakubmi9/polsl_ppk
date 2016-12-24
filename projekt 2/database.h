@@ -9,7 +9,9 @@ class database
 	list<book> bookdb;
 	list<user> userdb;
 	public:
-	
+	int usercnt = 0;
+	int bookcnt = 0;
+	int userswbooks = 0;
 	database(std::string file);
 	~database();
 };
