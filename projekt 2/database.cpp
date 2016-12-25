@@ -63,7 +63,11 @@ database::database(string file)
 			book *tmp = new book(afname, alname, title, genre, cnt);
 			this->bookdb.push(tmp);
 			this->bookcnt++;
-			delete tmp;
+			afname.clear();
+			alname.clear();
+			title.clear();
+			genre.clear();
+			num.clear();
 		}
 		else if(userpart&&db)
 		{
@@ -102,6 +106,7 @@ database::database(string file)
 					bk.push_back(line[i]);
 				}
 				books.push_back(bk);
+				bk.clear();
 			}
 			user *tmp = new user(id, fname, lname, books);
 			this->userdb.push(tmp);
@@ -113,7 +118,9 @@ database::database(string file)
 			{
 				this->userswbooks++;
 			}
-			delete tmp;
+			num.clear();
+			fname.clear();
+			lname.clear();
 		}
 		else
 			throw new CorruptedDatabaseException;
@@ -130,19 +137,19 @@ database::~database()
 	book *currentbook = this->bookdb.head;
 	while(currentbook)
 	{
-		_o << this->bookdb.head->afname << ' ' << this->bookdb.head->alname << ' ' << this->bookdb.head->title << ' ' << this->bookdb.head->genre << ' ' << this->bookdb.head->cnt << endl;
+		_o << currentbook->afname << ' ' << currentbook->alname << ' ' << currentbook->title << ' ' << currentbook->genre << ' ' << currentbook->cnt << endl;
 		currentbook = currentbook->_nextbook;
 	}
 	_o << "_end_books\n_begin_users\n";
 	user *currentuser = this->userdb.head;
 	while(currentuser)
 	{
-		_o << this->userdb.head->id << ' ' << this->userdb.head->fname << ' ' << this->userdb.head->lname << ' ' << this->userdb.head->books.at(0);
-		if(this->userdb.head->books.size() > 1)
+		_o << currentuser->id << ' ' << currentuser->fname << ' ' << currentuser->lname << ' ' << currentuser->books.at(0);
+		if(currentuser->books.size() > 1)
 		{
-			for(int i = 1; i < this->userdb.head->books.size(); i++)
+			for(int i = 1; i < currentuser->books.size(); i++)
 			{
-				_o << this->userdb.head->books.at(i) << ' ';
+				_o << currentuser->books.at(i) << ' ';
 			}
 		}
 		_o << endl;
