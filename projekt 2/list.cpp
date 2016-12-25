@@ -28,12 +28,11 @@ template< >
 list<book>::~list()
 {
 	book *_current = this->head;
-	book *_next = _current->_nextbook ? _current->_nextbook : nullptr;
-	while(_current->_nextbook)
+	while(_current)
 	{
-		delete _current;
-		_current = _next;
-		_next = _current->_nextbook ? _current->_nextbook : nullptr;
+		book *tmp = _current;
+		_current = _current->_nextbook;
+		delete tmp;
 	}
 }
 //==============================================================================
