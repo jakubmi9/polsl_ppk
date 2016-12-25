@@ -80,3 +80,54 @@ void list<book>::push(book *obj)
 	}
 }
 //==============================================================================
+template< >
+void list<user>::print()
+{
+	user *_current = this->head;
+	while(_current)
+	{
+		std::cout << "User ID: " << _current->id << " | " << _current->fname << ' ' << _current->lname << " | Borrowed books: ";
+		for(int i = 0; i < _current->books.size(); i++)
+		{
+			if(_current->books.at(0) == "null")
+				std::cout << "none";
+			else
+			{
+				std::cout << _current->books.at(i);
+			}
+		}
+		std::cout << std::endl;
+		_current = _current->_nextuser;
+	}
+}
+//==============================================================================
+template< >
+void list<user>::print(std::string irrelevant)
+{
+	user *_current = this->head;
+	while(_current)
+	{
+		if(_current->books.at(0)=="null")
+		{
+			_current = _current->_nextuser;
+			continue;
+		}
+		else
+		{
+			std::cout << "User ID: " << _current->id << " | " << _current->fname << ' ' << _current->lname << " | Borrowed books: ";
+			for(int i = 0; i < _current->books.size(); i++)
+			{
+				if(_current->books.at(0) == "null")
+					std::cout << "none";
+				else
+				{
+					std::cout << _current->books.at(i);
+				}
+			}
+			std::cout << std::endl;
+			_current = _current->_nextuser;
+
+		}
+	}
+}
+//==============================================================================

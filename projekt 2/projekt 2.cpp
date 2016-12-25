@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 					{
 						cout << "A database is currently loaded." << endl;
 						cout << "There are " << db->usercnt << " registered users.\n";
-						cout << db->userswbooks <<" of them have unreturned books.\n";
+						cout << db->userswbooks << " of them have unreturned books.\n";
 						cout << "There are " << db->bookcnt << " different books.\n";
 						cout << "(not yet implemented)" << " of them are currently in the library.\n";
 					}
@@ -107,26 +107,49 @@ int main(int argc, char* argv[])
 				}
 				else if(main->command[0] == "list")
 				{
-					//check for more arguments if none found throw a subshell asking for them
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
+					if(main->command.size() == 2)
+					{
+						if(main->command.at(1) == "users")
+						{
+							db->printusers();
+						}
+					}
+					else if(main->command.size() == 3)
+					{
+						if(main->command.at(1) == "users" && main->command.at(2) == "--unreturned")
+						{
+							db->printusers("unreturned");
+						}
+					}
 					main->command.clear();
 				}
 				else if(main->command[0] == "add")
 				{
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
 					//add new item to the db
 					main->command.clear();
 				}
 				else if(main->command[0] == "edit")
 				{
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
 					//edit an existing item
 					main->command.clear();
 				}
 				else if(main->command[0] == "delete")
 				{
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
 					//delete item from db
 					main->command.clear();
 				}
 				else if(main->command[0] == "borrow")
 				{
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
 					//borrow a book
 					main->command.clear();
 				}
@@ -213,6 +236,12 @@ int main(int argc, char* argv[])
 			delete exp;
 		}
 		catch(FileNotFoundException *exp)
+		{
+			exp->writeout();
+			main->command.clear();
+			delete exp;
+		}
+		catch(DatabaseNotLoadedException *exp)
 		{
 			exp->writeout();
 			main->command.clear();

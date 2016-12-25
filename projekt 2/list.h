@@ -11,6 +11,10 @@ class list
 	T *tail = nullptr;
 	list();
 	~list();
+	/// <summary>Prints contents of the list to the screen</summary>
+	void print();
+	/// <summary>Alternative print method; to be specialized</summary>
+	void print(std::string irrelevant);
 	/// <summary>Adds new book to the end of the list.</summary>
 	/// <param name="obj">Pointer to the book that'll be added to the list.</param>
 	void push(T *obj);

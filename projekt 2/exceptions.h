@@ -48,3 +48,11 @@ class FileNotFoundException: public std::exception
 	void writeout();
 };
 //==============================================================================
+class DatabaseNotLoadedException: public std::exception
+{
+	private:
+	protected:
+	public:
+	void writeout();
+};
+//==============================================================================
