@@ -89,7 +89,6 @@ int main(int argc, char* argv[])
 				}
 				else if(main->command[0] == "unload")
 				{
-					//flushes the database to a file
 					delete db;
 					LOADED = false;
 					main->submodule();
@@ -103,6 +102,8 @@ int main(int argc, char* argv[])
 						cout << "A database is currently loaded." << endl;
 						cout << "There are " << db->usercnt << " registered users.\n";
 						cout << db->userswbooks <<" of them have unreturned books.\n";
+						cout << "There are " << db->bookcnt << " different books.\n";
+						cout << "(not yet implemented)" << " of them are currently in the library.\n";
 					}
 					else
 						cout << "No database is open right now" << endl;
