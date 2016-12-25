@@ -9,53 +9,53 @@ database::database(string file)
 	ifstream _i(file);
 	bool db = 0, userpart = 0, bookpart = 0;
 	string afname, alname, title, genre, fname, lname;
-	string temp;
+	string line;
 	int cnt =0, id;
-	while(getline(_i, temp))
+	while(getline(_i, line))
 	{
-		if(temp == "_begin_db") db = 1;
-		else if(temp == "_begin_books") bookpart = 1;
-		else if(temp == "_end_books"&&bookpart) bookpart = 0;
-		else if(temp == "_begin_users") userpart = 1;
-		else if(temp == "_end_users"&&userpart) userpart = 0;
-		else if(temp == "_end_db"&&db) db = 0;
+		if(line == "_begin_db") db = 1;
+		else if(line == "_begin_books") bookpart = 1;
+		else if(line == "_end_books"&&bookpart) bookpart = 0;
+		else if(line == "_begin_users") userpart = 1;
+		else if(line == "_end_users"&&userpart) userpart = 0;
+		else if(line == "_end_db"&&db) db = 0;
 		else if(bookpart&&db)
 		{
 			int i = 0;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				afname.push_back(temp[i]);
+				afname.push_back(line[i]);
 			}
 			i++;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				alname.push_back(temp[i]);
+				alname.push_back(line[i]);
 			}
 			i++;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				title.push_back(temp[i]);
+				title.push_back(line[i]);
 			}
 			i++;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				genre.push_back(temp[i]);
+				genre.push_back(line[i]);
 			}
 			i++;
 			string num;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				num.push_back(temp[i]);
+				num.push_back(line[i]);
 			}
 			cnt = stoi(num);
 			book *tmp = new book(afname, alname, title, genre, cnt);
@@ -67,16 +67,52 @@ database::database(string file)
 		{
 			int i = 0;
 			string num;
-			for(; i < temp.length(); i++)
+			for(; i < line.length(); i++)
 			{
-				if(temp[i] == ' ')
+				if(line[i] == ' ')
 					break;
-				num.push_back(temp[i]);
+				num.push_back(line[i]);
 			}
 			id = stoi(num);
+			i++;
+			for(; i < line.length(); i++)
+			{
+				if(line[i] == ' ')
+					break;
+				fname.push_back(line[i]);
+			}
+			i++;
+			for(; i < line.length(); i++)
+			{
+				if(line[i] == ' ')
+					break;
+				lname.push_back(line[i]);
+			}
+			i++;
+			vector<string> books;
 
 
+			string bk;
+			while(i < line.length())
+			{
+				for(; i < line.length(); i++)
+				{
+					if(line[i] == ' ')
+						break;
+					bk.push_back(line[i]);
+				}
+				books.push_back(bk);
+			}
+
+
+			user *tmp = new user(id, fname, lname, books);
+			this->userdb.push(tmp);
 			this->usercnt++;
+			if(books.at(0) == "null") { } else
+			{
+				this->userswbooks++;
+			}
+			delete tmp;
 		}
 		else
 			throw new CorruptedDatabaseException;

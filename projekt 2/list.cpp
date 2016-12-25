@@ -54,10 +54,10 @@ list<user>::~list()
 template< >
 void list<user>::push(user *obj)
 {
-	if(this->head = nullptr)
+	if(this->head == nullptr)
 	{
 		this->head = obj;
-		this->tail = this->head;
+		this->tail = obj;
 	}
 	else
 	{
@@ -71,7 +71,7 @@ void list<book>::push(book *obj)
 	if(this->head == nullptr)
 	{
 		this->head = obj;
-		this->tail = this->head;
+		this->tail = obj;
 	}
 	else
 	{
