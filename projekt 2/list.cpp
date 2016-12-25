@@ -40,13 +40,11 @@ template< >
 list<user>::~list()
 {
 	user *_current = this->head;
-	//user *_next = _current->_nextuser ? _current->_nextuser : nullptr;
 	while(_current)
 	{
-		user *tmp = _current->_nextuser ? _current->_nextuser : nullptr;
-		delete _current;
-		_current = tmp;
-		/*_next = _current->_nextuser ? _current->_nextuser : nullptr;*/
+		user *tmp = _current;
+		_current = _current->_nextuser;
+		delete tmp;
 	}
 }
 //==============================================================================
@@ -61,6 +59,8 @@ void list<user>::push(user *obj)
 	else
 	{
 		this->tail->_nextuser = obj;
+		obj->_prevuser = this->tail;
+		this->tail = obj;
 	}
 }
 //==============================================================================
@@ -75,6 +75,8 @@ void list<book>::push(book *obj)
 	else
 	{
 		this->tail->_nextbook = obj;
+		obj->_prevbook = this->tail;
+		this->tail = obj;
 	}
 }
 //==============================================================================
