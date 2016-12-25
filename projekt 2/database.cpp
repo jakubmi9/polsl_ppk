@@ -90,8 +90,6 @@ database::database(string file)
 			}
 			i++;
 			vector<string> books;
-
-
 			string bk;
 			while(i < line.length())
 			{
@@ -103,8 +101,6 @@ database::database(string file)
 				}
 				books.push_back(bk);
 			}
-
-
 			user *tmp = new user(id, fname, lname, books);
 			this->userdb.push(tmp);
 			this->usercnt++;
@@ -120,42 +116,6 @@ database::database(string file)
 	if(db || userpart || bookpart)
 		throw new CorruptedDatabaseException;
 	_i.close();
-	return;
-	//getline(_i, temp); if(temp == "_begin_db") db = 1; else throw new CorruptedDatabaseException;
-	//getline(_i, temp); if(temp == "_begin_books") bookpart = 1; else throw new CorruptedDatabaseException;
-	//getline(_i, temp);
-	//while(_i >> afname >> alname >> title >> genre >> cnt)
-	//{
-	//	book *tmp = new book(afname, alname, title, genre, cnt);
-	//	this->bookdb.push(tmp);
-	//	this->bookcnt++;
-	//	delete tmp;
-	//}
-	//_i >> temp; if(temp == "_end_books") bookpart = 0; else throw new CorruptedDatabaseException;
-	//_i >> temp; if(temp == "_begin_users") userpart = 1; else throw new CorruptedDatabaseException;
-	//while(_i >> id >> fname >> lname /*>> books*/)
-	//{
-	//	vector<string> books;
-	//	user *tmp = new user(id, fname, lname, books);
-	//	while(_i >> temp)
-	//	{
-	//		if(temp == "null")
-	//		{
-	//			this->userswbooks++;
-	//			continue;
-	//		}
-	//		else
-	//			books.push_back(temp);
-	//	}
-	//	this->userdb.push(tmp);
-	//	this->usercnt++;
-	//	//delete tmp;
-	//}
-	//_i >> temp; if(temp == "_end_users") userpart = 0; else throw new CorruptedDatabaseException;
-	//_i >> temp; if(temp == "_end_db") db = 0; else throw new CorruptedDatabaseException;
-	//if(db || userpart || bookpart)
-	//	throw new CorruptedDatabaseException;
-	//_i.close();
 }
 //==============================================================================
 database::~database()
