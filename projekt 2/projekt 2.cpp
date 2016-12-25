@@ -16,10 +16,6 @@ bool DEBUG = true;
 bool DEBUG = false;
 #endif // _DEBUG
 //==============================================================================
-///<summary>Entry point for the application</summary>
-///<returns>0 if completed successfully</returns>
-///<param name="argc">Number of arguments passed from the command line</param>
-///<param name="argv">Two dimensional array of chars containing cmd launch arguments. argv[0] is always name of the executable.</param>
 int main(int argc, char* argv[])
 {
 	bool LOADED = false;

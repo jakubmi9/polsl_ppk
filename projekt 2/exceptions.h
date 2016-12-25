@@ -24,11 +24,11 @@ class AlreadyLoadedException: public std::exception
 	void writeout();
 };
 //==============================================================================
-class InvalidListTypeException : public std::exception
+class InvalidListTypeException: public std::exception
 {
-private:
-protected:
-public:
+	private:
+	protected:
+	public:
 	void writeout();
 };
 //==============================================================================

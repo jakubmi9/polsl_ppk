@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "book.h"
 //==============================================================================
-book::book(string afname, string alname, string title, string genre, int cnt)
+book::book(std::string afname, std::string alname, std::string title, std::string genre, int cnt)
 {
 	this->afname = afname;
 	this->alname = alname;
