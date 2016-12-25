@@ -7,10 +7,12 @@ database::database(string file)
 {
 	this->_fname = file;
 	ifstream _i(file);
+	if(!_i.is_open())
+		throw new FileNotFoundException;
 	bool db = 0, userpart = 0, bookpart = 0;
 	string afname, alname, title, genre, fname, lname;
 	string line;
-	int cnt =0, id;
+	int cnt = 0, id;
 	while(getline(_i, line))
 	{
 		if(line == "_begin_db") db = 1;
@@ -104,7 +106,10 @@ database::database(string file)
 			user *tmp = new user(id, fname, lname, books);
 			this->userdb.push(tmp);
 			this->usercnt++;
-			if(books.at(0) == "null") { } else
+			if(books.at(0) == "null")
+			{
+			}
+			else
 			{
 				this->userswbooks++;
 			}
@@ -121,15 +126,16 @@ database::database(string file)
 database::~database()
 {
 	ofstream _o(this->_fname);
-	while(this->bookdb.head)
+	_o << "_begin_db\n_begin_books\n";
+	book *currentbook = this->bookdb.head;
+	while(currentbook)
 	{
 		_o << this->bookdb.head->afname << ' ' << this->bookdb.head->alname << ' ' << this->bookdb.head->title << ' ' << this->bookdb.head->genre << ' ' << this->bookdb.head->cnt << endl;
-		book *tmp = this->bookdb.head;
-		//this->bookdb.head = this->bookdb.head->_nextbook;
-		delete tmp;
+		currentbook = currentbook->_nextbook;
 	}
-	_o << endl;
-	while(this->userdb.head)
+	_o << "_end_books\n_begin_users\n";
+	user *currentuser = this->userdb.head;
+	while(currentuser)
 	{
 		_o << this->userdb.head->id << ' ' << this->userdb.head->fname << ' ' << this->userdb.head->lname << ' ' << this->userdb.head->books.at(0);
 		if(this->userdb.head->books.size() > 1)
@@ -140,11 +146,9 @@ database::~database()
 			}
 		}
 		_o << endl;
-		user *tmp = this->userdb.head;
-		//this->userdb.head = this->userdb.head->_nextuser;
-		delete tmp;
+		currentuser = currentuser->_nextuser;
 	}
-	//flush db to disk
+	_o << "_end_users\n_end_db";
 	_o.close();
 }
 //==============================================================================

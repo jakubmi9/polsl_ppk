@@ -26,3 +26,8 @@ void CorruptedDatabaseException::writeout()
 	printf("0x00000005 Database file is corrupted!\n");
 }
 //==============================================================================
+void FileNotFoundException::writeout()
+{
+	printf("0x00000006 Database file is missing! Check filename and try again.\n");
+}
+//==============================================================================

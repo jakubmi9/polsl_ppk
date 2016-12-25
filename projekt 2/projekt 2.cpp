@@ -216,6 +216,12 @@ int main(int argc, char* argv[])
 			main->command.clear();
 			delete exp;
 		}
+		catch(FileNotFoundException *exp)
+		{
+			exp->writeout();
+			main->command.clear();
+			delete exp;
+		}
 	}
 }
 //==============================================================================

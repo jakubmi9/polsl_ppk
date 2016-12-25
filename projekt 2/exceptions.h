@@ -40,3 +40,11 @@ class CorruptedDatabaseException: public std::exception
 	void writeout();
 };
 //==============================================================================
+class FileNotFoundException: public std::exception
+{
+	private:
+	protected:
+	public:
+	void writeout();
+};
+//==============================================================================
