@@ -115,12 +115,20 @@ int main(int argc, char* argv[])
 						{
 							db->printusers();
 						}
+						else
+						{
+							throw new InvalidArgumentException;
+						}
 					}
 					else if(main->command.size() == 3)
 					{
 						if(main->command.at(1) == "users" && main->command.at(2) == "--unreturned")
 						{
 							db->printusers("unreturned");
+						}
+						else
+						{
+							throw new InvalidArgumentException;
 						}
 					}
 					main->command.clear();
