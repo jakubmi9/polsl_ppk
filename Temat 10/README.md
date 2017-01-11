@@ -4,4 +4,4 @@
 ## Zad 2
 - [x] Wyświetlić całe drzewo
 ## Zad 3 
-- [ ] Usunąć całe drzewo
+- [x] Usunąć całe drzewo
