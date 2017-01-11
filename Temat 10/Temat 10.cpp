@@ -63,12 +63,6 @@ void DeleteTree(Tree *&ROOT)
 	{
 		return;
 	}
-	if(!ROOT->LeftChild && !ROOT->RightChild)
-	{
-		std::cout << "deleting " << ROOT->Value << std::endl;
-		delete ROOT;
-		return;
-	}
 	if(ROOT->LeftChild)
 	{
 		DeleteTree(ROOT->LeftChild);
@@ -79,6 +73,13 @@ void DeleteTree(Tree *&ROOT)
 		DeleteTree(ROOT->RightChild);
 		ROOT->RightChild = nullptr;
 	}
+	if(!ROOT->LeftChild && !ROOT->RightChild)
+	{
+		std::cout << "deleting " << ROOT->Value << std::endl;
+		delete ROOT;
+		return;
+	}
+	
 }
 //==============================================================================
 int main()
