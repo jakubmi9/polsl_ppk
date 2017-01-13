@@ -83,7 +83,7 @@ int main(int argc, char* argv[])
 						}
 					}
 				}
-				else if(main->command[0] == "unload")
+				else if(main->command[0] == "flush")
 				{
 					delete db;
 					LOADED = false;
