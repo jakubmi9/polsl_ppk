@@ -169,3 +169,8 @@ void database::printusers(std::string irr)
 	this->userdb.print("switch");
 }
 //==============================================================================
+void database::printbooks()
+{
+	this->bookdb.print();
+}
+//==============================================================================

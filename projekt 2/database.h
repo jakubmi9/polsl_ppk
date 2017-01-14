@@ -20,8 +20,10 @@ class database
 	/// <param name="file">name of the file, that contains the database</param>
 	database(std::string file);
 	~database();
-	/// <summary>Lists all users im the database</summary>
+	/// <summary>Lists all users in the database</summary>
 	void printusers();
 	/// <summary>Lists only users that have unreturned books</summary>
 	void printusers(std::string irrelevant);
+	/// <summary>Lists all books in the database</summary>
+	void printbooks();
 };

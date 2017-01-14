@@ -131,3 +131,14 @@ void list<user>::print(std::string irrelevant)
 	}
 }
 //==============================================================================
+template< >
+void list<book>::print()
+{
+	book *_current = this->head;
+	while(_current)
+	{
+		std::cout << _current->afname << ' ' << _current->alname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
+		_current = _current->_nextbook;
+	}
+}
+//==============================================================================

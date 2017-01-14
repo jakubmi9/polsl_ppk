@@ -115,6 +115,10 @@ int main(int argc, char* argv[])
 						{
 							db->printusers();
 						}
+						else if(main->command.at(1) == "books")
+						{
+							db->printbooks();
+						}
 						else
 						{
 							throw new InvalidArgumentException;
