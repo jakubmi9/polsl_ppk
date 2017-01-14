@@ -86,18 +86,18 @@ void list<user>::print()
 	user *_current = this->head;
 	while(_current)
 	{
-		std::cout << "User ID: " << _current->id << " | " << _current->fname << ' ' << _current->lname << " | Borrowed books: ";
-		for(int i = 0; i < _current->books.size(); i++)
+		std::cout << "User ID: " << _current->id << " | " << _current->userfname << ' ' << _current->userlname << " | Borrowed books: ";
+		for(int i = 0; i < _current->borrowedbooks.size(); i++)
 		{
-			if(_current->books.at(0) == "null")
+			if(_current->borrowedbooks.at(0) == "null")
 				std::cout << "none";
 			else
 			{
-				std::cout << _current->books.at(i);
+				std::cout << _current->borrowedbooks.at(i);
 			}
 		}
 		std::cout << std::endl;
-		_current = _current->_nextuser;
+		_current = _current->_nextelement;
 	}
 }
 //==============================================================================
@@ -107,25 +107,25 @@ void list<user>::print(std::string irrelevant)
 	user *_current = this->head;
 	while(_current)
 	{
-		if(_current->books.at(0)=="null")
+		if(_current->borrowedbooks.at(0)=="null")
 		{
-			_current = _current->_nextuser;
+			_current = _current->_nextelement;
 			continue;
 		}
 		else
 		{
-			std::cout << "User ID: " << _current->id << " | " << _current->fname << ' ' << _current->lname << " | Borrowed books: ";
-			for(int i = 0; i < _current->books.size(); i++)
+			std::cout << "User ID: " << _current->id << " | " << _current->userfname << ' ' << _current->userlname << " | Borrowed books: ";
+			for(int i = 0; i < _current->borrowedbooks.size(); i++)
 			{
-				if(_current->books.at(0) == "null")
+				if(_current->borrowedbooks.at(0) == "null")
 					std::cout << "none";
 				else
 				{
-					std::cout << _current->books.at(i);
+					std::cout << _current->borrowedbooks.at(i);
 				}
 			}
 			std::cout << std::endl;
-			_current = _current->_nextuser;
+			_current = _current->_nextelement;
 
 		}
 	}
@@ -137,8 +137,8 @@ void list<book>::print()
 	book *_current = this->head;
 	while(_current)
 	{
-		std::cout << _current->afname << ' ' << _current->alname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
-		_current = _current->_nextbook;
+		std::cout << _current->authorfname << ' ' << _current->authorlname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
+		_current = _current->_nextelement;
 	}
 }
 //==============================================================================

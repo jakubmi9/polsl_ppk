@@ -19,9 +19,9 @@ bool DEBUG = false;
 int main(int argc, char* argv[])
 {
 	bool LOADED = false;
-	const string g = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
-	const string p = "libxpress";
-	sh::shell *main = new sh::shell(g, p);
+	const string startmessage = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
+	const string promptstring = "libxpress";
+	sh::shell *ui = new sh::shell(startmessage, promptstring);
 	database *db = nullptr;
 	while(true)
 	{
@@ -29,8 +29,8 @@ int main(int argc, char* argv[])
 		{
 			while(true)
 			{
-				main->prompt();
-				if(main->command[0] == "exit")
+				ui->prompt();
+				if(ui->command[0] == "exit")
 				{
 					if(LOADED)
 					{
@@ -39,42 +39,42 @@ int main(int argc, char* argv[])
 						cin >> confirm;
 						if(confirm == 'Y' || confirm == 'y')
 						{
-							delete main;
+							delete ui;
 							if(DEBUG) system("pause"); return 0;
 						}
 					}
-					delete main;
+					delete ui;
 					if(DEBUG) system("pause"); return 0;
 				}
-				else if(main->command[0] == "load")
+				else if(ui->command[0] == "load")
 				{
 					if(LOADED)
 					{
 						throw new AlreadyLoadedException;
 						continue;
 					}
-					if(main->command.size() == 2)
+					if(ui->command.size() == 2)
 					{
-						db = new database(main->command.at(1));
+						db = new database(ui->command.at(1));
 						LOADED = true;
-						main->submodule(main->command.at(1));
-						main->command.clear();
+						ui->submodule(ui->command.at(1));
+						ui->command.clear();
 					}
 					else
 					{
-						if(main->command.size() > 2)
+						if(ui->command.size() > 2)
 						{
 							throw new InvalidArgumentException;
 						}
 						else
 						{
-							main->subprompt();
-							if(main->command.size() == 2)
+							ui->subprompt();
+							if(ui->command.size() == 2)
 							{
-								db = new database(main->command.at(1));
+								db = new database(ui->command.at(1));
 								LOADED = true;
-								main->submodule(main->command.at(1));
-								main->command.clear();
+								ui->submodule(ui->command.at(1));
+								ui->command.clear();
 							}
 							else
 							{
@@ -83,39 +83,39 @@ int main(int argc, char* argv[])
 						}
 					}
 				}
-				else if(main->command[0] == "flush")
+				else if(ui->command[0] == "flush")
 				{
 					delete db;
 					LOADED = false;
-					main->submodule();
-					main->command.clear();
+					ui->submodule();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "status")
+				else if(ui->command[0] == "status")
 				{
 					//print current status of the library system
 					if(LOADED)
 					{
 						cout << "A database is currently loaded." << endl;
-						cout << "There are " << db->usercnt << " registered users.\n";
+						cout << "There are " << db->usercount << " registered users.\n";
 						cout << db->userswbooks << " of them have unreturned books.\n";
-						cout << "There are " << db->bookcnt << " different books.\n";
+						cout << "There are " << db->bookcount << " different books.\n";
 						cout << "(not yet implemented)" << " of them are currently in the library.\n";
 					}
 					else
 						cout << "No database is open right now" << endl;
-					main->command.clear();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "list")
+				else if(ui->command[0] == "list")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
-					if(main->command.size() == 2)
+					if(ui->command.size() == 2)
 					{
-						if(main->command.at(1) == "users")
+						if(ui->command.at(1) == "users")
 						{
 							db->printusers();
 						}
-						else if(main->command.at(1) == "books")
+						else if(ui->command.at(1) == "books")
 						{
 							db->printbooks();
 						}
@@ -124,9 +124,9 @@ int main(int argc, char* argv[])
 							throw new InvalidArgumentException;
 						}
 					}
-					else if(main->command.size() == 3)
+					else if(ui->command.size() == 3)
 					{
-						if(main->command.at(1) == "users" && main->command.at(2) == "--unreturned")
+						if(ui->command.at(1) == "users" && ui->command.at(2) == "--unreturned")
 						{
 							db->printusers("unreturned");
 						}
@@ -135,35 +135,35 @@ int main(int argc, char* argv[])
 							throw new InvalidArgumentException;
 						}
 					}
-					main->command.clear();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "add")
+				else if(ui->command[0] == "add")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//add new item to the db
-					main->command.clear();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "edit")
+				else if(ui->command[0] == "edit")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//edit an existing item
-					main->command.clear();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "delete")
+				else if(ui->command[0] == "delete")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//delete item from db
-					main->command.clear();
+					ui->command.clear();
 				}
-				else if(main->command[0] == "borrow")
+				else if(ui->command[0] == "borrow")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//borrow a book
-					main->command.clear();
+					ui->command.clear();
 				}
 				else
 				{
@@ -220,19 +220,19 @@ int main(int argc, char* argv[])
 		catch(InvalidArgumentException *exp)
 		{
 			exp->writeout();
-			main->command.clear();
+			ui->command.clear();
 			delete exp;
 		}
 		catch(out_of_range)
 		{
 			if(DEBUG) cout << "exception:out_of_range\n";
-			main->subprompt();
-			/*main->command.clear();*/
+			ui->subprompt();
+			/*ui->command.clear();*/
 		}
 		catch(AlreadyLoadedException *exp)
 		{
 			exp->writeout();
-			main->command.clear();
+			ui->command.clear();
 			delete exp;
 		}
 		catch(InvalidListTypeException *exp)
@@ -244,19 +244,19 @@ int main(int argc, char* argv[])
 		catch(CorruptedDatabaseException *exp)
 		{
 			exp->writeout();
-			main->command.clear();
+			ui->command.clear();
 			delete exp;
 		}
 		catch(FileNotFoundException *exp)
 		{
 			exp->writeout();
-			main->command.clear();
+			ui->command.clear();
 			delete exp;
 		}
 		catch(DatabaseNotLoadedException *exp)
 		{
 			exp->writeout();
-			main->command.clear();
+			ui->command.clear();
 			delete exp;
 		}
 	}

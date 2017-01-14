@@ -4,9 +4,9 @@
 user::user(int id, std::string fname, std::string lname, std::vector<std::string> books)
 {
 	this->id = id;
-	this->fname = fname;
-	this->lname = lname;
-	this->books = books;
+	this->userfname = fname;
+	this->userlname = lname;
+	this->borrowedbooks = books;
 }
 //==============================================================================
 user::~user()

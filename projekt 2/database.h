@@ -6,14 +6,14 @@
 class database
 {
 	private:
-	std::string _fname;
-	list<book> bookdb;
-	list<user> userdb;
+	std::string _filename;
+	list<book> _bookdb;
+	list<user> _userdb;
 	public:
 	/// <summary>Count of unique users in the database</summary>
-	int usercnt = 0;
-	/// <summary>Count of unique books if the database</summary>
-	int bookcnt = 0;
+	int usercount = 0;
+	/// <summary>Count of unique titles in the database</summary>
+	int bookcount = 0;
 	/// <summary>Count of users, that possess unreturned books</summary>
 	int userswbooks = 0;
 	/// <summary>Creates new database filled with values from disk</summary>

@@ -5,15 +5,15 @@ using namespace std;
 //==============================================================================
 database::database(string file)
 {
-	this->_fname = file;
-	ifstream _i(file);
-	if(!_i.is_open())
+	this->_filename = file;
+	ifstream _dbfile(file);
+	if(!_dbfile.is_open())
 		throw new FileNotFoundException;
 	bool db = 0, userpart = 0, bookpart = 0;
 	string afname, alname, title, genre, fname, lname;
 	string line;
 	int cnt = 0, id;
-	while(getline(_i, line))
+	while(getline(_dbfile, line))
 	{
 		if(line == "_begin_db") db = 1;
 		else if(line == "_begin_books") bookpart = 1;
@@ -61,8 +61,8 @@ database::database(string file)
 			}
 			cnt = stoi(num);
 			book *tmp = new book(afname, alname, title, genre, cnt);
-			this->bookdb.push(tmp);
-			this->bookcnt++;
+			this->_bookdb.push(tmp);
+			this->bookcount++;
 			afname.clear();
 			alname.clear();
 			title.clear();
@@ -109,8 +109,8 @@ database::database(string file)
 				bk.clear();
 			}
 			user *tmp = new user(id, fname, lname, books);
-			this->userdb.push(tmp);
-			this->usercnt++;
+			this->_userdb.push(tmp);
+			this->usercount++;
 			if(books.at(0) == "null")
 			{
 			}
@@ -127,50 +127,50 @@ database::database(string file)
 	}
 	if(db || userpart || bookpart)
 		throw new CorruptedDatabaseException;
-	_i.close();
+	_dbfile.close();
 }
 //==============================================================================
 database::~database()
 {
-	ofstream _o(this->_fname);
-	_o << "_begin_db\n_begin_books\n";
-	book *currentbook = this->bookdb.head;
+	ofstream _dbfile(this->_filename);
+	_dbfile << "_begin_db\n_begin_books\n";
+	book *currentbook = this->_bookdb.head;
 	while(currentbook)
 	{
-		_o << currentbook->afname << ' ' << currentbook->alname << ' ' << currentbook->title << ' ' << currentbook->genre << ' ' << currentbook->cnt << endl;
-		currentbook = currentbook->_nextbook;
+		_dbfile << currentbook->authorfname << ' ' << currentbook->authorlname << ' ' << currentbook->title << ' ' << currentbook->genre << ' ' << currentbook->cnt << endl;
+		currentbook = currentbook->_nextelement;
 	}
-	_o << "_end_books\n_begin_users\n";
-	user *currentuser = this->userdb.head;
+	_dbfile << "_end_books\n_begin_users\n";
+	user *currentuser = this->_userdb.head;
 	while(currentuser)
 	{
-		_o << currentuser->id << ' ' << currentuser->fname << ' ' << currentuser->lname << ' ' << currentuser->books.at(0);
-		if(currentuser->books.size() > 1)
+		_dbfile << currentuser->id << ' ' << currentuser->userfname << ' ' << currentuser->userlname << ' ' << currentuser->borrowedbooks.at(0);
+		if(currentuser->borrowedbooks.size() > 1)
 		{
-			for(int i = 1; i < currentuser->books.size(); i++)
+			for(int i = 1; i < currentuser->borrowedbooks.size(); i++)
 			{
-				_o << currentuser->books.at(i) << ' ';
+				_dbfile << currentuser->borrowedbooks.at(i) << ' ';
 			}
 		}
-		_o << endl;
-		currentuser = currentuser->_nextuser;
+		_dbfile << endl;
+		currentuser = currentuser->_nextelement;
 	}
-	_o << "_end_users\n_end_db";
-	_o.close();
+	_dbfile << "_end_users\n_end_db";
+	_dbfile.close();
 }
 //==============================================================================
 void database::printusers()
 {
-	this->userdb.print();
+	this->_userdb.print();
 }
 //==============================================================================
 void database::printusers(std::string irr)
 {
-	this->userdb.print("switch");
+	this->_userdb.print("switch");
 }
 //==============================================================================
 void database::printbooks()
 {
-	this->bookdb.print();
+	this->_bookdb.print();
 }
 //==============================================================================
