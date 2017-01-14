@@ -235,12 +235,6 @@ int main(int argc, char* argv[])
 			ui->command.clear();
 			delete exp;
 		}
-		catch(InvalidListTypeException *exp)
-		{
-			exp->writeout();
-			delete exp;
-			if(DEBUG) system("pause"); else return 0;
-		}
 		catch(CorruptedDatabaseException *exp)
 		{
 			exp->writeout();
