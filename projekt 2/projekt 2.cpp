@@ -107,9 +107,15 @@ int main(int argc, char* argv[])
 				}
 				else if(ui->command[0] == "list")
 				{
+LIST:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
-					if(ui->command.size() == 2)
+					if(ui->command.size() == 1)
+					{
+						ui->subprompt();
+						goto LIST;
+					}
+					else if(ui->command.size() == 2)
 					{
 						if(ui->command.at(1) == "users")
 						{
@@ -130,10 +136,32 @@ int main(int argc, char* argv[])
 						{
 							db->printusers("unreturned");
 						}
+						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--byauthor")
+						{
+							db->printbooks("byauthor");
+						}
+						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--bytitle")
+						{
+							db->printbooks("bytitle");
+						}
+						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--author")
+						{
+							ui->subprompt();
+							goto LIST;
+						}
+						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
+						{
+							ui->subprompt();
+							goto LIST;
+						}
 						else
 						{
 							throw new InvalidArgumentException;
 						}
+					}
+					else if(ui->command.size() == 4)
+					{
+						//WIP
 					}
 					ui->command.clear();
 				}
