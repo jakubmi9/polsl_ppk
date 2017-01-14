@@ -16,6 +16,8 @@ class database
 	int bookcount = 0;
 	/// <summary>Count of users, that possess unreturned books</summary>
 	int userswbooks = 0;
+	/// <summary>Count of books, that are physically in the library</summary>
+	int availablebooks = 0;
 	/// <summary>Creates new database filled with values from disk</summary>
 	/// <param name="file">name of the file, that contains the database</param>
 	database(std::string file);

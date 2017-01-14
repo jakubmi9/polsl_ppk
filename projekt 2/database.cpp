@@ -60,6 +60,7 @@ database::database(string file)
 				num.push_back(line[i]);
 			}
 			cnt = stoi(num);
+			this->availablebooks += cnt;
 			book *tmp = new book(afname, alname, title, genre, cnt);
 			this->_bookdb.push(tmp);
 			this->bookcount++;
