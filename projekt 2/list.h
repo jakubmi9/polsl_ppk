@@ -28,6 +28,8 @@ class list
 	void print();
 	/// <summary>Alternative print method; to be specialized</summary>
 	void print(std::string irrelevant);
+	/// <summary>TBD</summary>
+	void print(std::string modeswitch, std::string query);
 	/// <summary>Adds new book to the end of the list.</summary>
 	/// <param name="obj">Pointer to the book that'll be added to the list.</param>
 	void push(T *obj)

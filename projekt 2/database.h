@@ -30,4 +30,6 @@ class database
 	void printbooks();
 	/// <summary></summary>
 	void printbooks(std::string modeswitch);
+	/// <summary>TBD</summary>
+	void printbooks(std::string modeswitch, std::string query);
 };

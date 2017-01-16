@@ -161,7 +161,14 @@ LIST:
 					}
 					else if(ui->command.size() == 4)
 					{
-						//WIP
+						if(ui->command.at(1) == "list" && ui->command.at(2) == "books" && ui->command.at(3) == "--author")
+						{
+							db->printbooks("--author",ui->command.at(4));
+						}
+						else if(ui->command.at(1) == "list" && ui->command.at(2) == "books" && ui->command.at(3) == "--genre")
+						{
+							db->printbooks("--genre", ui->command.at(4));
+						}
 					}
 					ui->command.clear();
 				}
