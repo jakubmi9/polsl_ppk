@@ -22,7 +22,7 @@ class user
 	/// <param name="userfname">User's first name.</param>
 	/// <param name="userlname">User's last name.</param>
 	/// <param name="borrowedbooks">Vector containing names of all the books, currently borrowed by the user.</param>
-	user(int id,std::string fname,std::string lname,std::vector<std::string> books);
+	user(int id, std::string fname, std::string lname, std::vector<std::string> books);
 	~user();
 	friend class list<user>;
 	friend class database;

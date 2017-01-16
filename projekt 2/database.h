@@ -28,7 +28,7 @@ class database
 	void printusers(std::string irrelevant);
 	/// <summary>Lists all books in the database</summary>
 	void printbooks();
-	/// <summary></summary>
+	/// <summary>TBD</summary>
 	void printbooks(std::string modeswitch);
 	/// <summary>TBD</summary>
 	void printbooks(std::string modeswitch, std::string query);

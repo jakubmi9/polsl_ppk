@@ -182,6 +182,6 @@ void database::printbooks(std::string modeswitch)
 //==============================================================================
 void database::printbooks(std::string modeswitch, std::string query)
 {
-	this->_userdb.print(modeswitch,query);
+	this->_userdb.print(modeswitch, query);
 }
 //==============================================================================

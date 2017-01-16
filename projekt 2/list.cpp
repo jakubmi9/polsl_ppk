@@ -30,7 +30,7 @@ void list<user>::print(std::string irrelevant)
 	user *_current = this->head;
 	while(_current)
 	{
-		if(_current->borrowedbooks.at(0)=="null")
+		if(_current->borrowedbooks.at(0) == "null")
 		{
 			_current = _current->_nextelement;
 			continue;
