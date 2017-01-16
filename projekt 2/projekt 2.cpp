@@ -161,13 +161,13 @@ LIST:
 					}
 					else if(ui->command.size() == 4)
 					{
-						if(ui->command.at(1) == "list" && ui->command.at(2) == "books" && ui->command.at(3) == "--author")
+						if(ui->command.at(0) == "list" && ui->command.at(1) == "books" && ui->command.at(2) == "--author")
 						{
-							db->printbooks("--author", ui->command.at(4));
+							db->printbooks("--author", ui->command.at(3));
 						}
-						else if(ui->command.at(1) == "list" && ui->command.at(2) == "books" && ui->command.at(3) == "--genre")
+						else if(ui->command.at(0) == "list" && ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
 						{
-							db->printbooks("--genre", ui->command.at(4));
+							db->printbooks("--genre", ui->command.at(3));
 						}
 					}
 					ui->command.clear();
