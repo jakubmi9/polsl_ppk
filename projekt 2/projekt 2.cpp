@@ -146,11 +146,13 @@ LIST:
 						}
 						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--author")
 						{
+							cout << "Please specify an author:\n";
 							ui->subprompt();
 							goto LIST;
 						}
 						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
 						{
+							cout << "Please specify a genre to be listed:\n";
 							ui->subprompt();
 							goto LIST;
 						}
