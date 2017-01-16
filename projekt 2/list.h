@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LIST_H
+#define LIST_H
 //==============================================================================
 /// <summary>template class for bidirectional list of elements. Only book and user are supported as a element type ATM.</summary>
 template<class T>
@@ -48,3 +50,4 @@ class list
 	}
 };
 //==============================================================================
+#endif // !LIST_H

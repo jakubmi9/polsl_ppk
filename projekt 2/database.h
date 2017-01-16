@@ -2,6 +2,8 @@
 #include "book.h"
 #include "user.h"
 #include "list.h"
+#ifndef DATABASE_H
+#define DATABASE_H
 /// <summary>Database object, that contains list of users and list of books</summary>
 class database
 {
@@ -36,3 +38,4 @@ class database
 	/// <param name="query">Any string that will be used to filter the list</param>
 	void printbooks(std::string modeswitch, std::string query);
 };
+#endif // !DATABASE_H

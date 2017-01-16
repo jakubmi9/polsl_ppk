@@ -1,5 +1,7 @@
 #pragma once
 #include "list.h"
+#ifndef BOOK_H
+#define BOOK_H
 //==============================================================================
 /// <summary>object designed to represent a book type</summary>
 class book
@@ -29,3 +31,4 @@ class book
 	friend class database;
 };
 //==============================================================================
+#endif // !BOOK_H

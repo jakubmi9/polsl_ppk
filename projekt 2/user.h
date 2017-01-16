@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "list.h"
+#ifndef USER_H
+#define USER_H
 //==============================================================================
 /// <summary>object designed to represent a single user</summary>
 class user
@@ -28,3 +30,4 @@ class user
 	friend class database;
 };
 //==============================================================================
+#endif // !USER_H

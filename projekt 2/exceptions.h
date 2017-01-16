@@ -1,4 +1,6 @@
 #pragma once
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 //==============================================================================
 class NoArgumentException: public std::exception
 {
@@ -48,3 +50,4 @@ class DatabaseNotLoadedException: public std::exception
 	void writeout();
 };
 //==============================================================================
+#endif // !EXCEPTIONS_H
