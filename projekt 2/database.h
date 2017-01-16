@@ -28,8 +28,11 @@ class database
 	void printusers(std::string irrelevant);
 	/// <summary>Lists all books in the database</summary>
 	void printbooks();
-	/// <summary>TBD</summary>
+	/// <summary>Lists all books sorted by author or title</summary>
+	/// <param name="modeswitch">"--byauthor" or "--bytitle"</param>
 	void printbooks(std::string modeswitch);
-	/// <summary>TBD</summary>
+	/// <summary>Lists only books specified by the query</summary>
+	/// <param name="modeswitch">"author" or "genre"</param>
+	/// <param name="query">Any string that will be used to filter the list</param>
 	void printbooks(std::string modeswitch, std::string query);
 };
