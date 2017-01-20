@@ -50,6 +50,8 @@ class list
 			this->_length++;
 		}
 	}
+	///
+	void remove(int id);
 	/// <summary>Returns the length of the list as integer value</summary>
 	int length()
 	{

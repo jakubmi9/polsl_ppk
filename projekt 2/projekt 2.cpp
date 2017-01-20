@@ -237,9 +237,42 @@ ADD:
 				}
 				else if(ui->command[0] == "delete")
 				{
+DELETE:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
-					//delete item from db
+					if(ui->command.size() == 1)
+					{
+						std::cout << "What do you want to delete?\n";
+						ui->subprompt();
+						goto DELETE;
+					}
+					else if(ui->command.size() == 2)
+					{
+						if(ui->command.at(1) == "book")
+						{
+							std::cout << "Syntax:\n<book's unique id number>\n";
+							ui->subprompt();
+							goto DELETE;
+						}
+						else if(ui->command.at(1) == "user")
+						{
+							std::cout << "Syntax:\n<user's unique id number>\n";
+							ui->subprompt();
+							goto DELETE;
+						}
+					}
+					else if(ui->command.size() == 3)
+					{
+						if(ui->command.at(1) == "book")
+						{
+							db->delbook(stoi(ui->command.at(2)));
+						}
+						else if(ui->command.at(1) == "user")
+						{
+							db->deluser(stoi(ui->command.at(2)));
+						}
+					}
+					//delete item from 
 					ui->command.clear();
 				}
 				else if(ui->command[0] == "borrow")

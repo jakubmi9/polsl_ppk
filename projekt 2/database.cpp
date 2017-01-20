@@ -236,3 +236,13 @@ void database::adduser(user *obj)
 	this->_userdb.push(obj);
 }
 //==============================================================================
+void database::delbook(int bookid)
+{
+	this->_bookdb.remove(bookid);
+}
+//==============================================================================
+void database::deluser(int userid)
+{
+	this->_userdb.remove(userid);
+}
+//==============================================================================

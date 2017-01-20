@@ -49,5 +49,9 @@ class database
 	void addbook(book * obj);
 	///
 	void adduser(user * obj);
+	///
+	void delbook(int bookid);
+	///
+	void deluser(int userid);
 };
 #endif // !DATABASE_H

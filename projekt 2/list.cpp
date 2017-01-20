@@ -98,7 +98,7 @@ void list<book>::print(std::string modeswitch)
 					}
 				}
 				_current = _current->_nextelement;
-			}while(_current);
+			} while(_current);
 			sorted->push_back(minelement);
 		}
 		for(int i = 0; i < sorted->size(); i++)
@@ -175,5 +175,56 @@ void list<book>::print(std::string modeswitch, std::string query)
 			_current = _current->_nextelement;
 		}
 	}
+}
+//==============================================================================
+template< >
+void list<book>::remove(int id)
+{
+	book *_current = this->head();
+	book *_target = nullptr;
+	do
+	{
+		if(_current->bookid() == id)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	book *prev = _target->_prevelement;
+	book *next = _target->_nextelement;
+	if(prev)
+		prev->_nextelement = next;
+	if(next)
+		next->_prevelement = prev;
+	if(_target == this->head())
+		this->_head = next;
+	if(_target == this->tail())
+		this->_tail = prev;
+	delete _target;
+}
+//==============================================================================
+template< >
+void list<user>::remove(int id)
+{
+	user *_current = this->head();
+	user *_target = nullptr;
+	do
+	{
+		if(_current->userid() == id)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	user *prev = _target->_prevelement;
+	user *next = _target->_nextelement;
+	if(prev)
+		prev->_nextelement = next;
+	if(next)
+		next->_prevelement = prev;
+	if(_target == this->head())
+		this->_head = next;
+	if(_target == this->tail())
+	delete _target;
 }
 //==============================================================================
