@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 			while(true)
 			{
 				ui->prompt();
-				if(ui->command[0] == "exit")
+				if(ui->command.at(0) == "exit")
 				{
 					if(LOADED)
 					{
@@ -46,7 +46,11 @@ int main(int argc, char* argv[])
 					delete ui;
 					if(DEBUG) system("pause"); return 0;
 				}
-				else if(ui->command[0] == "load")
+				else if(ui->command.at(0) == "help")
+				{
+
+				}
+				else if(ui->command.at(0) == "load")
 				{
 					if(LOADED)
 					{
@@ -83,14 +87,14 @@ int main(int argc, char* argv[])
 						}
 					}
 				}
-				else if(ui->command[0] == "flush")
+				else if(ui->command.at(0) == "flush")
 				{
 					delete db;
 					LOADED = false;
 					ui->submodule();
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "status")
+				else if(ui->command.at(0) == "status")
 				{
 					//print current status of the library system
 					if(LOADED)
@@ -105,7 +109,7 @@ int main(int argc, char* argv[])
 						cout << "No database is open right now" << endl;
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "list")
+				else if(ui->command.at(0) == "list")
 				{
 LIST:
 					if(!LOADED)
@@ -175,7 +179,7 @@ LIST:
 					}
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "add")
+				else if(ui->command.at(0) == "add")
 				{
 ADD:
 					if(!LOADED)
@@ -228,14 +232,14 @@ ADD:
 					//add new item to the db
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "edit")
+				else if(ui->command.at(0) == "edit")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//edit an existing item
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "delete")
+				else if(ui->command.at(0) == "delete")
 				{
 DELETE:
 					if(!LOADED)
@@ -275,14 +279,14 @@ DELETE:
 					//delete item from 
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "borrow")
+				else if(ui->command.at(0) == "borrow")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
 					//borrow a book
 					ui->command.clear();
 				}
-				else if(ui->command[0] == "return")
+				else if(ui->command.at(0) == "return")
 				{
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
@@ -344,6 +348,5 @@ DELETE:
 			delete exp;
 		}
 	}
-	delete ui;
 }
 //==============================================================================
