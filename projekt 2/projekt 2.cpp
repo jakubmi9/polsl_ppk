@@ -35,16 +35,24 @@ int main(int argc, char* argv[])
 					if(LOADED)
 					{
 						char confirm = 'N';
-						cout << "A database is loaded currently. Are you sure? (Y/N)";
-						cin >> confirm;
+						std::cout << "A database is loaded currently. Are you sure? (Y/N)";
+						std::cin >> confirm;
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 						if(confirm == 'Y' || confirm == 'y')
 						{
 							delete ui;
 							if(DEBUG) system("pause"); return 0;
 						}
+						else
+						{
+							ui->command.clear();
+						}
 					}
-					delete ui;
-					if(DEBUG) system("pause"); return 0;
+					else
+					{
+						delete ui;
+						if(DEBUG) system("pause"); return 0;
+					}
 				}
 				else if(ui->command.at(0) == "help")
 				{
