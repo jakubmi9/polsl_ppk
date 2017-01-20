@@ -163,11 +163,11 @@ LIST:
 					}
 					else if(ui->command.size() == 4)
 					{
-						if(ui->command.at(0) == "list" && ui->command.at(1) == "books" && ui->command.at(2) == "--author")
+						if(ui->command.at(1) == "books" && ui->command.at(2) == "--author")
 						{
 							db->printbooks("--author", ui->command.at(3));
 						}
-						else if(ui->command.at(0) == "list" && ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
+						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
 						{
 							db->printbooks("--genre", ui->command.at(3));
 						}
