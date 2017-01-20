@@ -2,6 +2,7 @@
 #include "list.h"
 #include "user.h"
 #include "book.h"
+#include <vector>
 //==============================================================================
 template< >
 void list<user>::print()
@@ -70,10 +71,80 @@ void list<book>::print(std::string modeswitch)
 {
 	if(modeswitch == "byauthor")
 	{
+		std::vector<book*> *sorted = new std::vector<book*>;
+		while(sorted->size() < this->length())
+		{
+			book *_current = this->head();
+			std::string minimum = "z";
+			book *minelement = nullptr;
+			do
+			{
+				if(_current->authorlname() < minimum)
+				{
+					bool fuse = 1;
+					if(!sorted->empty())
+						for(int i = 0; i < sorted->size(); i++)
+						{
+							if(sorted->at(i) == _current)
+							{
+								fuse = 0;
+								break;
+							}
+						}
+					if(fuse)
+					{
+						minimum = _current->authorlname();
+						minelement = _current;
+					}
+				}
+				_current = _current->_nextelement;
+			}while(_current);
+			sorted->push_back(minelement);
+			
+		}
+		for(int i = 0; i < sorted->size(); i++)
+		{
+			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
+		}
 		//TBD: List all books, sorted by author's last name
 	}
 	else if(modeswitch == "bytitle")
 	{
+		std::vector<book*> *sorted = new std::vector<book*>;
+		while(sorted->size() < this->length())
+		{
+			book *_current = this->head();
+			std::string minimum = "z";
+			book *minelement = nullptr;
+			do
+			{
+				if(_current->title() < minimum)
+				{
+					bool fuse = 1;
+					if(!sorted->empty())
+						for(int i = 0; i < sorted->size(); i++)
+						{
+							if(sorted->at(i) == _current)
+							{
+								fuse = 0;
+								break;
+							}
+						}
+					if(fuse)
+					{
+						minimum = _current->title();
+						minelement = _current;
+					}
+				}
+				_current = _current->_nextelement;
+			} while(_current);
+			sorted->push_back(minelement);
+
+		}
+		for(int i = 0; i < sorted->size(); i++)
+		{
+			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
+		}
 		//TBD: List all books, sorted by title
 	}
 }
