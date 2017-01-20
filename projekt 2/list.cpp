@@ -68,11 +68,13 @@ void list<book>::print()
 template< >
 void list<book>::print(std::string modeswitch)
 {
-	book *_current = this->head;
-	while(_current)
+	if(modeswitch == "byauthor")
 	{
-		std::cout << _current->authorfname << ' ' << _current->authorlname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
-		_current = _current->_nextelement;
+		//TBD: List all books, sorted by author's last name
+	}
+	else if(modeswitch == "bytitle")
+	{
+		//TBD: List all books, sorted by title
 	}
 }
 //==============================================================================
