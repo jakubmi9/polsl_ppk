@@ -112,6 +112,7 @@ LIST:
 						throw new DatabaseNotLoadedException;
 					if(ui->command.size() == 1)
 					{
+						std::cout << "What do you want to list?\n";
 						ui->subprompt();
 						goto LIST;
 					}

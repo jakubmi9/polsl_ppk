@@ -156,7 +156,7 @@ database::~database()
 	user *currentuser = this->_userdb.head();
 	while(currentuser)
 	{
-		_dbfile << currentuser->userid() << ' ' << currentuser->userfname() << ' ' << currentuser->userlname() << ' ' << currentuser->borrowedbooks().at(0);
+		_dbfile << currentuser->userid() << ' ' << currentuser->userfname() << ' ' << currentuser->userlname() << ' ' << currentuser->borrowedbooks().at(0) << ' ';
 		if(currentuser->borrowedbooks().size() > 1)
 		{
 			for(int i = 1; i < currentuser->borrowedbooks().size(); i++)

@@ -100,13 +100,11 @@ void list<book>::print(std::string modeswitch)
 				_current = _current->_nextelement;
 			}while(_current);
 			sorted->push_back(minelement);
-			
 		}
 		for(int i = 0; i < sorted->size(); i++)
 		{
 			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
 		}
-		//TBD: List all books, sorted by author's last name
 	}
 	else if(modeswitch == "bytitle")
 	{
@@ -145,7 +143,6 @@ void list<book>::print(std::string modeswitch)
 		{
 			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
 		}
-		//TBD: List all books, sorted by title
 	}
 }
 //==============================================================================
