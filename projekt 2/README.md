@@ -22,6 +22,7 @@ libxpress$ _
 ```
 ##### Możliwe komendy
  - `exit` - opuszcza program
+ - `help` - wypisuje na ekran tekst pomocy
  - `status` - wypisuje obecny stan działania programu
  - `load <plik>` - wczytuje z *pliku* bazę danych i ładuje ją do pamięci
  - `flush` - zapisuje obecny stan bazy danych do pliku i usuwa ją z pamięci
