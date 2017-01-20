@@ -105,6 +105,7 @@ void list<book>::print(std::string modeswitch)
 		{
 			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
 		}
+		delete sorted;
 	}
 	else if(modeswitch == "bytitle")
 	{
@@ -143,6 +144,7 @@ void list<book>::print(std::string modeswitch)
 		{
 			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
 		}
+		delete sorted;
 	}
 }
 //==============================================================================
