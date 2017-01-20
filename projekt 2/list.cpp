@@ -2,81 +2,179 @@
 #include "list.h"
 #include "user.h"
 #include "book.h"
-#include "exceptions.h"
-//==============================================================================
-template<class T>
-list<T>::list()
-{
-	throw new InvalidListTypeException;
-}
+#include <vector>
 //==============================================================================
 template< >
-list<user>::list()
+void list<user>::print()
 {
-	this->head = nullptr;
-	this->tail = this->head;
-}
-//==============================================================================
-template< >
-list<book>::list()
-{
-	this->head = nullptr;
-	this->tail = this->head;
-}
-//==============================================================================
-template< >
-list<book>::~list()
-{
-	book *_current = this->head;
+	user *_current = this->head();
 	while(_current)
 	{
-		book *tmp = _current;
-		_current = _current->_nextbook;
-		delete tmp;
+		std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
+		for(int i = 0; i < _current->borrowedbooks().size(); i++)
+		{
+			if(_current->borrowedbooks().at(0) == "null")
+				std::cout << "none";
+			else
+			{
+				std::cout << _current->borrowedbooks().at(i);
+			}
+		}
+		std::cout << std::endl;
+		_current = _current->_nextelement;
 	}
 }
 //==============================================================================
 template< >
-list<user>::~list()
+void list<user>::print(std::string irrelevant)
 {
-	user *_current = this->head;
+	user *_current = this->head();
 	while(_current)
 	{
-		user *tmp = _current;
-		_current = _current->_nextuser;
-		delete tmp;
+		if(_current->borrowedbooks().at(0) == "null")
+		{
+			_current = _current->_nextelement;
+			continue;
+		}
+		else
+		{
+			std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
+			for(int i = 0; i < _current->borrowedbooks().size(); i++)
+			{
+				if(_current->borrowedbooks().at(0) == "null")
+					std::cout << "none";
+				else
+				{
+					std::cout << _current->borrowedbooks().at(i) << ", ";
+				}
+			}
+			std::cout << std::endl;
+			_current = _current->_nextelement;
+
+		}
 	}
 }
 //==============================================================================
 template< >
-void list<user>::push(user *obj)
+void list<book>::print()
 {
-	if(this->head == nullptr)
+	book *_current = this->head();
+	while(_current)
 	{
-		this->head = obj;
-		this->tail = obj;
-	}
-	else
-	{
-		this->tail->_nextuser = obj;
-		obj->_prevuser = this->tail;
-		this->tail = obj;
+		std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+		_current = _current->_nextelement;
 	}
 }
 //==============================================================================
 template< >
-void list<book>::push(book *obj)
+void list<book>::print(std::string modeswitch)
 {
-	if(this->head == nullptr)
+	if(modeswitch == "byauthor")
 	{
-		this->head = obj;
-		this->tail = obj;
+		std::vector<book*> *sorted = new std::vector<book*>;
+		while(sorted->size() < this->length())
+		{
+			book *_current = this->head();
+			std::string minimum = "z";
+			book *minelement = nullptr;
+			do
+			{
+				if(_current->authorlname() < minimum)
+				{
+					bool fuse = 1;
+					if(!sorted->empty())
+						for(int i = 0; i < sorted->size(); i++)
+						{
+							if(sorted->at(i) == _current)
+							{
+								fuse = 0;
+								break;
+							}
+						}
+					if(fuse)
+					{
+						minimum = _current->authorlname();
+						minelement = _current;
+					}
+				}
+				_current = _current->_nextelement;
+			}while(_current);
+			sorted->push_back(minelement);
+			
+		}
+		for(int i = 0; i < sorted->size(); i++)
+		{
+			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
+		}
+		//TBD: List all books, sorted by author's last name
 	}
-	else
+	else if(modeswitch == "bytitle")
 	{
-		this->tail->_nextbook = obj;
-		obj->_prevbook = this->tail;
-		this->tail = obj;
+		std::vector<book*> *sorted = new std::vector<book*>;
+		while(sorted->size() < this->length())
+		{
+			book *_current = this->head();
+			std::string minimum = "z";
+			book *minelement = nullptr;
+			do
+			{
+				if(_current->title() < minimum)
+				{
+					bool fuse = 1;
+					if(!sorted->empty())
+						for(int i = 0; i < sorted->size(); i++)
+						{
+							if(sorted->at(i) == _current)
+							{
+								fuse = 0;
+								break;
+							}
+						}
+					if(fuse)
+					{
+						minimum = _current->title();
+						minelement = _current;
+					}
+				}
+				_current = _current->_nextelement;
+			} while(_current);
+			sorted->push_back(minelement);
+
+		}
+		for(int i = 0; i < sorted->size(); i++)
+		{
+			std::cout << "Book ID: " << sorted->at(i)->bookid() << " | " << sorted->at(i)->authorfname() << ' ' << sorted->at(i)->authorlname() << " - " << sorted->at(i)->title() << " | " << sorted->at(i)->genre() << " | Left in the library: " << sorted->at(i)->cnt() << std::endl;
+		}
+		//TBD: List all books, sorted by title
+	}
+}
+//==============================================================================
+template< >
+void list<book>::print(std::string modeswitch, std::string query)
+{
+	if(modeswitch == "--author")
+	{
+		book *_current = this->head();
+		while(_current)
+		{
+			if(_current->authorlname() == query)
+			{
+				std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+			}
+			_current = _current->_nextelement;
+		}
+	}
+	else if(modeswitch == "--genre")
+	{
+		book *_current = this->head();
+		while(_current)
+		{
+			if(_current->genre() == query)
+			{
+				std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+			}
+			_current = _current->_nextelement;
+		}
 	}
 }
 //==============================================================================

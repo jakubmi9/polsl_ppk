@@ -11,20 +11,21 @@ Program powinien umożliwić modyfikowanie bazy danych o książkach i użytkown
 Dobrać strukturę danych zapewniającą optymalne wykonywanie operacji wyszukiwania.
 
 ## Specyfikacja  
-projekt 02.exe  
+```powershell
+PS $Repo\x64\Release\projekt 02.exe  
 libXpress Library Management System alpha  
 Licensed under GNU GPLv3  
 
 libxpress$ _
-
+```
 ##### Możliwe komendy
- - exit - opuszcza program
- - status - wypisuje obecny stan działania programu
- - load *plik* - wczytuje z *pliku* bazę danych i ładuje ją do pamięci
- - unload - zapisuje obecny stan bazy danych do pliku i usuwa ją z pamięci
- - list users [--unreturned] - wypisuje na ekran listę wszystkich użytkowników [użytkowników którzy mają nieoddane książki]
- - list books [--byauthor | --bytitle] - wypisuje na ekran listę wszystkich książek [opcjonalnie posortowaną względem autora | tytułu]
- - list books [--author | --genre] *kryterium* - wypisuje na ekran tylko książki koknretnego [autora | gatunku]
- - borrow *tytuł* *nr karty użytkownika* - wypożycza *książkę* *użytkownikowi*
- - return *tytuł* *nr karty użytkownika* - zwraca *książkę* *użytkownika*
- - [add | edit | delete] [user | book] - pozwala na edycję wpisów w bazie danych
+ - `exit` - opuszcza program
+ - `status` - wypisuje obecny stan działania programu
+ - `load <plik>` - wczytuje z *pliku* bazę danych i ładuje ją do pamięci
+ - `flush` - zapisuje obecny stan bazy danych do pliku i usuwa ją z pamięci
+ - `list users [--unreturned]` - wypisuje na ekran listę wszystkich użytkowników [użytkowników którzy mają nieoddane książki]
+ - `list books [--byauthor | --bytitle]` - wypisuje na ekran listę wszystkich książek [opcjonalnie posortowaną względem autora | tytułu]
+ - `list books [--author | --genre] <kryterium>` - wypisuje na ekran tylko książki koknretnego [autora | gatunku]
+ - `borrow <id książki> <id użytkownika>` - wypożycza *książkę* *użytkownikowi*
+ - `return <id książki> <id użytkownika>` - zwraca *książkę* *użytkownika*
+ - `[add | edit | delete] [user | book] <id [książki | użytkownika]>` - pozwala na edycję wpisów w bazie danych

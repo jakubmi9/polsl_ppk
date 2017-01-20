@@ -1,4 +1,6 @@
 #pragma once
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
 //==============================================================================
 class NoArgumentException: public std::exception
 {
@@ -24,14 +26,6 @@ class AlreadyLoadedException: public std::exception
 	void writeout();
 };
 //==============================================================================
-class InvalidListTypeException: public std::exception
-{
-	private:
-	protected:
-	public:
-	void writeout();
-};
-//==============================================================================
 class CorruptedDatabaseException: public std::exception
 {
 	private:
@@ -48,3 +42,12 @@ class FileNotFoundException: public std::exception
 	void writeout();
 };
 //==============================================================================
+class DatabaseNotLoadedException: public std::exception
+{
+	private:
+	protected:
+	public:
+	void writeout();
+};
+//==============================================================================
+#endif // !EXCEPTIONS_H
