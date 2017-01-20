@@ -7,20 +7,18 @@ template<class T>
 class list
 {
 	private:
-	int length = 0;
+	int _length = 0;
+	T *_head = nullptr;
+	T *_tail = nullptr;
 	public:
-	/// <summary>Pointer to the first object in the list.</summary>
-	T *head = nullptr;
-	/// <summary>Pointer to the last object in the list.</summary>
-	T *tail = nullptr;
 	list()
 	{
-		this->head = nullptr;
-		this->tail = this->head;
+		this->_head = nullptr;
+		this->_tail = this->_head;
 	}
 	~list()
 	{
-		T *_current = this->head;
+		T *_current = this->_head;
 		while(_current)
 		{
 			T *tmp = _current;
@@ -38,23 +36,34 @@ class list
 	/// <param name="obj">Pointer to the book that'll be added to the list.</param>
 	void push(T *obj)
 	{
-		if(this->head == nullptr)
+		if(this->_head == nullptr)
 		{
-			this->head = obj;
-			this->tail = obj;
-			this->length++;
+			this->_head = obj;
+			this->_tail = obj;
+			this->_length++;
 		}
 		else
 		{
-			this->tail->_nextelement = obj;
-			obj->_prevelement = this->tail;
-			this->tail = obj;
-			this->length++;
+			this->_tail->_nextelement = obj;
+			obj->_prevelement = this->_tail;
+			this->_tail = obj;
+			this->_length++;
 		}
 	}
+	/// <summary>Returns the length of the list as integer value</summary>
 	int length()
 	{
-		return this->length;
+		return this->_length;
+	}
+	/// <summary>Returns a pointer to the first object in the list.</summary>
+	T* head()
+	{
+		return this->_head;
+	}
+	/// <summary>Returns a pointer to the last object in the list.</summary>
+	T* tail()
+	{
+		return this->_tail;
 	}
 };
 //==============================================================================

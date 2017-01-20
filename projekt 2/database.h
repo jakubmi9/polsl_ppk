@@ -11,15 +11,11 @@ class database
 	std::string _filename;
 	list<book> _bookdb;
 	list<user> _userdb;
+	int _usercount = 0;
+	int _bookcount = 0;
+	int _userswbooks = 0;
+	int _availablebooks = 0;
 	public:
-	/// <summary>Count of unique users in the database</summary>
-	int usercount = 0;
-	/// <summary>Count of unique titles in the database</summary>
-	int bookcount = 0;
-	/// <summary>Count of users, that possess unreturned books</summary>
-	int userswbooks = 0;
-	/// <summary>Count of books, that are physically in the library</summary>
-	int availablebooks = 0;
 	/// <summary>Creates new database filled with values from disk</summary>
 	/// <param name="file">name of the file, that contains the database</param>
 	database(std::string file);
@@ -37,5 +33,13 @@ class database
 	/// <param name="modeswitch">"author" or "genre"</param>
 	/// <param name="query">Any string that will be used to filter the list</param>
 	void printbooks(std::string modeswitch, std::string query);
+	/// <summary>Count of unique users in the database</summary>
+	int usercount();
+	/// <summary>Count of unique titles in the database</summary>
+	int bookcount();
+	/// <summary>Count of users, that possess unreturned books</summary>
+	int userswbooks();
+	/// <summary>Count of books, that are physically in the library</summary>
+	int availablebooks();
 };
 #endif // !DATABASE_H

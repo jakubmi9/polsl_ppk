@@ -6,17 +6,17 @@
 template< >
 void list<user>::print()
 {
-	user *_current = this->head;
+	user *_current = this->head();
 	while(_current)
 	{
-		std::cout << "User ID: " << _current->id << " | " << _current->userfname << ' ' << _current->userlname << " | Borrowed books: ";
-		for(int i = 0; i < _current->borrowedbooks.size(); i++)
+		std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
+		for(int i = 0; i < _current->borrowedbooks().size(); i++)
 		{
-			if(_current->borrowedbooks.at(0) == "null")
+			if(_current->borrowedbooks().at(0) == "null")
 				std::cout << "none";
 			else
 			{
-				std::cout << _current->borrowedbooks.at(i);
+				std::cout << _current->borrowedbooks().at(i);
 			}
 		}
 		std::cout << std::endl;
@@ -27,24 +27,24 @@ void list<user>::print()
 template< >
 void list<user>::print(std::string irrelevant)
 {
-	user *_current = this->head;
+	user *_current = this->head();
 	while(_current)
 	{
-		if(_current->borrowedbooks.at(0) == "null")
+		if(_current->borrowedbooks().at(0) == "null")
 		{
 			_current = _current->_nextelement;
 			continue;
 		}
 		else
 		{
-			std::cout << "User ID: " << _current->id << " | " << _current->userfname << ' ' << _current->userlname << " | Borrowed books: ";
-			for(int i = 0; i < _current->borrowedbooks.size(); i++)
+			std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
+			for(int i = 0; i < _current->borrowedbooks().size(); i++)
 			{
-				if(_current->borrowedbooks.at(0) == "null")
+				if(_current->borrowedbooks().at(0) == "null")
 					std::cout << "none";
 				else
 				{
-					std::cout << _current->borrowedbooks.at(i);
+					std::cout << _current->borrowedbooks().at(i);
 				}
 			}
 			std::cout << std::endl;
@@ -57,10 +57,10 @@ void list<user>::print(std::string irrelevant)
 template< >
 void list<book>::print()
 {
-	book *_current = this->head;
+	book *_current = this->head();
 	while(_current)
 	{
-		std::cout << _current->authorfname << ' ' << _current->authorlname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
+		std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 		_current = _current->_nextelement;
 	}
 }
@@ -81,24 +81,24 @@ void list<book>::print(std::string modeswitch, std::string query)
 {
 	if(modeswitch == "--author")
 	{
-		book *_current = this->head;
+		book *_current = this->head();
 		while(_current)
 		{
-			if(_current->authorlname == query)
+			if(_current->authorlname() == query)
 			{
-				std::cout << _current->authorfname << ' ' << _current->authorlname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
+				std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 			}
 			_current = _current->_nextelement;
 		}
 	}
 	else if(modeswitch == "--genre")
 	{
-		book *_current = this->head;
+		book *_current = this->head();
 		while(_current)
 		{
-			if(_current->genre == query)
+			if(_current->genre() == query)
 			{
-				std::cout << _current->authorfname << ' ' << _current->authorlname << " - " << _current->title << " | " << _current->genre << " | Left in the library: " << _current->cnt << std::endl;
+				std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 			}
 			_current = _current->_nextelement;
 		}
