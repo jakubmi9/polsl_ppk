@@ -60,7 +60,7 @@ void list<book>::print()
 	book *_current = this->head();
 	while(_current)
 	{
-		std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+		std::cout << "Book ID: " << _current->bookid() << " | "<< _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 		_current = _current->_nextelement;
 	}
 }
@@ -86,7 +86,7 @@ void list<book>::print(std::string modeswitch, std::string query)
 		{
 			if(_current->authorlname() == query)
 			{
-				std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+				std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 			}
 			_current = _current->_nextelement;
 		}
@@ -98,7 +98,7 @@ void list<book>::print(std::string modeswitch, std::string query)
 		{
 			if(_current->genre() == query)
 			{
-				std::cout << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+				std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 			}
 			_current = _current->_nextelement;
 		}
