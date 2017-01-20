@@ -1,17 +1,17 @@
 #include "stdafx.h"
 #include "database.h"
 #include "exceptions.h"
-using namespace std;
+//using namespace std;
 //==============================================================================
-database::database(string file)
+database::database(std::string file)
 {
 	this->_filename = file;
-	ifstream _dbfile(file);
+	std::ifstream _dbfile(file);
 	if(!_dbfile.is_open())
 		throw new FileNotFoundException;
 	bool db = 0, userpart = 0, bookpart = 0;
-	string afname, alname, title, genre, fname, lname;
-	string line;
+	std::string afname, alname, title, genre, fname, lname;
+	std::string line;
 	int cnt = 0, bookid = -1, userid = -1;
 	while(getline(_dbfile, line))
 	{
@@ -24,7 +24,7 @@ database::database(string file)
 		else if(bookpart&&db)
 		{
 			int i = 0;
-			string num;
+			std::string num;
 			for(; i < line.length(); i++)
 			{
 				if(line[i] == ';')
@@ -83,14 +83,14 @@ database::database(string file)
 		else if(userpart&&db)
 		{
 			int i = 0;
-			string num;
+			std::string num;
 			for(; i < line.length(); i++)
 			{
 				if(line[i] == ' ')
 					break;
 				num.push_back(line[i]);
 			}
-			userid = stoi(num);
+			userid = std::stoi(num);
 			i++;
 			for(; i < line.length(); i++)
 			{
@@ -106,8 +106,8 @@ database::database(string file)
 				lname.push_back(line[i]);
 			}
 			i++;
-			vector<string> books;
-			string bk;
+			std::vector<std::string> books;
+			std::string bk;
 			while(i < line.length())
 			{
 				for(; i < line.length(); i++)
@@ -144,12 +144,12 @@ database::database(string file)
 //==============================================================================
 database::~database()
 {
-	ofstream _dbfile(this->_filename);
+	std::ofstream _dbfile(this->_filename);
 	_dbfile << "_begin_db\n_begin_books\n";
 	book *currentbook = this->_bookdb.head();
 	while(currentbook)
 	{
-		_dbfile << currentbook->bookid() << ';' << currentbook->authorfname() << ';' << currentbook->authorlname() << ';' << currentbook->title() << ';' << currentbook->genre() << ';' << currentbook->cnt() << endl;
+		_dbfile << currentbook->bookid() << ';' << currentbook->authorfname() << ';' << currentbook->authorlname() << ';' << currentbook->title() << ';' << currentbook->genre() << ';' << currentbook->cnt() << std::endl;
 		currentbook = currentbook->_nextelement;
 	}
 	_dbfile << "_end_books\n_begin_users\n";
@@ -164,7 +164,7 @@ database::~database()
 				_dbfile << currentuser->borrowedbooks().at(i) << ' ';
 			}
 		}
-		_dbfile << endl;
+		_dbfile << std::endl;
 		currentuser = currentuser->_nextelement;
 	}
 	_dbfile << "_end_users\n_end_db";

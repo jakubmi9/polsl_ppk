@@ -8,7 +8,6 @@
 #include "user.h"
 #include "list.h"
 #include "database.h"
-using namespace std;
 //==============================================================================
 #ifdef _DEBUG 
 bool DEBUG = true;
@@ -19,8 +18,8 @@ bool DEBUG = false;
 int main(int argc, char* argv[])
 {
 	bool LOADED = false;
-	const string startmessage = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
-	const string promptstring = "libxpress";
+	const std::string startmessage = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
+	const std::string promptstring = "libxpress";
 	sh::shell *ui = new sh::shell(startmessage, promptstring);
 	database *db = nullptr;
 	while(true)
@@ -107,14 +106,14 @@ int main(int argc, char* argv[])
 					//print current status of the library system
 					if(LOADED)
 					{
-						cout << "A database is currently loaded." << endl;
-						cout << "There are " << db->usercount() << " registered users.\n";
-						cout << db->userswbooks() << " of them have unreturned books.\n";
-						cout << "There are " << db->bookcount() << " different titles.\n";
-						cout << db->availablebooks() << " copies are currently in the library.\n";
+						std::cout << "A database is currently loaded." << std::endl;
+						std::cout << "There are " << db->usercount() << " registered users.\n";
+						std::cout << db->userswbooks() << " of them have unreturned books.\n";
+						std::cout << "There are " << db->bookcount() << " different titles.\n";
+						std::cout << db->availablebooks() << " copies are currently in the library.\n";
 					}
 					else
-						cout << "No database is open right now" << endl;
+						std::cout << "No database is open right now" << std::endl;
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "list")
@@ -159,13 +158,13 @@ LIST:
 						}
 						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--author")
 						{
-							cout << "Please specify an author:\n";
+							std::cout << "Please specify an author:\n";
 							ui->subprompt();
 							goto LIST;
 						}
 						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--genre")
 						{
-							cout << "Please specify a genre to be listed:\n";
+							std::cout << "Please specify a genre to be listed:\n";
 							ui->subprompt();
 							goto LIST;
 						}
@@ -360,9 +359,9 @@ DELETE:
 			ui->command.clear();
 			delete exp;
 		}
-		catch(out_of_range)
+		catch(std::out_of_range)
 		{
-			if(DEBUG) cout << "exception:out_of_range\n";
+			if(DEBUG) std::cout << "exception:out_of_range\n";
 			ui->subprompt();
 			/*ui->command.clear();*/
 		}

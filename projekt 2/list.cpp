@@ -2,7 +2,6 @@
 #include "list.h"
 #include "user.h"
 #include "book.h"
-#include <vector>
 //==============================================================================
 template< >
 void list<user>::print()
