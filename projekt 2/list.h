@@ -6,6 +6,8 @@
 template<class T>
 class list
 {
+	private:
+	int length = 0;
 	public:
 	/// <summary>Pointer to the first object in the list.</summary>
 	T *head = nullptr;
@@ -40,13 +42,19 @@ class list
 		{
 			this->head = obj;
 			this->tail = obj;
+			this->length++;
 		}
 		else
 		{
 			this->tail->_nextelement = obj;
 			obj->_prevelement = this->tail;
 			this->tail = obj;
+			this->length++;
 		}
+	}
+	int length()
+	{
+		return this->length;
 	}
 };
 //==============================================================================
