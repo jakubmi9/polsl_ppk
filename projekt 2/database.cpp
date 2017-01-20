@@ -116,6 +116,7 @@ database::database(string file)
 						break;
 					bk.push_back(line[i]);
 				}
+				i++;
 				books.push_back(bk);
 				bk.clear();
 			}

@@ -44,7 +44,7 @@ void list<user>::print(std::string irrelevant)
 					std::cout << "none";
 				else
 				{
-					std::cout << _current->borrowedbooks().at(i);
+					std::cout << _current->borrowedbooks().at(i) << ", ";
 				}
 			}
 			std::cout << std::endl;
@@ -60,7 +60,7 @@ void list<book>::print()
 	book *_current = this->head();
 	while(_current)
 	{
-		std::cout << "Book ID: " << _current->bookid() << " | "<< _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+		std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
 		_current = _current->_nextelement;
 	}
 }
