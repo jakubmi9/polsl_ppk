@@ -1,6 +1,8 @@
 _begin_db
 _begin_books
-Adam Mickiewicz Dziady Dramat 18
+1;Ernest;Hemingway;Stary czlowiek i morze;Opowiadanie;15
+2;Henryk;Sienkiewicz;Potop;Powiesc;10
+3;Adam;Mickiewicz;Dziady;Dramat;18
 _end_books
 _begin_users
 1 Ignacy Podkowicz Dziady

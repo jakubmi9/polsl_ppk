@@ -12,7 +12,7 @@ database::database(string file)
 	bool db = 0, userpart = 0, bookpart = 0;
 	string afname, alname, title, genre, fname, lname;
 	string line;
-	int cnt = 0, id;
+	int cnt = 0, bookid = 0, id;
 	while(getline(_dbfile, line))
 	{
 		if(line == "_begin_db") db = 1;
@@ -24,44 +24,54 @@ database::database(string file)
 		else if(bookpart&&db)
 		{
 			int i = 0;
+			string num;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
+					break;
+				num.push_back(line[i]);
+			}
+			bookid = stoi(num);
+			num.clear();
+			i++;
+			for(; i < line.length(); i++)
+			{
+				if(line[i] == ';')
 					break;
 				afname.push_back(line[i]);
 			}
 			i++;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				alname.push_back(line[i]);
 			}
 			i++;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				title.push_back(line[i]);
 			}
 			i++;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				genre.push_back(line[i]);
 			}
 			i++;
-			string num;
+
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				num.push_back(line[i]);
 			}
 			cnt = stoi(num);
 			this->availablebooks += cnt;
-			book *tmp = new book(afname, alname, title, genre, cnt);
+			book *tmp = new book(bookid, afname, alname, title, genre, cnt);
 			this->_bookdb.push(tmp);
 			this->bookcount++;
 			afname.clear();
@@ -138,7 +148,7 @@ database::~database()
 	book *currentbook = this->_bookdb.head;
 	while(currentbook)
 	{
-		_dbfile << currentbook->authorfname << ' ' << currentbook->authorlname << ' ' << currentbook->title << ' ' << currentbook->genre << ' ' << currentbook->cnt << endl;
+		_dbfile << currentbook->bookid() << ';' << currentbook->authorfname() << ';' << currentbook->authorlname() << ';' << currentbook->title() << ';' << currentbook->genre() << ';' << currentbook->cnt() << endl;
 		currentbook = currentbook->_nextelement;
 	}
 	_dbfile << "_end_books\n_begin_users\n";
