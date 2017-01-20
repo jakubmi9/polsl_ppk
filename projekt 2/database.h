@@ -53,5 +53,9 @@ class database
 	void delbook(int bookid);
 	///
 	void deluser(int userid);
+	///
+	void editbook(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt);
+	///
+	void edituser(int userid, std::string ufname, std::string ulname);
 };
 #endif // !DATABASE_H

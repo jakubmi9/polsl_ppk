@@ -228,3 +228,37 @@ void list<user>::remove(int id)
 	delete _target;
 }
 //==============================================================================
+void list<book>::edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
+{
+	book *_current = this->head();
+	book *_target = nullptr;
+	do
+	{
+		if(_current->bookid() == bookid)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	_target->_authorfname = afname;
+	_target->_authorlname = alname;
+	_target->_title = title;
+	_target->_genre = genre;
+	_target->_cnt = cnt;
+}
+//==============================================================================
+void list<user>::edit(int userid, std::string ufname, std::string ulname)
+{
+	user *_current = this->head();
+	user *_target = nullptr;
+	do
+	{
+		if(_current->userid() == userid)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	_target->_userfname = ufname;
+	_target->_userlname = ulname;
+}

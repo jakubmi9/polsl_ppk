@@ -246,3 +246,13 @@ void database::deluser(int userid)
 	this->_userdb.remove(userid);
 }
 //==============================================================================
+void database::editbook(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
+{
+	this->_bookdb.edit(bookid, afname, alname, title, genre, cnt);
+}
+//==============================================================================
+void database::edituser(int userid, std::string ufname, std::string ulname)
+{
+	this->_userdb.edit(userid, ufname, ulname);
+}
+//==============================================================================

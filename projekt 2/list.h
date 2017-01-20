@@ -67,6 +67,10 @@ class list
 	{
 		return this->_tail;
 	}
+	///
+	void edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt);
+	///
+	void edit(int userid, std::string ufname, std::string ulname);
 };
 //==============================================================================
 #endif // !LIST_H

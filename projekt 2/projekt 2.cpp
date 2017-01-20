@@ -234,8 +234,49 @@ ADD:
 				}
 				else if(ui->command.at(0) == "edit")
 				{
+EDIT:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
+					if(ui->command.size() == 1)
+					{
+						std::cout << "What do you want to edit?\n";
+						ui->subprompt();
+						goto EDIT;
+					}
+					else if(ui->command.size() == 2)
+					{
+						if(ui->command.at(1) == "book")
+						{
+							std::cout << "Syntax:\n<book's unique id number>\n";
+							ui->subprompt();
+							goto EDIT;
+						}
+						else if(ui->command.at(1) == "user")
+						{
+							std::cout << "Syntax:\n<user's unique id number>\n";
+							ui->subprompt();
+							goto EDIT;
+						}
+					}
+					else if(ui->command.size() == 3)
+					{
+						if(ui->command.at(1) == "book")
+						{
+							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <amount left>\n";
+							ui->subprompt();
+							if(ui->command.size() < 8)
+								throw new InsufficientArgumentException;
+							db->editbook(stoi(ui->command.at(2)), ui->command.at(3), ui->command.at(4), ui->command.at(5), ui->command.at(6), stoi(ui->command.at(7)));
+						}
+						else if(ui->command.at(1) == "user")
+						{
+							std::cout << "Syntax:\n<user's first name> <user's last name>\n";
+							ui->subprompt();
+							if(ui->command.size() < 5)
+								throw new InsufficientArgumentException;
+							db->edituser(stoi(ui->command.at(2)), ui->command.at(3), ui->command.at(4));
+						}
+					}
 					//edit an existing item
 					ui->command.clear();
 				}
