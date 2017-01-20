@@ -41,5 +41,13 @@ class database
 	int userswbooks();
 	/// <summary>Count of books, that are physically in the library</summary>
 	int availablebooks();
+	///
+	int lastbookid();
+	///
+	int lastuserid();
+	///
+	void addbook(book * obj);
+	///
+	void adduser(user * obj);
 };
 #endif // !DATABASE_H

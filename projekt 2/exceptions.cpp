@@ -31,3 +31,8 @@ void DatabaseNotLoadedException::writeout()
 	printf("0x00000007 No database is loaded right now! A database is required for that operation.\n");
 }
 //==============================================================================
+void InsufficientArgumentException::writeout()
+{
+	printf("0x00000008 Arguments specified are insufficient for that operation\nTry help command for more information.");
+}
+//==============================================================================

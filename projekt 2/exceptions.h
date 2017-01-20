@@ -50,4 +50,12 @@ class DatabaseNotLoadedException: public std::exception
 	void writeout();
 };
 //==============================================================================
+class InsufficientArgumentException: public std::exception
+{
+	private:
+	protected:
+	public:
+	void writeout();
+};
+//==============================================================================
 #endif // !EXCEPTIONS_H

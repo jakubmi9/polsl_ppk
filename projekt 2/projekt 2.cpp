@@ -177,8 +177,54 @@ LIST:
 				}
 				else if(ui->command[0] == "add")
 				{
+ADD:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
+					if(ui->command.size() == 1)
+					{
+						std::cout << "What do you want to add?\n";
+						ui->subprompt();
+						goto ADD;
+					}
+					else if(ui->command.size() == 2)
+					{
+						if(ui->command.at(1) == "book")
+						{
+							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <amount currently on site>\n";
+							ui->subprompt();
+							goto ADD;
+						}
+						else if(ui->command.at(1) == "user")
+						{
+							std::cout << "Syntax:\n<user's first name> <user's last name>\n";
+							ui->subprompt();
+							goto ADD;
+						}
+					}
+					else if(ui->command.at(1) == "book" && ui->command.size() < 7)
+					{
+						throw new InsufficientArgumentException;
+					}
+					else if(ui->command.at(1) == "user" && ui->command.size() < 4)
+					{
+						throw new InsufficientArgumentException;
+					}
+					else if(ui->command.at(1) == "book" && ui->command.size() == 7)
+					{
+						book *newbook = new book(db->lastbookid() + 1, ui->command.at(2), ui->command.at(3), ui->command.at(4), ui->command.at(5), stoi(ui->command.at(6)));
+						db->addbook(newbook);
+					}
+					else if(ui->command.at(1) == "user" && ui->command.size() == 4)
+					{
+						std::vector<std::string> tmp;
+						tmp.push_back("null");
+						user *newuser = new user(db->lastuserid() + 1, ui->command.at(2), ui->command.at(3), tmp);
+						db->adduser(newuser);
+					}
+					else
+					{
+						std::cout << "should never happen...?\n";
+					}
 					//add new item to the db
 					ui->command.clear();
 				}
@@ -203,51 +249,18 @@ LIST:
 					//borrow a book
 					ui->command.clear();
 				}
+				else if(ui->command[0] == "return")
+				{
+					if(!LOADED)
+						throw new DatabaseNotLoadedException;
+					//return a book
+					ui->command.clear();
+				}
 				else
 				{
 					throw new InvalidArgumentException;
 				}
 			}
-			////error when run w/out args
-			//if(argc == 1)
-			//{
-			//	throw new NoArgumentException;
-			//}
-			////print current status of the library system
-			//else if(!strcmp(argv[1], "status"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////lists books or users
-			//else if(!strcmp(argv[1], "list"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////adds an item to the database
-			//else if(!strcmp(argv[1], "add"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////edit an item
-			//else if(!strcmp(argv[1], "edit"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////deletes item from the database
-			//else if(!strcmp(argv[1], "delete"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////borrows a book to a user
-			//else if(!strcmp(argv[1], "borrow"))
-			//{
-			//	if(DEBUG) system("pause"); else return 0;
-			//}
-			////error on non specified argument
-			//else
-			//{
-			//	throw new InvalidArgumentException;
-			//}
 		}
 		catch(NoArgumentException *exp)
 		{
@@ -286,6 +299,12 @@ LIST:
 			delete exp;
 		}
 		catch(DatabaseNotLoadedException *exp)
+		{
+			exp->writeout();
+			ui->command.clear();
+			delete exp;
+		}
+		catch(InsufficientArgumentException *exp)
 		{
 			exp->writeout();
 			ui->command.clear();

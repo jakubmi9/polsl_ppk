@@ -216,3 +216,23 @@ int database::availablebooks()
 	return this->_availablebooks;
 }
 //==============================================================================
+int database::lastbookid()
+{
+	return this->_bookdb.tail()->bookid();
+}
+//==============================================================================
+int database::lastuserid()
+{
+	return this->_userdb.tail()->userid();
+}
+//==============================================================================
+void database::addbook(book *obj)
+{
+	this->_bookdb.push(obj);
+}
+//==============================================================================
+void database::adduser(user *obj)
+{
+	this->_userdb.push(obj);
+}
+//==============================================================================
