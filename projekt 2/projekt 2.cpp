@@ -329,9 +329,23 @@ DELETE:
 				}
 				else if(ui->command.at(0) == "borrow")
 				{
+BORROW:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
-					//borrow a book
+					if(ui->command.size() == 1)
+					{
+						std::cout << "Syntax:\n<book's unique id number> <user's unique id number>\n";
+						ui->subprompt();
+						goto BORROW;
+					}
+					else if(ui->command.size() == 3)
+					{
+						db->borrow(stoi(ui->command.at(1)), stoi(ui->command.at(2)));
+					}
+					else
+					{
+						throw new InvalidArgumentException;
+					}
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "return")

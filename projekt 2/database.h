@@ -57,5 +57,7 @@ class database
 	void editbook(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt);
 	///
 	void edituser(int userid, std::string ufname, std::string ulname);
+	///
+	void borrow(int bookid, int userid);
 };
 #endif // !DATABASE_H

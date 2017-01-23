@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "database.h"
 #include "exceptions.h"
-//using namespace std;
 //==============================================================================
 database::database(std::string file)
 {
@@ -254,5 +253,19 @@ void database::editbook(int bookid, std::string afname, std::string alname, std:
 void database::edituser(int userid, std::string ufname, std::string ulname)
 {
 	this->_userdb.edit(userid, ufname, ulname);
+}
+//==============================================================================
+void database::borrow(int bookid, int userid)
+{
+	if(this->_bookdb.at(bookid)->cnt() == 0)
+	{
+		//can't borrow; all gone
+	}
+	else if(this->_userdb.at(userid)->borrowedbooks().size() >= 10)
+	{
+		//can't borrow; limit reached
+	}
+	//else if(any book for the user is overdue) 
+		//can't borrow; has overdue books
 }
 //==============================================================================
