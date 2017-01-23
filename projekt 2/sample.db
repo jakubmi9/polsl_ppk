@@ -1,0 +1,66 @@
+_begin_db
+_begin_books
+1;Ernest;Hemingway;Stary czlowiek i morze;Opowiadanie;15
+2;Henryk;Sienkiewicz;Potop;Powiesc;10
+3;Adam;Mickiewicz;Dziady;Dramat;18
+4;Jan;Brzechwa;Akademia Pana Kleksa;Powiesc;2
+5;Janusz;Christa;Kajko i Kokosz;Komiks;0
+6;Rene;Goscinny;Mikolajek;Opowiadanie;7
+7;Joanna;Olech;Dynastia Miziolkow;Powiesc;4
+_end_books
+_begin_users
+1;Ignacy;Podkowicz;1 21-3-2016;
+2;Jan;Kowalski;2 11-11-2016;6 1-1-2017;3 6-12-2016;1 4-7-2016;5 12-12-2015;4 30-9-2016;7 12-11-2016;
+3;Tomasz;Kruk;1 3-5-2016;
+4;Leanne;Strackbein;null;
+5;Oralia;Zhou;null;
+6;Karren;Mederos;null;
+7;Shawna;Kiel;null;
+8;Jeffrey;Revels;null;
+9;Walter;Bosket;null;
+10;Linnea;Gittens;null;
+11;Angle;Araya;null;
+12;Larhonda;Brodeur;null;
+13;Petronila;Everson;null;
+14;Robbi;Lathan;null;
+15;Rashida;Veith;null;
+16;Lorelei;Alongi;null;
+17;Taunya;Markert;null;
+18;Kendra;Batista;null;
+19;Louise;Treaster;null;
+20;Cythia;Rank;null;
+21;Jule;Boettcher;null;
+22;Rosanna;Neuhaus;null;
+23;Bobby;Uhlig;null;
+24;Hugo;Bulow;null;
+25;Hyman;Vandorn;null;
+26;Lovella;Graziani;null;
+27;Corrine;Isakson;null;
+28;Hyon;Seabrook;null;
+29;Lloyd;Varano;null;
+30;Malka;Demarest;null;
+31;Maryanna;Maclennan;null;
+32;Eldon;Edgerton;null;
+33;Elvin;Tookes;null;
+34;Gaynelle;Simoneau;null;
+35;Christa;Tuohy;null;
+36;Johnie;Colberg;null;
+37;Shanae;Chouinard;null;
+38;Fernande;Fenstermaker;null;
+39;Christen;Meserve;null;
+40;Celestina;Bickett;null;
+41;Clyde;Cairo;null;
+42;Brady;Moraga;null;
+43;Gertude;Frizell;null;
+44;Darla;Polo;null;
+45;Madie;Clark;null;
+46;Keith;Wixom;null;
+47;Jonathan;Yeh;null;
+48;Alanna;Doutt;null;
+49;Jestine;Montandon;null;
+50;Loren;Paula;null;
+51;Tobias;Sabado;null;
+52;Elin;Mcmorrow;null;
+53;Marilyn;Pascoe;null;
+_end_users
+_end_db
