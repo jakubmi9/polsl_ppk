@@ -179,7 +179,7 @@ database::database(std::string file)
 			else
 			{
 				if(tmp->flagged())
-					this->userswbooks++;
+					this->_userswbooks++;
 			}
 			num.clear();
 			fname.clear();
@@ -294,10 +294,14 @@ std::string database::borrow(int bookid, int userid)
 	}
 	else
 	{
-		tm now;
-		borrowedbook *tmp = new borrowedbook(bookid, now.tm_mday, (now.tm_mon + 1), (now.tm_year + 1900));
+		time_t rawtime;
+		time(&rawtime);
+		tm *now = new tm;
+		localtime_s(now, &rawtime);
+		borrowedbook *tmp = new borrowedbook(bookid, now->tm_mday, (now->tm_mon + 1), (now->tm_year + 1900));
 		this->_userdb.at(userid)->borrowedbooks().push_back(*tmp);
 		this->_bookdb.at(bookid)->_cnt--;
+		return "";
 	}
 }
 //==============================================================================
@@ -313,7 +317,10 @@ std::string database::bookreturn(int bookid, int userid)
 			break;
 		}
 	}
+	if(!DID_BORROW)
+		return "This book is not currently checked out for that user.\n";
 	this->_bookdb.at(bookid)->_cnt++;
 	this->_userdb.at(userid)->borrowedbooks().erase(this->_userdb.at(userid)->borrowedbooks().begin() + i);
+	return "";
 }
 //==============================================================================

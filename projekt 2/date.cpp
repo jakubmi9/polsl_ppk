@@ -76,8 +76,11 @@ int date::year()
 //==============================================================================
 int date::dayspassed()
 {
-	tm tmp;
-	date *now = new date(tmp.tm_mday, (tmp.tm_mon + 1), (tmp.tm_year + 1900));
+	time_t rawtime;
+	time(&rawtime);
+	tm *tmp = new tm;
+	localtime_s(tmp, &rawtime);
+	date *now = new date(tmp->tm_mday, (tmp->tm_mon + 1), (tmp->tm_year + 1900));
 	return now->to_raw()-this->to_raw();
 }
 //==============================================================================
