@@ -179,16 +179,7 @@ void list<book>::print(std::string modeswitch, std::string query)
 template< >
 void list<book>::remove(int id)
 {
-	book *_current = this->head();
-	book *_target = nullptr;
-	do
-	{
-		if(_current->bookid() == id)
-		{
-			_target = _current;
-		}
-		_current = _current->_nextelement;
-	} while(_current);
+	book *_target = this->at(id);
 	book *prev = _target->_prevelement;
 	book *next = _target->_nextelement;
 	if(prev)
@@ -205,16 +196,7 @@ void list<book>::remove(int id)
 template< >
 void list<user>::remove(int id)
 {
-	user *_current = this->head();
-	user *_target = nullptr;
-	do
-	{
-		if(_current->userid() == id)
-		{
-			_target = _current;
-		}
-		_current = _current->_nextelement;
-	} while(_current);
+	user *_target = this->at(id);
 	user *prev = _target->_prevelement;
 	user *next = _target->_nextelement;
 	if(prev)
@@ -227,18 +209,10 @@ void list<user>::remove(int id)
 	delete _target;
 }
 //==============================================================================
+template < >
 void list<book>::edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
 {
-	book *_current = this->head();
-	book *_target = nullptr;
-	do
-	{
-		if(_current->bookid() == bookid)
-		{
-			_target = _current;
-		}
-		_current = _current->_nextelement;
-	} while(_current);
+	book *_target = this->at(bookid);
 	_target->_authorfname = afname;
 	_target->_authorlname = alname;
 	_target->_title = title;
@@ -246,18 +220,48 @@ void list<book>::edit(int bookid, std::string afname, std::string alname, std::s
 	_target->_cnt = cnt;
 }
 //==============================================================================
+template < >
 void list<user>::edit(int userid, std::string ufname, std::string ulname)
+{
+	user *_target=this->at(userid);
+	_target->_userfname = ufname;
+	_target->_userlname = ulname;
+}
+//==============================================================================
+template < >
+book* list<book>::at(int id)
+{
+	book *_current = this->head();
+	book *_target = nullptr;
+	do
+	{
+		if(_current->bookid() == id)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	}
+	while(_current);
+	if(_target == nullptr)
+		throw new std::out_of_range("element not found on the list!\n");
+	return _target;
+}
+template < >
+user* list<user>::at(int id)
 {
 	user *_current = this->head();
 	user *_target = nullptr;
 	do
 	{
-		if(_current->userid() == userid)
+		if(_current->userid() == id)
 		{
 			_target = _current;
 		}
 		_current = _current->_nextelement;
-	} while(_current);
-	_target->_userfname = ufname;
-	_target->_userlname = ulname;
+	}
+	while(_current);
+	while(_current);
+	if(_target == nullptr)
+		throw new std::out_of_range("element not found on the list!\n");
+	return _target;
 }

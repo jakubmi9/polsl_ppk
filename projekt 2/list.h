@@ -71,6 +71,8 @@ class list
 	void edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt);
 	///
 	void edit(int userid, std::string ufname, std::string ulname);
+	///
+	T* at(int id);
 };
 //==============================================================================
 #endif // !LIST_H

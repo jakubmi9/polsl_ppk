@@ -361,9 +361,8 @@ DELETE:
 		}
 		catch(std::out_of_range)
 		{
-			if(DEBUG) std::cout << "exception:out_of_range\n";
-			ui->subprompt();
-			/*ui->command.clear();*/
+			std::cout << "0x00000009 Element of specified index doesn't exist!\n";
+			ui->command.clear();
 		}
 		catch(AlreadyLoadedException *exp)
 		{
