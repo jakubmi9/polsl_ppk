@@ -9,6 +9,13 @@ borrowedbook::borrowedbook(int id, std::string bdate)
 	this->_borrowdate = *tmp;
 }
 //==============================================================================
+borrowedbook::borrowedbook(int id, int day, int month, int year)
+{
+	this->_bookid = id;
+	date *tmp = new date(day, month, year);
+	this->_borrowdate = *tmp;
+}
+//==============================================================================
 borrowedbook::~borrowedbook()
 {
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "date.h"
+//==============================================================================
 class borrowedbook
 {
 	private:
@@ -9,9 +10,11 @@ class borrowedbook
 	///
 	borrowedbook(int, std::string);
 	///
+	borrowedbook(int, int, int, int);
+	~borrowedbook();
+	///
 	int bookid();
 	///
 	date borrowdate();
-	~borrowedbook();
 };
-
+//==============================================================================
