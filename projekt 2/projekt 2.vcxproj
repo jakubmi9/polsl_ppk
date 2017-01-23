@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="book.h" />
+    <ClInclude Include="borrowedbook.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="exceptions.h" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="book.cpp" />
+    <ClCompile Include="borrowedbook.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="exceptions.cpp" />
