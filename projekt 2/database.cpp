@@ -2,6 +2,36 @@
 #include "database.h"
 #include "exceptions.h"
 //==============================================================================
+int database::usercount()
+{
+	return this->_usercount;
+}
+//==============================================================================
+int database::bookcount()
+{
+	return this->_bookcount;
+}
+//==============================================================================
+int database::userswbooks()
+{
+	return this->_userswbooks;
+}
+//==============================================================================
+int database::availablebooks()
+{
+	return this->_availablebooks;
+}
+//==============================================================================
+int database::lastbookid()
+{
+	return this->_bookdb.tail()->bookid();
+}
+//==============================================================================
+int database::lastuserid()
+{
+	return this->_userdb.tail()->userid();
+}
+//==============================================================================
 database::database(std::string file)
 {
 	this->_filename = file;
@@ -217,36 +247,6 @@ void database::printbooks(std::string modeswitch, std::string query)
 	this->_bookdb.print(modeswitch, query);
 }
 //==============================================================================
-int database::usercount()
-{
-	return this->_usercount;
-}
-//==============================================================================
-int database::bookcount()
-{
-	return this->_bookcount;
-}
-//==============================================================================
-int database::userswbooks()
-{
-	return this->_userswbooks;
-}
-//==============================================================================
-int database::availablebooks()
-{
-	return this->_availablebooks;
-}
-//==============================================================================
-int database::lastbookid()
-{
-	return this->_bookdb.tail()->bookid();
-}
-//==============================================================================
-int database::lastuserid()
-{
-	return this->_userdb.tail()->userid();
-}
-//==============================================================================
 void database::addbook(book *obj)
 {
 	this->_bookdb.push(obj);
@@ -257,16 +257,6 @@ void database::adduser(user *obj)
 	this->_userdb.push(obj);
 }
 //==============================================================================
-void database::delbook(int bookid)
-{
-	this->_bookdb.remove(bookid);
-}
-//==============================================================================
-void database::deluser(int userid)
-{
-	this->_userdb.remove(userid);
-}
-//==============================================================================
 void database::editbook(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
 {
 	this->_bookdb.edit(bookid, afname, alname, title, genre, cnt);
@@ -275,6 +265,16 @@ void database::editbook(int bookid, std::string afname, std::string alname, std:
 void database::edituser(int userid, std::string ufname, std::string ulname)
 {
 	this->_userdb.edit(userid, ufname, ulname);
+}
+//==============================================================================
+void database::delbook(int bookid)
+{
+	this->_bookdb.remove(bookid);
+}
+//==============================================================================
+void database::deluser(int userid)
+{
+	this->_userdb.remove(userid);
 }
 //==============================================================================
 void database::borrow(int bookid, int userid)

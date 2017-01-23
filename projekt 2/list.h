@@ -11,6 +11,22 @@ class list
 	T *_head = nullptr;
 	T *_tail = nullptr;
 	public:
+	/// <summary>Returns the length of the list as integer value</summary>
+	int length()
+	{
+		return this->_length;
+	}
+	/// <summary>Returns a pointer to the first object in the list.</summary>
+	T* head()
+	{
+		return this->_head;
+	}
+	/// <summary>Returns a pointer to the last object in the list.</summary>
+	T* tail()
+	{
+		return this->_tail;
+	}
+	///
 	list()
 	{
 		this->_head = nullptr;
@@ -26,6 +42,8 @@ class list
 			delete tmp;
 		}
 	}
+	///
+	T* at(int id);
 	/// <summary>Prints contents of the list to the screen</summary>
 	void print();
 	/// <summary>Alternative print method; to be specialized</summary>
@@ -51,28 +69,11 @@ class list
 		}
 	}
 	///
-	void remove(int id);
-	/// <summary>Returns the length of the list as integer value</summary>
-	int length()
-	{
-		return this->_length;
-	}
-	/// <summary>Returns a pointer to the first object in the list.</summary>
-	T* head()
-	{
-		return this->_head;
-	}
-	/// <summary>Returns a pointer to the last object in the list.</summary>
-	T* tail()
-	{
-		return this->_tail;
-	}
-	///
 	void edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt);
 	///
 	void edit(int userid, std::string ufname, std::string ulname);
 	///
-	T* at(int id);
+	void remove(int id);
 };
 //==============================================================================
 #endif // !LIST_H

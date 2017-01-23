@@ -5,6 +5,54 @@
 #include "date.h"
 #include "borrowedbook.h"
 //==============================================================================
+template < >
+book* list<book>::at(int id)
+{
+	book *_current = this->head();
+	book *_target = nullptr;
+	do
+	{
+		if(_current->bookid() == id)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	if(_target == nullptr)
+		throw new std::out_of_range("element not found on the list!\n");
+	return _target;
+}
+//==============================================================================
+template < >
+user* list<user>::at(int id)
+{
+	user *_current = this->head();
+	user *_target = nullptr;
+	do
+	{
+		if(_current->userid() == id)
+		{
+			_target = _current;
+		}
+		_current = _current->_nextelement;
+	} while(_current);
+	while(_current);
+	if(_target == nullptr)
+		throw new std::out_of_range("element not found on the list!\n");
+	return _target;
+}
+//==============================================================================
+template< >
+void list<book>::print()
+{
+	book *_current = this->head();
+	while(_current)
+	{
+		std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
+		_current = _current->_nextelement;
+	}
+}
+//==============================================================================
 template< >
 void list<user>::print()
 {
@@ -26,48 +74,7 @@ void list<user>::print()
 	}
 }
 //==============================================================================
-template< >
-void list<user>::print(std::string irrelevant)
-{
-	user *_current = this->head();
-	while(_current)
-	{
-		if(_current->borrowedbooks().empty())
-		{
-			_current = _current->_nextelement;
-			continue;
-		}
-		else
-		{
-			std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
-			if(_current->borrowedbooks().empty() == true)
-				std::cout << "none";
-			else
-			{
-				for(int i = 0; i < _current->borrowedbooks().size(); i++)
-				{
-					std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
-				}
-			}
-			std::cout << std::endl;
-			_current = _current->_nextelement;
-
-		}
-	}
-}
-//==============================================================================
-template< >
-void list<book>::print()
-{
-	book *_current = this->head();
-	while(_current)
-	{
-		std::cout << "Book ID: " << _current->bookid() << " | " << _current->authorfname() << ' ' << _current->authorlname() << " - " << _current->title() << " | " << _current->genre() << " | Left in the library: " << _current->cnt() << std::endl;
-		_current = _current->_nextelement;
-	}
-}
-//==============================================================================
-template< >
+template < >
 void list<book>::print(std::string modeswitch)
 {
 	if(modeswitch == "byauthor")
@@ -150,6 +157,30 @@ void list<book>::print(std::string modeswitch)
 }
 //==============================================================================
 template< >
+void list<user>::print(std::string irrelevant)
+{
+	user *_current = this->head();
+	while(_current)
+	{
+		if(_current->flagged())
+		{
+			std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
+			if(_current->borrowedbooks().empty() == true)
+				std::cout << "none";
+			else
+			{
+				for(int i = 0; i < _current->borrowedbooks().size(); i++)
+				{
+					std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
+				}
+			}
+			std::cout << std::endl;
+		}
+		_current = _current->_nextelement;
+	}
+}
+//==============================================================================
+template< >
 void list<book>::print(std::string modeswitch, std::string query)
 {
 	if(modeswitch == "--author")
@@ -176,6 +207,25 @@ void list<book>::print(std::string modeswitch, std::string query)
 			_current = _current->_nextelement;
 		}
 	}
+}
+//==============================================================================
+template < >
+void list<book>::edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
+{
+	book *_target = this->at(bookid);
+	_target->_authorfname = afname;
+	_target->_authorlname = alname;
+	_target->_title = title;
+	_target->_genre = genre;
+	_target->_cnt = cnt;
+}
+//==============================================================================
+template < >
+void list<user>::edit(int userid, std::string ufname, std::string ulname)
+{
+	user *_target = this->at(userid);
+	_target->_userfname = ufname;
+	_target->_userlname = ulname;
 }
 //==============================================================================
 template< >
@@ -211,59 +261,3 @@ void list<user>::remove(int id)
 	delete _target;
 }
 //==============================================================================
-template < >
-void list<book>::edit(int bookid, std::string afname, std::string alname, std::string title, std::string genre, int cnt)
-{
-	book *_target = this->at(bookid);
-	_target->_authorfname = afname;
-	_target->_authorlname = alname;
-	_target->_title = title;
-	_target->_genre = genre;
-	_target->_cnt = cnt;
-}
-//==============================================================================
-template < >
-void list<user>::edit(int userid, std::string ufname, std::string ulname)
-{
-	user *_target=this->at(userid);
-	_target->_userfname = ufname;
-	_target->_userlname = ulname;
-}
-//==============================================================================
-template < >
-book* list<book>::at(int id)
-{
-	book *_current = this->head();
-	book *_target = nullptr;
-	do
-	{
-		if(_current->bookid() == id)
-		{
-			_target = _current;
-		}
-		_current = _current->_nextelement;
-	}
-	while(_current);
-	if(_target == nullptr)
-		throw new std::out_of_range("element not found on the list!\n");
-	return _target;
-}
-template < >
-user* list<user>::at(int id)
-{
-	user *_current = this->head();
-	user *_target = nullptr;
-	do
-	{
-		if(_current->userid() == id)
-		{
-			_target = _current;
-		}
-		_current = _current->_nextelement;
-	}
-	while(_current);
-	while(_current);
-	if(_target == nullptr)
-		throw new std::out_of_range("element not found on the list!\n");
-	return _target;
-}
