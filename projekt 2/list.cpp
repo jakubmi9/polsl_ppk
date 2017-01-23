@@ -66,7 +66,10 @@ void list<user>::print()
 		{
 			for(int i = 0; i < _current->borrowedbooks().size(); i++)
 			{
-				std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
+				if(_current->borrowedbooks().at(i).overdue())
+					std::cout << "[OVERDUE] " << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
+				else
+					std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
 			}
 		}
 		std::cout << std::endl;
@@ -171,7 +174,10 @@ void list<user>::print(std::string irrelevant)
 			{
 				for(int i = 0; i < _current->borrowedbooks().size(); i++)
 				{
-					std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
+					if(_current->borrowedbooks().at(i).overdue())
+						std::cout << "[OVERDUE] " << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
+					else
+						std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
 				}
 			}
 			std::cout << std::endl;
@@ -258,6 +264,6 @@ void list<user>::remove(int id)
 	if(_target == this->head())
 		this->_head = next;
 	if(_target == this->tail())
-	delete _target;
+		delete _target;
 }
 //==============================================================================
