@@ -59,12 +59,19 @@ int main(int argc, char* argv[])
 				}
 				else if(ui->command.at(0) == "load")
 				{
+LOAD:
 					if(LOADED)
 					{
 						throw new AlreadyLoadedException;
 						continue;
 					}
-					if(ui->command.size() == 2)
+					if(ui->command.size() == 1)
+					{
+						std::cout << "What do you want to load?\n";
+						ui->subprompt();
+						goto LOAD;
+					}
+					else if(ui->command.size() == 2)
 					{
 						db = new database(ui->command.at(1));
 						LOADED = true;
@@ -73,25 +80,7 @@ int main(int argc, char* argv[])
 					}
 					else
 					{
-						if(ui->command.size() > 2)
-						{
-							throw new InvalidArgumentException;
-						}
-						else
-						{
-							ui->subprompt();
-							if(ui->command.size() == 2)
-							{
-								db = new database(ui->command.at(1));
-								LOADED = true;
-								ui->submodule(ui->command.at(1));
-								ui->command.clear();
-							}
-							else
-							{
-								throw new InvalidArgumentException;
-							}
-						}
+						throw new InvalidArgumentException;
 					}
 				}
 				else if(ui->command.at(0) == "flush")
@@ -103,12 +92,11 @@ int main(int argc, char* argv[])
 				}
 				else if(ui->command.at(0) == "status")
 				{
-					//print current status of the library system
 					if(LOADED)
 					{
 						std::cout << "A database is currently loaded." << std::endl;
 						std::cout << "There are " << db->usercount() << " registered users.\n";
-						std::cout << db->userswbooks() << " of them have unreturned books.\n";
+						std::cout << db->userswbooks() << " of them have overdue books.\n";
 						std::cout << "There are " << db->bookcount() << " different titles.\n";
 						std::cout << db->availablebooks() << " copies are currently in the library.\n";
 					}
@@ -235,7 +223,6 @@ ADD:
 					{
 						std::cout << "should never happen...?\n";
 					}
-					//add new item to the db
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "edit")
@@ -283,7 +270,6 @@ EDIT:
 							db->edituser(stoi(ui->command.at(2)), ui->command.at(3), ui->command.at(4));
 						}
 					}
-					//edit an existing item
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "delete")
@@ -323,7 +309,6 @@ DELETE:
 							db->deluser(stoi(ui->command.at(2)));
 						}
 					}
-					//delete item from 
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "borrow")
