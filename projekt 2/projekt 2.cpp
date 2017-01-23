@@ -339,7 +339,7 @@ BORROW:
 					}
 					else if(ui->command.size() == 3)
 					{
-						db->borrow(stoi(ui->command.at(1)), stoi(ui->command.at(2)));
+						std::cout << db->borrow(stoi(ui->command.at(1)), stoi(ui->command.at(2)));
 					}
 					else
 					{
@@ -349,9 +349,23 @@ BORROW:
 				}
 				else if(ui->command.at(0) == "return")
 				{
+BOOKRETURN:
 					if(!LOADED)
 						throw new DatabaseNotLoadedException;
-					//return a book
+					if(ui->command.size() == 1)
+					{
+						std::cout << "Syntax:\n<book's unique id number> <user's unique id number>\n";
+						ui->subprompt();
+						goto BOOKRETURN;
+					}
+					else if(ui->command.size() == 3)
+					{
+						std::cout << db->bookreturn(stoi(ui->command.at(1)), stoi(ui->command.at(2)));
+					}
+					else
+					{
+						throw new InvalidArgumentException;
+					}
 					ui->command.clear();
 				}
 				else

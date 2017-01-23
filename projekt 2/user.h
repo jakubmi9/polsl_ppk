@@ -16,6 +16,7 @@ class user
 	std::string _userfname;
 	std::string _userlname;
 	std::vector<borrowedbook> _borrowedbooks;
+	bool _flagged = 0;
 	public:
 	/// <summary>Returns unique ID number of the user.</summary>
 	int userid();
@@ -25,6 +26,8 @@ class user
 	std::string userlname();
 	/// <summary>Returns a vector containing names of all the books, currently borrowed by the user.</summary>
 	std::vector<borrowedbook> borrowedbooks();
+	///
+	bool flagged();
 	/// <summary>initialises a new user</summary>
 	/// <param name="id">Unique ID number of the user.</param>
 	/// <param name="userfname">User's first name.</param>

@@ -7,6 +7,12 @@ user::user(int id, std::string fname, std::string lname, std::vector<borrowedboo
 	this->_userfname = fname;
 	this->_userlname = lname;
 	this->_borrowedbooks = books;
+	for(int i = 0; books.size(); i++)
+	{
+		if(books.at(i).overdue() == true)
+			_flagged = 1;
+		break;
+	}
 }
 //==============================================================================
 user::~user()
@@ -32,3 +38,9 @@ std::vector<borrowedbook> user::borrowedbooks()
 {
 	return this->_borrowedbooks;
 }
+//==============================================================================
+bool user::flagged()
+{
+	return this->_flagged;
+}
+//==============================================================================

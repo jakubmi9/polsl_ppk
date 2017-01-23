@@ -178,7 +178,8 @@ database::database(std::string file)
 			}
 			else
 			{
-				this->_userswbooks++;
+				if(tmp->flagged())
+					this->userswbooks++;
 			}
 			num.clear();
 			fname.clear();
@@ -277,17 +278,42 @@ void database::deluser(int userid)
 	this->_userdb.remove(userid);
 }
 //==============================================================================
-void database::borrow(int bookid, int userid)
+std::string database::borrow(int bookid, int userid)
 {
 	if(this->_bookdb.at(bookid)->cnt() == 0)
 	{
-		//can't borrow; all gone
+		return "This title is currently out of stock.\n";
 	}
 	else if(this->_userdb.at(userid)->borrowedbooks().size() >= 10)
 	{
-		//can't borrow; limit reached
+		return "The limit of 10 books per user has been reached.\n";
 	}
-	//else if(any book for the user is overdue) 
-		//can't borrow; has overdue books
+	else if(this->_userdb.at(userid)->flagged())
+	{
+		return "This user has overdue books.\n";
+	}
+	else
+	{
+		tm now;
+		borrowedbook *tmp = new borrowedbook(bookid, now.tm_mday, (now.tm_mon + 1), (now.tm_year + 1900));
+		this->_userdb.at(userid)->borrowedbooks().push_back(*tmp);
+		this->_bookdb.at(bookid)->_cnt--;
+	}
+}
+//==============================================================================
+std::string database::bookreturn(int bookid, int userid)
+{
+	bool DID_BORROW = 0;
+	int i = 0;
+	for(; i < this->_userdb.at(userid)->borrowedbooks().size(); i++)
+	{
+		if(this->_userdb.at(userid)->borrowedbooks().at(i).bookid() == bookid)
+		{
+			DID_BORROW = 1;
+			break;
+		}
+	}
+	this->_bookdb.at(bookid)->_cnt++;
+	this->_userdb.at(userid)->borrowedbooks().erase(this->_userdb.at(userid)->borrowedbooks().begin() + i);
 }
 //==============================================================================

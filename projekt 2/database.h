@@ -58,7 +58,8 @@ class database
 	///
 	void deluser(int userid);
 	///
+	std::string borrow(int bookid, int userid);
 	///
-	void borrow(int bookid, int userid);
+	std::string bookreturn(int bookid, int userid);
 };
 #endif // !DATABASE_H
