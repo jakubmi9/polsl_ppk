@@ -4,6 +4,7 @@
 class borrowedbook
 {
 	private:
+	bool _overdue;
 	int _bookid;
 	date _borrowdate;
 	public:
@@ -16,5 +17,7 @@ class borrowedbook
 	int bookid();
 	///
 	date borrowdate();
+	///
+	bool overdue();
 };
 //==============================================================================

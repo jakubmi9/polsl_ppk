@@ -30,3 +30,9 @@ date borrowedbook::borrowdate()
 	return this->_borrowdate;
 }
 //==============================================================================
+bool borrowedbook::overdue()
+{
+	if(this->borrowdate().dayspassed() > 30)
+		return true;
+}
+//==============================================================================
