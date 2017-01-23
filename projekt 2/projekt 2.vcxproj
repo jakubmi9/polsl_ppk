@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="book.h" />
     <ClInclude Include="database.h" />
+    <ClInclude Include="date.h" />
     <ClInclude Include="exceptions.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="stdafx.h" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="book.cpp" />
     <ClCompile Include="database.cpp" />
+    <ClCompile Include="date.cpp" />
     <ClCompile Include="exceptions.cpp" />
     <ClCompile Include="list.cpp" />
     <ClCompile Include="projekt 2.cpp" />
