@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "date.h"
+date::date()
+{
+}
 //==============================================================================
 date::date(int day, int month, int year)
 {
@@ -20,6 +23,7 @@ date::date(std::string datestring)
 	}
 	this->_day = std::stoi(num);
 	num.clear();
+	i++;
 	for(; i < datestring.size(); i++)
 	{
 		if(datestring[i] == '-')
@@ -28,6 +32,7 @@ date::date(std::string datestring)
 	}
 	this->_month = std::stoi(num);
 	num.clear();
+	i++;
 	for(; i < datestring.size(); i++)
 	{
 		if(datestring[i] == '-')

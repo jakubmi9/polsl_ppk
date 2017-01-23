@@ -12,6 +12,7 @@ class date
 	int year();
 	date(int, int, int);
 	date(std::string);
+	date();
 	~date();
 };
 
