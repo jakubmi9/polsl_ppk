@@ -85,7 +85,7 @@ database::database(std::string file)
 			std::string num;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				num.push_back(line[i]);
 			}
@@ -93,36 +93,57 @@ database::database(std::string file)
 			i++;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				fname.push_back(line[i]);
 			}
 			i++;
 			for(; i < line.length(); i++)
 			{
-				if(line[i] == ' ')
+				if(line[i] == ';')
 					break;
 				lname.push_back(line[i]);
 			}
 			i++;
-			std::vector<std::string> books;
-			std::string bk;
+			std::vector<borrowedbook> books;
+			std::string newbook;
 			while(i < line.length())
 			{
 				for(; i < line.length(); i++)
 				{
-					if(line[i] == ' ')
+					if(line[i] == ';')
 						break;
-					bk.push_back(line[i]);
+					newbook.push_back(line[i]);
 				}
 				i++;
-				books.push_back(bk);
-				bk.clear();
+				if(newbook != "null")
+				{
+					int j = 0;
+					std::string tmp;
+					for(; j < newbook.length(); j++)
+					{
+						if(newbook[j] == ' ')
+							break;
+						tmp.push_back(newbook[j]);
+					}
+					j++;
+					int id = stoi(tmp);
+					tmp.clear();
+					for(; j < newbook.length(); j++)
+						tmp.push_back(newbook[j]);
+					borrowedbook *bk = new borrowedbook(id, tmp);
+					books.push_back(*bk);
+				}
+				else
+				{
+					continue;
+				}
+				newbook.clear();
 			}
 			user *tmp = new user(userid, fname, lname, books);
 			this->_userdb.push(tmp);
 			this->_usercount++;
-			if(books.at(0) == "null")
+			if(books.empty())
 			{
 			}
 			else
@@ -155,13 +176,14 @@ database::~database()
 	user *currentuser = this->_userdb.head();
 	while(currentuser)
 	{
-		_dbfile << currentuser->userid() << ' ' << currentuser->userfname() << ' ' << currentuser->userlname() << ' ' << currentuser->borrowedbooks().at(0) << ' ';
-		if(currentuser->borrowedbooks().size() > 1)
+		_dbfile << currentuser->userid() << ';' << currentuser->userfname() << ';' << currentuser->userlname() << ';';
+		if(currentuser->borrowedbooks().size() == 0)
 		{
-			for(int i = 1; i < currentuser->borrowedbooks().size(); i++)
-			{
-				_dbfile << currentuser->borrowedbooks().at(i) << ' ';
-			}
+			_dbfile << "null;";
+		}
+		for(int i = 0; i < currentuser->borrowedbooks().size(); i++)
+		{
+			_dbfile << currentuser->borrowedbooks().at(i).bookid() << ' ' << currentuser->borrowedbooks().at(i).borrowdate().to_string() << ';';
 		}
 		_dbfile << std::endl;
 		currentuser = currentuser->_nextelement;

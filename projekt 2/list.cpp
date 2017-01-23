@@ -2,6 +2,8 @@
 #include "list.h"
 #include "user.h"
 #include "book.h"
+#include "date.h"
+#include "borrowedbook.h"
 //==============================================================================
 template< >
 void list<user>::print()
@@ -10,13 +12,13 @@ void list<user>::print()
 	while(_current)
 	{
 		std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
-		for(int i = 0; i < _current->borrowedbooks().size(); i++)
+		if(_current->borrowedbooks().empty() == true)
+			std::cout << "none";
+		else
 		{
-			if(_current->borrowedbooks().at(0) == "null")
-				std::cout << "none";
-			else
+			for(int i = 0; i < _current->borrowedbooks().size(); i++)
 			{
-				std::cout << _current->borrowedbooks().at(i);
+				std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
 			}
 		}
 		std::cout << std::endl;
@@ -30,7 +32,7 @@ void list<user>::print(std::string irrelevant)
 	user *_current = this->head();
 	while(_current)
 	{
-		if(_current->borrowedbooks().at(0) == "null")
+		if(_current->borrowedbooks().empty())
 		{
 			_current = _current->_nextelement;
 			continue;
@@ -38,13 +40,13 @@ void list<user>::print(std::string irrelevant)
 		else
 		{
 			std::cout << "User ID: " << _current->userid() << " | " << _current->userfname() << ' ' << _current->userlname() << " | Borrowed books: ";
-			for(int i = 0; i < _current->borrowedbooks().size(); i++)
+			if(_current->borrowedbooks().empty() == true)
+				std::cout << "none";
+			else
 			{
-				if(_current->borrowedbooks().at(0) == "null")
-					std::cout << "none";
-				else
+				for(int i = 0; i < _current->borrowedbooks().size(); i++)
 				{
-					std::cout << _current->borrowedbooks().at(i) << ", ";
+					std::cout << _current->borrowedbooks().at(i).bookid() << " on " << _current->borrowedbooks().at(i).borrowdate().to_string() << ", ";
 				}
 			}
 			std::cout << std::endl;

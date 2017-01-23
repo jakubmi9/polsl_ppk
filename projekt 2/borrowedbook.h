@@ -6,8 +6,11 @@ class borrowedbook
 	int _bookid;
 	date _borrowdate;
 	public:
+	///
 	borrowedbook(int, std::string);
-	int borrowid();
+	///
+	int bookid();
+	///
 	date borrowdate();
 	~borrowedbook();
 };

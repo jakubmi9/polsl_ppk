@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "user.h"
 //==============================================================================
-user::user(int id, std::string fname, std::string lname, std::vector<std::string> books)
+user::user(int id, std::string fname, std::string lname, std::vector<borrowedbook> books)
 {
 	this->_userid = id;
 	this->_userfname = fname;
@@ -28,7 +28,7 @@ std::string user::userlname()
 	return this->_userlname;
 }
 //==============================================================================
-std::vector<std::string> user::borrowedbooks()
+std::vector<borrowedbook> user::borrowedbooks()
 {
 	return this->_borrowedbooks;
 }

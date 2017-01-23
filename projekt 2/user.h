@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "list.h"
+#include "date.h"
+#include "borrowedbook.h"
 #ifndef USER_H
 #define USER_H
 //==============================================================================
@@ -13,7 +15,7 @@ class user
 	int _userid;
 	std::string _userfname;
 	std::string _userlname;
-	std::vector<std::string> _borrowedbooks;
+	std::vector<borrowedbook> _borrowedbooks;
 	public:
 	/// <summary>Returns unique ID number of the user.</summary>
 	int userid();
@@ -22,13 +24,13 @@ class user
 	/// <summary>Returns user's last name.</summary>
 	std::string userlname();
 	/// <summary>Returns a vector containing names of all the books, currently borrowed by the user.</summary>
-	std::vector<std::string> borrowedbooks();
+	std::vector<borrowedbook> borrowedbooks();
 	/// <summary>initialises a new user</summary>
 	/// <param name="id">Unique ID number of the user.</param>
 	/// <param name="userfname">User's first name.</param>
 	/// <param name="userlname">User's last name.</param>
 	/// <param name="borrowedbooks">Vector containing names of all the books, currently borrowed by the user.</param>
-	user(int id, std::string fname, std::string lname, std::vector<std::string> books);
+	user(int id, std::string fname, std::string lname, std::vector<borrowedbook> books);
 	~user();
 	friend class list<user>;
 	friend class database;

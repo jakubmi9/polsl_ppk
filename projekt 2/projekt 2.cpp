@@ -227,8 +227,7 @@ ADD:
 					}
 					else if(ui->command.at(1) == "user" && ui->command.size() == 4)
 					{
-						std::vector<std::string> tmp;
-						tmp.push_back("null");
+						std::vector<borrowedbook> tmp;
 						user *newuser = new user(db->lastuserid() + 1, ui->command.at(2), ui->command.at(3), tmp);
 						db->adduser(newuser);
 					}
