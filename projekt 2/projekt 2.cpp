@@ -18,7 +18,7 @@ bool DEBUG = false;
 int main(int argc, char* argv[])
 {
 	bool LOADED = false;
-	const std::string startmessage = "libXpress Library Management System alpha\nLicensed under GNU GPLv3";
+	const std::string startmessage = "libXpress Library Management System v1.1\nLicensed under GNU GPLv3";
 	const std::string promptstring = "libxpress";
 	sh::shell *ui = new sh::shell(startmessage, promptstring);
 	database *db = nullptr;
@@ -52,10 +52,6 @@ int main(int argc, char* argv[])
 						delete ui;
 						if(DEBUG) system("pause"); return 0;
 					}
-				}
-				else if(ui->command.at(0) == "help")
-				{
-
 				}
 				else if(ui->command.at(0) == "load")
 				{
@@ -355,6 +351,40 @@ BOOKRETURN:
 					{
 						throw new InvalidArgumentException;
 					}
+					ui->command.clear();
+				}
+				else if(ui->command.at(0) == "help")
+				{
+					if(LOADED)
+					{
+						std::cout << "libXpress Help Utility\n\
+available commands:\n\
+exit                                    | exits the program\n\
+help                                    | displays this help message\n\
+status                                  | displays current status of the library\n\
+flush                                   | saves current library state to the file it was originally loaded from\n\
+list users [--overdue]                  | displays list of all users [users with overdue books]\n\
+list books [--byauthor | --bytitle]     | displays list of all books [books sorted by author/title]\n\
+list books [--author | --genre] <query> | displays only books of author/genre specified by query\n\
+[borrow | return] <bookid> <userid>     | borrows/returns book for specified user\n\
+add book <author's first name> <author's last name> <title> <genre> <quantity> \n\
+^^^^                                    | adds new book to the database\n\
+add user <first name> <last name>       | adds new user to the database\n\
+delete [book | user] <id>               | deletes book/user of said id from the database\n\
+edit [book|user] <id>                   | displays interactive prompt for editing a database entry\n\
+";
+					}
+					else
+					{
+						std::cout << "libXpress Help Utility\n\
+available commands:\n\
+exit                                    | exits the program\n\
+help                                    | displays this help message\n\
+status                                  | displays current status of the library\n\
+load <filename>                         | loads libXpress database from disk\n\
+";
+					}
+					
 					ui->command.clear();
 				}
 				else
