@@ -298,9 +298,10 @@ std::string database::borrow(int bookid, int userid)
 		time(&rawtime);
 		tm *now = new tm;
 		localtime_s(now, &rawtime);
-		borrowedbook *tmp = new borrowedbook(bookid, now->tm_mday, (now->tm_mon + 1), (now->tm_year + 1900));
-		this->_userdb.at(userid)->borrowedbooks().push_back(*tmp);
+		borrowedbook tmp(bookid, now->tm_mday, (now->tm_mon + 1), (now->tm_year + 1900));
+		this->_userdb.at(userid)->_borrowedbooks.push_back(tmp);
 		this->_bookdb.at(bookid)->_cnt--;
+		this->_availablebooks--;
 		return "";
 	}
 }
@@ -320,7 +321,7 @@ std::string database::bookreturn(int bookid, int userid)
 	if(!DID_BORROW)
 		return "This book is not currently checked out for that user.\n";
 	this->_bookdb.at(bookid)->_cnt++;
-	this->_userdb.at(userid)->borrowedbooks().erase(this->_userdb.at(userid)->borrowedbooks().begin() + i);
+	this->_userdb.at(userid)->_borrowedbooks.erase(this->_userdb.at(userid)->_borrowedbooks.begin() + i);
 	return "";
 }
 //==============================================================================

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "exceptions.h"
 #include "list.h"
 #include "user.h"
 #include "book.h"
@@ -15,6 +16,7 @@ book* list<book>::at(int id)
 		if(_current->bookid() == id)
 		{
 			_target = _current;
+			break;
 		}
 		_current = _current->_nextelement;
 	} while(_current);
@@ -33,9 +35,10 @@ user* list<user>::at(int id)
 		if(_current->userid() == id)
 		{
 			_target = _current;
+			break;
 		}
 		_current = _current->_nextelement;
-	} while(_current);
+	}
 	while(_current);
 	if(_target == nullptr)
 		throw new std::out_of_range("element not found on the list!\n");

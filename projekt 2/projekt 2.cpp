@@ -171,7 +171,11 @@ LIST:
 						{
 							db->printbooks("--genre", ui->command.at(3));
 						}
+						else
+							throw new InvalidArgumentException;
 					}
+					else 
+						throw new InvalidArgumentException;
 					ui->command.clear();
 				}
 				else if(ui->command.at(0) == "add")
