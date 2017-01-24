@@ -132,9 +132,9 @@ LIST:
 					}
 					else if(ui->command.size() == 3)
 					{
-						if(ui->command.at(1) == "users" && ui->command.at(2) == "--unreturned")
+						if(ui->command.at(1) == "users" && ui->command.at(2) == "--overdue")
 						{
-							db->printusers("unreturned");
+							db->printusers("overdue");
 						}
 						else if(ui->command.at(1) == "books" && ui->command.at(2) == "--byauthor")
 						{
