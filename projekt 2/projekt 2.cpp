@@ -189,7 +189,7 @@ ADD:
 					{
 						if(ui->command.at(1) == "book")
 						{
-							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <amount currently on site>\n";
+							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <quantity on site>\n";
 							ui->subprompt();
 							goto ADD;
 						}
@@ -255,7 +255,7 @@ EDIT:
 					{
 						if(ui->command.at(1) == "book")
 						{
-							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <amount left>\n";
+							std::cout << "Syntax:\n<author's first name> <author's last name> <title> <genre> <quantity left>\n";
 							ui->subprompt();
 							if(ui->command.size() < 8)
 								throw new InsufficientArgumentException;
